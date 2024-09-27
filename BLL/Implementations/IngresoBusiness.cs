@@ -1,4 +1,4 @@
-﻿using BLL.Interfaces;
+using BLL.Interfaces;
 using Dao.Factory;
 using DOMAIN;
 using System;
@@ -96,15 +96,14 @@ namespace BLL.Implementations
                     };
                 }
 
-                Ingreso ingresocheck = null;
-
                 Vehiculo vehiculoCheck = VehiculoBusiness.Current.GetAll().FirstOrDefault(x => x.patente == entity.vehiculo.patente);
 
    
                 if(vehiculoCheck != null ) {
 
-                   ingresocheck = IngresoBusiness.Current.GetAll().FirstOrDefault(x => x.vehiculo.idVehiculo == vehiculoCheck.idVehiculo);
-                    if (ingresocheck != null && ingresocheck.fechaEgreso.ToString().Contains("1/1/0001")) throw new Exception("El auto ya esta ingresado");
+                    Ingreso ingresocheck = IngresoBusiness.Current.GetAll().FirstOrDefault(x => x.vehiculo.idVehiculo == vehiculoCheck.idVehiculo && x.fechaEgreso != DateTime.Parse("01/01/0001") || x.fechaEgreso == DateTime.Parse("1/1/0001"));
+                    
+                   if(ingresocheck != null) if (ingresocheck.fechaEgreso.ToString().Contains("1/1/0001") || ingresocheck.fechaEgreso.ToString().Contains("01/01/0001")) throw new Exception("El auto ya esta ingresado");
 
                 }
 
