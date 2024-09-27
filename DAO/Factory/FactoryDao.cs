@@ -135,15 +135,7 @@ namespace Dao.Factory
         }
 
 
-        public static IRolDAO rolDAO
-        {
-            get
-            {
-                Type rolType = Type.GetType(rolData);
-
-                return Activator.CreateInstance(rolType) as IRolDAO;
-            }
-        }
+   
 
 
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAO.Implementations.SqlServer.Mappers
 {
-    public sealed class RolMapper : IObjectMapper<Rol>
+    public sealed class RolMapper 
     {
 
 
@@ -31,13 +31,6 @@ namespace DAO.Implementations.SqlServer.Mappers
        
 
 
-        public Rol Fill(object[] values)
-        {
-            Rol rol = new Rol();
-            rol.idRol = (int)values[0];
-            rol.descripcion = (string)values[1];
-
-            return rol;
-        }
+    
     }
 }

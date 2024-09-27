@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DOMAIN
+namespace SERVICE.DAL.Contracts
 {
-    public class Rol
+    internal interface IObjectMapper<T>
     {
-        public int idRol { get; set; }
-
-        public string descripcion { get; set; }
+        T Fill(object[] values);
     }
 }

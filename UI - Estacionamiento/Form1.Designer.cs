@@ -37,7 +37,6 @@
             this.btnTarifas = new System.Windows.Forms.Button();
             this.btnSalidas = new System.Windows.Forms.Button();
             this.btnIngresos = new System.Windows.Forms.Button();
-            this.btnInicio = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -67,6 +66,7 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1313, 55);
             this.panel3.TabIndex = 1;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // panel2
             // 
@@ -76,7 +76,6 @@
             this.panel2.Controls.Add(this.btnTarifas);
             this.panel2.Controls.Add(this.btnSalidas);
             this.panel2.Controls.Add(this.btnIngresos);
-            this.panel2.Controls.Add(this.btnInicio);
             this.panel2.Location = new System.Drawing.Point(0, 4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(245, 668);
@@ -89,7 +88,7 @@
             this.btnMetodosPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMetodosPago.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMetodosPago.ForeColor = System.Drawing.Color.White;
-            this.btnMetodosPago.Location = new System.Drawing.Point(3, 352);
+            this.btnMetodosPago.Location = new System.Drawing.Point(3, 293);
             this.btnMetodosPago.Name = "btnMetodosPago";
             this.btnMetodosPago.Size = new System.Drawing.Size(239, 54);
             this.btnMetodosPago.TabIndex = 5;
@@ -103,7 +102,7 @@
             this.btnFacturacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFacturacion.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFacturacion.ForeColor = System.Drawing.Color.White;
-            this.btnFacturacion.Location = new System.Drawing.Point(3, 232);
+            this.btnFacturacion.Location = new System.Drawing.Point(3, 173);
             this.btnFacturacion.Name = "btnFacturacion";
             this.btnFacturacion.Size = new System.Drawing.Size(239, 54);
             this.btnFacturacion.TabIndex = 4;
@@ -117,7 +116,7 @@
             this.btnTarifas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTarifas.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTarifas.ForeColor = System.Drawing.Color.White;
-            this.btnTarifas.Location = new System.Drawing.Point(3, 292);
+            this.btnTarifas.Location = new System.Drawing.Point(3, 233);
             this.btnTarifas.Name = "btnTarifas";
             this.btnTarifas.Size = new System.Drawing.Size(239, 54);
             this.btnTarifas.TabIndex = 3;
@@ -132,7 +131,7 @@
             this.btnSalidas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalidas.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalidas.ForeColor = System.Drawing.Color.White;
-            this.btnSalidas.Location = new System.Drawing.Point(3, 172);
+            this.btnSalidas.Location = new System.Drawing.Point(3, 113);
             this.btnSalidas.Name = "btnSalidas";
             this.btnSalidas.Size = new System.Drawing.Size(239, 54);
             this.btnSalidas.TabIndex = 2;
@@ -147,28 +146,13 @@
             this.btnIngresos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIngresos.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIngresos.ForeColor = System.Drawing.Color.White;
-            this.btnIngresos.Location = new System.Drawing.Point(3, 112);
+            this.btnIngresos.Location = new System.Drawing.Point(3, 53);
             this.btnIngresos.Name = "btnIngresos";
             this.btnIngresos.Size = new System.Drawing.Size(239, 54);
             this.btnIngresos.TabIndex = 1;
             this.btnIngresos.Text = "INGRESOS";
             this.btnIngresos.UseVisualStyleBackColor = true;
             this.btnIngresos.Click += new System.EventHandler(this.btnIngresos_Click);
-            // 
-            // btnInicio
-            // 
-            this.btnInicio.FlatAppearance.BorderSize = 0;
-            this.btnInicio.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(134)))), ((int)(((byte)(0)))));
-            this.btnInicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInicio.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInicio.ForeColor = System.Drawing.Color.White;
-            this.btnInicio.Location = new System.Drawing.Point(3, 52);
-            this.btnInicio.Name = "btnInicio";
-            this.btnInicio.Size = new System.Drawing.Size(239, 54);
-            this.btnInicio.TabIndex = 0;
-            this.btnInicio.Text = "INICIO";
-            this.btnInicio.UseVisualStyleBackColor = true;
-            this.btnInicio.Click += new System.EventHandler(this.btnInicio_Click);
             // 
             // Form1
             // 
@@ -177,6 +161,7 @@
             this.ClientSize = new System.Drawing.Size(1308, 664);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
@@ -193,7 +178,6 @@
         private System.Windows.Forms.Panel panelContenedor;
         private System.Windows.Forms.Button btnSalidas;
         private System.Windows.Forms.Button btnIngresos;
-        private System.Windows.Forms.Button btnInicio;
         private System.Windows.Forms.Button btnMetodosPago;
         private System.Windows.Forms.Button btnFacturacion;
         private System.Windows.Forms.Button btnTarifas;

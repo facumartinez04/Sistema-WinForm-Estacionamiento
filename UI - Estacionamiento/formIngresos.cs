@@ -147,5 +147,18 @@ namespace UI___Estacionamiento
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void txtPatente_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPatente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

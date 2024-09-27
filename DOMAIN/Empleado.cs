@@ -10,8 +10,6 @@ namespace DOMAIN
     {
         public int idEmpleado {  get; set; }
 
-        public Rol rol { get; set; }
-
         public string nombre { get; set; }
 
         public string apellido { get; set; }

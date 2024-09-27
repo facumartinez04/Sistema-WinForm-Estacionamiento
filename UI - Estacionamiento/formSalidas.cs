@@ -109,6 +109,7 @@ namespace UI___Estacionamiento
                         return;
                     }
                     
+                    lblpatente.Text = ingreso.vehiculo.patente;
                     lblhorario.Text = DateTime.Parse(ingreso.fechaIngreso.ToString()).ToString("HH:mm:ss tt");
                     lblFechaI.Text = DateTime.Parse(ingreso.fechaIngreso.ToString()).ToString("dd/MM/yyyy");
                     ComprobarTiempo();
@@ -130,6 +131,7 @@ namespace UI___Estacionamiento
             txtPatente.Text = "";
             lblhorario.Text = "";
             lbltiempotrans.Text = "";
+            lblpatente.Text = "";
 
         }
 
@@ -150,12 +152,19 @@ namespace UI___Estacionamiento
                 MessageBox.Show("El vehiculo salio correctamente");
 
                 idIngresoPrueba = Guid.Empty;
+                LimpiarLbls();
+                timerHora.Stop();
             }
             catch (Exception ex)
             {
 
                 MessageBox.Show(ex.Message);
             }
+
+        }
+
+        private void txtPatente_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

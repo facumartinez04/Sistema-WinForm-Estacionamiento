@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace UI___Estacionamiento
+namespace UI___Estacionamiento.AdminPanels
 {
-    public partial class formLogin : Form
+    public partial class FormAdminPanel : Form
     {
-        public formLogin()
+        public FormAdminPanel()
         {
             InitializeComponent();
         }

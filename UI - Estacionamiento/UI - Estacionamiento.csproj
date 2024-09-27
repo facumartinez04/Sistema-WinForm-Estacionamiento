@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +47,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminPanels\FormAdminPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPanels\FormAdminPanel.Designer.cs">
+      <DependentUpon>FormAdminPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Auth\formAuth.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Auth\formAuth.Designer.cs">
+      <DependentUpon>formAuth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Auth\formAuthLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Auth\formAuthLogin.Designer.cs">
+      <DependentUpon>formAuthLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Auth\formAuthRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Auth\formAuthRegister.Designer.cs">
+      <DependentUpon>formAuthRegister.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,12 +88,6 @@
     </Compile>
     <Compile Include="formIngresos.Designer.cs">
       <DependentUpon>formIngresos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="formLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formLogin.Designer.cs">
-      <DependentUpon>formLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="formRol.cs">
       <SubType>Form</SubType>
@@ -90,6 +109,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AdminPanels\FormAdminPanel.resx">
+      <DependentUpon>FormAdminPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Auth\formAuth.resx">
+      <DependentUpon>formAuth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Auth\formAuthLogin.resx">
+      <DependentUpon>formAuthLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Auth\formAuthRegister.resx">
+      <DependentUpon>formAuthRegister.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -98,9 +129,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formIngresos.resx">
       <DependentUpon>formIngresos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formLogin.resx">
-      <DependentUpon>formLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formRol.resx">
       <DependentUpon>formRol.cs</DependentUpon>
@@ -120,6 +148,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="I18n\language.en-US" />
+    <None Include="I18n\language.es-ES" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -141,6 +171,10 @@
     <ProjectReference Include="..\DOMAIN\DOMAIN.csproj">
       <Project>{2f63f1af-448a-4dea-a9d0-b186b5660ba2}</Project>
       <Name>DOMAIN</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SERVICE\SERVICE.csproj">
+      <Project>{963906DB-B9BA-41EB-A09D-C5187E145346}</Project>
+      <Name>SERVICE</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

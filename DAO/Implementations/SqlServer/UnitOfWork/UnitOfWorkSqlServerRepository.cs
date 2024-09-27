@@ -30,7 +30,6 @@ namespace Dao.Implementations.SqlServer.UnitOfWork
 
         public IEmpleadoDAO EmpleadoRepository { get; }
 
-        public IRolDAO RolRepository { get; }
 
 
 
@@ -114,16 +113,6 @@ namespace Dao.Implementations.SqlServer.UnitOfWork
             });
 
             EmpleadoRepository = empleadoInstance as IEmpleadoDAO;
-
-
-            Type rolType = Type.GetType(rolDAO);
-
-            var rolInstance = Activator.CreateInstance(rolType, new object[]
-            {
-                context, transaction
-            });
-
-            RolRepository = rolInstance as IRolDAO;
 
 
 

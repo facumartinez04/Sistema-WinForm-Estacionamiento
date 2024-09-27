@@ -51,7 +51,6 @@
     <Compile Include="Contracts\IObjectMapper.cs" />
     <Compile Include="Contracts\IPagoDAO.cs" />
     <Compile Include="Contracts\ITipoTarifaDAO.cs" />
-    <Compile Include="Contracts\IRolDAO.cs" />
     <Compile Include="Contracts\UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="Contracts\UnitOfWork\IUnitOfWorkAdapter.cs" />
     <Compile Include="Contracts\UnitOfWork\IUnitOfWorkRepository.cs" />
@@ -71,7 +70,6 @@
     <Compile Include="Implementations\SqlServer\Mappers\VehiculoMapper.cs" />
     <Compile Include="Implementations\SqlServer\MetodoPagoDAO.cs" />
     <Compile Include="Implementations\SqlServer\PagoDAO.cs" />
-    <Compile Include="Implementations\SqlServer\RolDAO.cs" />
     <Compile Include="Implementations\SqlServer\TipoTarifaDAO.cs" />
     <Compile Include="Implementations\SqlServer\UnitOfWork\UnitOfWorkSqlServer.cs" />
     <Compile Include="Implementations\SqlServer\UnitOfWork\UnitOfWorkSqlServerAdapter.cs" />

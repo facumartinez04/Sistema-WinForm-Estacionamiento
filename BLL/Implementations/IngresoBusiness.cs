@@ -99,11 +99,12 @@ namespace BLL.Implementations
                 Ingreso ingresocheck = null;
 
                 Vehiculo vehiculoCheck = VehiculoBusiness.Current.GetAll().FirstOrDefault(x => x.patente == entity.vehiculo.patente);
-    
+
+   
                 if(vehiculoCheck != null ) {
 
                    ingresocheck = IngresoBusiness.Current.GetAll().FirstOrDefault(x => x.vehiculo.idVehiculo == vehiculoCheck.idVehiculo);
-                    if (ingresocheck.fechaEgreso.ToString() != "01/01/0001") throw new Exception("El auto ya esta ingresado");
+                    if (ingresocheck != null && ingresocheck.fechaEgreso.ToString().Contains("1/1/0001")) throw new Exception("El auto ya esta ingresado");
 
                 }
 

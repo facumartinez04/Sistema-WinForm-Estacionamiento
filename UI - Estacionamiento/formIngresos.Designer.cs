@@ -123,6 +123,8 @@
             this.txtPatente.Size = new System.Drawing.Size(603, 135);
             this.txtPatente.TabIndex = 8;
             this.txtPatente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPatente.TextChanged += new System.EventHandler(this.txtPatente_TextChanged);
+            this.txtPatente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPatente_KeyPress);
             // 
             // label2
             // 
