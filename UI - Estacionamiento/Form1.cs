@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -75,6 +75,8 @@ namespace UI___Estacionamiento
         private void Form1_Load(object sender, EventArgs e)
         {
 
+            formIngresos formIngresos = new formIngresos();
+            AbrirForm(formIngresos);
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
