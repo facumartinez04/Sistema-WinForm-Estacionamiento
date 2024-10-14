@@ -44,7 +44,6 @@ namespace SERVICE.DAL.Implementations
                
 
 
-
                 int data = SqlHelper.ExecuteNonQuery("Familia_PatenteInsert", CommandType.StoredProcedure,
                 new SqlParameter[] { new SqlParameter("@IdFamilia", obj.idFamilia),
                                    new SqlParameter("@IdPatente", obj.idPatente) });

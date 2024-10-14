@@ -19,7 +19,9 @@ namespace SERVICE.Services
             }
             catch (WordNotFoundException ex)
             {
+                //Enviar por ws al grupo...
                 LanguageRepository.WriteKey(key);
+                //Bajar una bitácora contando de este problemita...
             }
             catch (Exception ex)
             {

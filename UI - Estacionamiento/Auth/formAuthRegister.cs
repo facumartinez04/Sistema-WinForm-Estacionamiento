@@ -16,10 +16,10 @@ namespace UI___Estacionamiento.Auth
     public partial class formAuthRegister : Form
     {
 
-        private formAuth _formAuth;
+        private s _formAuth;
 
 
-        public formAuthRegister(formAuth formAuth)
+        public formAuthRegister(s formAuth)
         {
 
             InitializeComponent();
@@ -28,18 +28,7 @@ namespace UI___Estacionamiento.Auth
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Usuario user = new Usuario();
-                user.Username = txtUsuario.Text;
-                user.Password = txtContra.Text;
-
-                LoginService.Register(user);
-                
-            }catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            
 
 
         }
@@ -66,7 +55,45 @@ namespace UI___Estacionamiento.Auth
 
         private void formAuthRegister_Load(object sender, EventArgs e)
         {
-            txtContra.PasswordChar = '*';
+            lblContra.PasswordChar = '*';
+        }
+
+        private void btnInicioSesion_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                Usuario user = new Usuario();
+                user.Username = lblUser.Text;
+                user.Password = lblContra.Text;
+
+                CheckContras();
+                LoginService.Register(user);
+
+                MessageBox.Show("Usuario registrado con exito");
+
+                _formAuth.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void CheckContras()
+        {
+            if (lblContra.Text != lblConfirmar.Text)
+            {
+                throw new Exception("Las contraseñas no coinciden");
+            }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            _formAuth.Show();
+            this.Hide();
+
         }
     }
 }

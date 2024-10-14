@@ -15,6 +15,8 @@ namespace SERVICE.Domain.Composite
 
         public string DataKey { get; set; }
 
+        public string Nombre { get; set; }
+
         public override void Add(Acceso component)
         {
             throw new NotImplementedException();

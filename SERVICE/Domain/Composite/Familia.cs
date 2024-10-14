@@ -19,6 +19,7 @@ namespace SERVICE.Domain.Composite
         {
 
         }
+
         public Familia(Acceso component, string nombre)
         {
 

@@ -53,17 +53,23 @@
     <Compile Include="AdminPanels\FormAdminPanel.Designer.cs">
       <DependentUpon>FormAdminPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminPanels\RolesyPermisos\formRolesyPermisos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPanels\RolesyPermisos\formRolesyPermisos.Designer.cs">
+      <DependentUpon>formRolesyPermisos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanels\RolesyPermisos\formRolyPermsCE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPanels\RolesyPermisos\formRolyPermsCE.Designer.cs">
+      <DependentUpon>formRolyPermsCE.cs</DependentUpon>
+    </Compile>
     <Compile Include="Auth\formAuth.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Auth\formAuth.Designer.cs">
       <DependentUpon>formAuth.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Auth\formAuthLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Auth\formAuthLogin.Designer.cs">
-      <DependentUpon>formAuthLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Auth\formAuthRegister.cs">
       <SubType>Form</SubType>
@@ -71,6 +77,7 @@
     <Compile Include="Auth\formAuthRegister.Designer.cs">
       <DependentUpon>formAuthRegister.cs</DependentUpon>
     </Compile>
+    <Compile Include="Domain\Observer\FormObserver.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,11 +119,14 @@
     <EmbeddedResource Include="AdminPanels\FormAdminPanel.resx">
       <DependentUpon>FormAdminPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AdminPanels\RolesyPermisos\formRolesyPermisos.resx">
+      <DependentUpon>formRolesyPermisos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminPanels\RolesyPermisos\formRolyPermsCE.resx">
+      <DependentUpon>formRolyPermsCE.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Auth\formAuth.resx">
       <DependentUpon>formAuth.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Auth\formAuthLogin.resx">
-      <DependentUpon>formAuthLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Auth\formAuthRegister.resx">
       <DependentUpon>formAuthRegister.cs</DependentUpon>
@@ -177,6 +187,8 @@
       <Name>SERVICE</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="MenusPanel\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

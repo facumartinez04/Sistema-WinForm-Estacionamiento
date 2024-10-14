@@ -27,10 +27,6 @@ namespace SERVICE.DAL.Implementations
 
                     if (columns[0].ToLower() == key.ToLower())
                     {
-                        //Mejorar la técnica con el usuario de diccionarios en memoria    
-                        //Dictionary<string,string> keyValuePairs = new Dictionary<string,string>();
-                        //Probar redis o algún soft de caché
-                        //Encontré la clave buscada...
                         return columns[1];
                     }
                 }

@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace SERVICE.Facade
 {
-    internal static class LanguageService
+
+  internal static class LanguageService
     {
         public static string Translate(string key)
         {
@@ -15,3 +16,4 @@ namespace SERVICE.Facade
         }
     }
 }
+

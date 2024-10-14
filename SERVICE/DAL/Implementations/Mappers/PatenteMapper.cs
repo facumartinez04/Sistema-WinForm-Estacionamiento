@@ -35,8 +35,11 @@ namespace SERVICE.DAL.Implementations.Mappers
         public Patente Fill(object[] values)
         {
             Patente patente = new Patente();
-            patente.Id = Guid.Parse(values[0].ToString());
-            patente.DataKey = values[1].ToString();
+            patente.idPatente = Guid.Parse(values[0].ToString());
+            patente.Nombre = values[1].ToString();
+            patente.DataKey = values[2].ToString();
+            patente.TipoAcceso = (TipoAcceso)Enum.Parse(typeof(TipoAcceso), values[3].ToString());
+
 
             return patente;
         }

@@ -46,15 +46,19 @@ namespace SERVICE.DAL.Implementations
 
                 Patente patenteCheck = GetById(obj.idPatente);
 
+                obj.TipoAcceso = TipoAcceso.UI;
+
+
+
                 if (patenteCheck != null) return false;
 
                int escorrecto =  SqlHelper.ExecuteNonQuery("PatenteInsert", CommandType.StoredProcedure,
                     new SqlParameter[] { new SqlParameter("@IdPatente", obj.idPatente),
-                                    new SqlParameter("@Nombre", obj.Name),
+                                    new SqlParameter("@Nombre", obj.Nombre),
                                    new SqlParameter("@DataKey", obj.DataKey),
-                                   new SqlParameter("@TipoAcceso", obj.TipoAcceso) });
+                                   new SqlParameter("@TipoAcceso", (int)obj.TipoAcceso) });
 
-                if (escorrecto > 0)
+                if (escorrecto < 0)
                 {
                     return true;
                 }
@@ -76,7 +80,20 @@ namespace SERVICE.DAL.Implementations
 
         public List<Patente> GetAll()
         {
-            throw new NotImplementedException();
+            List<Patente> patentes = new List<Patente>();
+
+            using (var reader = SqlHelper.ExecuteReader("PatenteSelectAll", CommandType.StoredProcedure))
+            {
+                while (reader.Read())
+                {
+                    object[] data = new object[reader.FieldCount];
+                    reader.GetValues(data);
+
+                    patentes.Add(PatenteMapper.Current.Fill(data));
+                }
+            }
+
+            return patentes;
         }
 
         public Patente GetById(Guid id)
@@ -101,12 +118,53 @@ namespace SERVICE.DAL.Implementations
 
         public bool Update(Patente obj)
         {
-            throw new NotImplementedException();
+
+            try
+            {
+
+                int escorrecto = SqlHelper.ExecuteNonQuery("PatenteUpdate", CommandType.StoredProcedure,
+                    new SqlParameter[] { new SqlParameter("@IdPatente", obj.idPatente),
+                                    new SqlParameter("@Nombre", obj.Nombre),
+                                   new SqlParameter("@DataKey", obj.DataKey),
+                                   new SqlParameter("@TipoAcceso",  (int)obj.TipoAcceso) });
+
+                if (escorrecto < 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         public bool Remove(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                int escorrecto = SqlHelper.ExecuteNonQuery("PatenteDelete", CommandType.StoredProcedure,
+                    new SqlParameter[] { new SqlParameter("@IdPatente", id) });
+
+                if (escorrecto < 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }
