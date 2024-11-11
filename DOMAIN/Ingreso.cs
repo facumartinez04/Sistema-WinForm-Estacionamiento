@@ -14,8 +14,13 @@ namespace DOMAIN
 
         public Vehiculo vehiculo { get; set; }
 
+        public TipoTarifa objTipoTarifa { get; set; }
         public DateTime fechaIngreso { get; set; }
 
-        public DateTime? fechaEgreso { get; set; } 
+        public DateTime? fechaEgreso { get; set; }
+        
+        public Estado estado { get; set; }
+
+        public enum Estado { Ingresado = 1, Pago = 2, EsperandoPago = 3, Inactivo = 4 }
     }
 }

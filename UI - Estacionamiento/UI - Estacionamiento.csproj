@@ -114,6 +114,24 @@
     <Compile Include="formTipoTarifa.Designer.cs">
       <DependentUpon>formTipoTarifa.cs</DependentUpon>
     </Compile>
+    <Compile Include="PanelsMain\formMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelsMain\formMain.Designer.cs">
+      <DependentUpon>formMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PanelsMain\IngresosForms\formIngresoMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelsMain\IngresosForms\formIngresoMain.Designer.cs">
+      <DependentUpon>formIngresoMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PanelsMain\TarifaForms\formTarifasMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelsMain\TarifaForms\formTarifasMain.Designer.cs">
+      <DependentUpon>formTarifasMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AdminPanels\FormAdminPanel.resx">
@@ -148,6 +166,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formTipoTarifa.resx">
       <DependentUpon>formTipoTarifa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PanelsMain\formMain.resx">
+      <DependentUpon>formMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PanelsMain\IngresosForms\formIngresoMain.resx">
+      <DependentUpon>formIngresoMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PanelsMain\TarifaForms\formTarifasMain.resx">
+      <DependentUpon>formTarifasMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -187,8 +214,6 @@
       <Name>SERVICE</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MenusPanel\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

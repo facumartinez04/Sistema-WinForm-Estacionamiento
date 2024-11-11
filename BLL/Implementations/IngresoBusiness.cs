@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static DOMAIN.Ingreso;
 
 namespace BLL.Implementations
 {
@@ -57,6 +58,7 @@ namespace BLL.Implementations
                     {
                         item.cliente = ClienteBusiness.Current.GetById(item.cliente.idCliente);
                         item.vehiculo = VehiculoBusiness.Current.GetById(item.vehiculo.idVehiculo);
+                        item.objTipoTarifa = TipoTarifaBusiness.Current.ListByID(item.objTipoTarifa.idTipoTarifa);
                     }
 
                     return data;
@@ -116,6 +118,7 @@ namespace BLL.Implementations
                 entity.vehiculo = VehiculoBusiness.Current.GetAll().FirstOrDefault(x => x.patente == entity.vehiculo.patente);
                 entity.idIngreso = Guid.NewGuid();
                 entity.fechaIngreso = DateTime.Now;
+                entity.estado = (Estado)Estado.Ingresado;
                 using (var context = FactoryDao.UnitOfWork.Create())
                 {
                     context.Repositories.IngresoRepository.RegistrarEntrada(entity);

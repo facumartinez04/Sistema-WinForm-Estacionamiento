@@ -50,6 +50,7 @@
     <Compile Include="Implementations\VehiculoBusiness.cs" />
     <Compile Include="Interfaces\IGenericBusiness.cs" />
     <Compile Include="Interfaces\IIngresoBusiness.cs" />
+    <Compile Include="Interfaces\ITipoTarifaBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

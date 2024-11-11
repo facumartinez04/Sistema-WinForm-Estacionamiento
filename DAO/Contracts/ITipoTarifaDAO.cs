@@ -10,5 +10,6 @@ namespace DAO.Contracts
 {
     public interface ITipoTarifaDAO : IGenericDao<TipoTarifa>
     {
+        TipoTarifa ListById(int id);
     }
 }

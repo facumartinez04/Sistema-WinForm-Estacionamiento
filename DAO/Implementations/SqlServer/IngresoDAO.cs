@@ -23,7 +23,7 @@ namespace DAO.Implementations.SqlServer
         #region Statements
         private string InsertStatement
         {
-            get => "INSERT INTO [dbo].[Ingreso] (idIngreso,idVehiculo,idCliente,FechaHorario_Ingreso) VALUES (@idIngreso,@idVehiculo,@idCliente,@fechaHorario_Ingreso)";
+            get => "INSERT INTO [dbo].[Ingreso] (idIngreso,idVehiculo,idCliente,FechaHorario_Ingreso,idTipoTarifa,estado) VALUES (@idIngreso,@idVehiculo,@idCliente,@fechaHorario_Ingreso,@idTipoTarifa,@estado)";
         }
 
 
@@ -45,7 +45,7 @@ namespace DAO.Implementations.SqlServer
 
         private string UpdateStatement
         {
-            get => "UPDATE [dbo].[Ingreso] SET (idIngreso,idCliente,FechaHorario_Ingreso,FechaHorario_Salida) WHERE idIngreso = @idIngreso";
+            get => "UPDATE [dbo].[Ingreso] SET (idIngreso,idCliente,FechaHorario_Ingreso,FechaHorario_Salida,estado) WHERE idIngreso = @idIngreso";
         }
 
         private string DeleteStatement
@@ -99,6 +99,8 @@ namespace DAO.Implementations.SqlServer
                                new SqlParameter[] { new SqlParameter("@idIngreso", obj.idIngreso),
                                new SqlParameter("@idVehiculo", obj.vehiculo.idVehiculo),
                                new SqlParameter("@idCliente", obj.cliente.idCliente),
+                               new SqlParameter("@idTipoTarifa", obj.objTipoTarifa.idTipoTarifa),
+                               new SqlParameter("@estado",obj.estado),
                                new SqlParameter("@fechaHorario_Ingreso", obj.fechaIngreso)});
 
             if (esCargado == 0)

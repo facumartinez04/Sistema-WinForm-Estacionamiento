@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static DOMAIN.Ingreso;
 
 namespace DAO.Implementations.SqlServer.Mappers
 {
@@ -43,6 +44,8 @@ namespace DAO.Implementations.SqlServer.Mappers
 				ingreso.fechaEgreso = DateTime.Parse("01/01/0001");
 
 			}
+			ingreso.objTipoTarifa = new TipoTarifa() { idTipoTarifa = (int)values[5] };
+			ingreso.estado = (Estado)values[6];
 
             return ingreso;
         }

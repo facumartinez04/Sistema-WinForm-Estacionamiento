@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Implementations
 {
-    public sealed class TipoTarifaBusiness : IGenericBusiness<TipoTarifa>
+    public sealed class TipoTarifaBusiness : ITipoTarifaBusiness
     {
 
 
@@ -95,14 +95,19 @@ namespace BLL.Implementations
 
         public TipoTarifa GetById(Guid id)
         {
+            return null;
+           
+        }
+
+        public void Update(TipoTarifa entity)
+        {
             try
             {
-                TipoTarifa data = null;
                 using (var context = FactoryDao.UnitOfWork.Create())
                 {
-                    data = context.Repositories.TipoTarifaRepository.GetById(id);
+                    context.Repositories.TipoTarifaRepository.Update(entity);
 
-                    return data;
+                    context.SaveChanges();
                 }
             }
             catch (Exception ex)
@@ -111,9 +116,22 @@ namespace BLL.Implementations
             }
         }
 
-        public void Update(TipoTarifa entity)
+        public TipoTarifa ListByID(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                TipoTarifa data = null;
+                using (var context = FactoryDao.UnitOfWork.Create())
+                {
+                    data = context.Repositories.TipoTarifaRepository.ListById(id);
+
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }

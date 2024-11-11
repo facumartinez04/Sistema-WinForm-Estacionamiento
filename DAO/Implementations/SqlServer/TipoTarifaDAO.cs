@@ -27,7 +27,7 @@ namespace DAO.Implementations.SqlServer
 
         private string UpdateStatement
         {
-            get => "UPDATE [dbo].[TipoTarifa] SET (monto_por_hora,descripcion) WHERE idTipoTarifa = @idTipoTarifa";
+            get => "UPDATE [dbo].[TipoTarifa] SET monto_por_hora = @monto_por_hora ,descripcion = @descripcion WHERE idTipoTarifa = @idTipoTarifa";
         }
 
         private string DeleteStatement
@@ -88,6 +88,11 @@ namespace DAO.Implementations.SqlServer
 
         public TipoTarifa GetById(Guid id)
         {
+            return null;
+        }
+
+        public TipoTarifa ListById(int id)
+        {
             TipoTarifa tarifa = null;
             using (var reader = ExecuteReader(SelectOneStatement, CommandType.Text,
                                new SqlParameter("@idTipoTarifa", id)))
@@ -123,7 +128,24 @@ namespace DAO.Implementations.SqlServer
 
         public void Update(TipoTarifa obj)
         {
-            throw new NotImplementedException();
+
+            try
+            {
+                int esCargado = ExecuteNonQuery(UpdateStatement, CommandType.Text,
+                    new SqlParameter("@monto_por_hora", obj.monto_por_hora),
+                    new SqlParameter("@descripcion", obj.descripcion),
+                    new SqlParameter("@idTipoTarifa", obj.idTipoTarifa)
+                    );
+
+                if (esCargado == 0)
+                {
+                    throw new Exception("No se pudo actualizar el registro");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
