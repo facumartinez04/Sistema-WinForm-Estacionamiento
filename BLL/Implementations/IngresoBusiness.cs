@@ -76,8 +76,25 @@ namespace BLL.Implementations
 
         public Ingreso GetById(Guid id)
         {
-            throw new NotImplementedException();
+
+            Ingreso ingreso = null;
+
+            using (var context = FactoryDao.UnitOfWork.Create())
+            {
+                ingreso = context.Repositories.IngresoRepository.GetById(id);
+
+                if (ingreso != null)
+                {
+                    ingreso.cliente = ClienteBusiness.Current.GetById(ingreso.cliente.idCliente);
+                    ingreso.vehiculo = VehiculoBusiness.Current.GetById(ingreso.vehiculo.idVehiculo);
+
+                    ingreso.objTipoTarifa = TipoTarifaBusiness.Current.ListByID(ingreso.objTipoTarifa.idTipoTarifa);
+
+                }
+                return ingreso;
+            }
         }
+
 
         public void Update(Ingreso entity)
         {
@@ -89,9 +106,9 @@ namespace BLL.Implementations
             try
             {
 
-              
+               if(entity.vehiculo.patente == "") throw new Exception("Debe ingresar una patente");
 
-                if(entity.cliente == null)
+                if (entity.cliente == null)
                 {
                     entity.cliente = new Cliente {
                         idCliente = Guid.Empty
@@ -99,21 +116,14 @@ namespace BLL.Implementations
                 }
 
                 Vehiculo vehiculoCheck = VehiculoBusiness.Current.GetAll().FirstOrDefault(x => x.patente == entity.vehiculo.patente);
-
-   
-                if(vehiculoCheck != null ) {
-
-                    Ingreso ingresocheck = IngresoBusiness.Current.GetAll().FirstOrDefault(x => x.vehiculo.idVehiculo == vehiculoCheck.idVehiculo && x.fechaEgreso != DateTime.Parse("01/01/0001") || x.fechaEgreso == DateTime.Parse("1/1/0001"));
-                    
-                   if(ingresocheck != null) if (ingresocheck.fechaEgreso.ToString().Contains("1/1/0001") || ingresocheck.fechaEgreso.ToString().Contains("01/01/0001")) throw new Exception("El auto ya esta ingresado");
-
-                }
-
-
+                Ingreso ingresocheck = IngresoBusiness.Current.IngresosActuales().FirstOrDefault(x => x.vehiculo.patente == entity.vehiculo.patente);
                 if (vehiculoCheck == null)
                 {
                     VehiculoBusiness.Current.Add(entity.vehiculo);
                 }
+
+                if (ingresocheck != null) throw new Exception("El auto ya esta ingresado");
+
 
                 entity.vehiculo = VehiculoBusiness.Current.GetAll().FirstOrDefault(x => x.patente == entity.vehiculo.patente);
                 entity.idIngreso = Guid.NewGuid();
@@ -136,13 +146,10 @@ namespace BLL.Implementations
         {
             try
             {
-                Ingreso ingresoCheck = GetAll().FirstOrDefault(x => x.idIngreso == entity.idIngreso);
+                Ingreso ingresoCheck = IngresosActuales().FirstOrDefault(x => x.idIngreso == entity.idIngreso);
 
-                if(ingresoCheck.fechaEgreso.Value != DateTime.Parse("01/01/0001"))
-                {
-                    throw new Exception("La salida ya fue registrada.");
-                }
-            
+                if (ingresoCheck == null) throw new Exception("El auto no esta ingresado");
+
 
                 entity.fechaEgreso = DateTime.Now;
                 using (var context = FactoryDao.UnitOfWork.Create())
@@ -172,6 +179,7 @@ namespace BLL.Implementations
                     {
                         item.cliente = ClienteBusiness.Current.GetById(item.cliente.idCliente);
                         item.vehiculo = VehiculoBusiness.Current.GetById(item.vehiculo.idVehiculo);
+                        item.objTipoTarifa = TipoTarifaBusiness.Current.ListByID(item.objTipoTarifa.idTipoTarifa);
                     }
 
                     return data;
@@ -183,9 +191,91 @@ namespace BLL.Implementations
             }
         }
 
-        public Ingreso BuscarPorPatente(string patente)
+        public List<Ingreso> BuscarPorPatente(string patente)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (patente == "") throw new Exception("Debe ingresar una patente");
+                List <Ingreso> data = new List<Ingreso>();
+                using (var context = FactoryDao.UnitOfWork.Create())
+                {
+                    data = context.Repositories.IngresoRepository.BuscarPorPatente(patente);
+
+                    foreach (var item in data)
+                    {
+                        item.cliente = ClienteBusiness.Current.GetById(item.cliente.idCliente);
+                        item.vehiculo = VehiculoBusiness.Current.GetById(item.vehiculo.idVehiculo);
+                        item.objTipoTarifa = TipoTarifaBusiness.Current.ListByID(item.objTipoTarifa.idTipoTarifa);
+                    }
+
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public List<Ingreso> ListarPorFechas(DateTime desde, DateTime hasta)
+        {
+
+            try
+            {
+                List<Ingreso> data = new List<Ingreso>();
+                using (var context = FactoryDao.UnitOfWork.Create())
+                {
+                    data = context.Repositories.IngresoRepository.ListarPorFechas(desde, hasta);
+
+                    foreach (var item in data)
+                    {
+                        item.cliente = ClienteBusiness.Current.GetById(item.cliente.idCliente);
+                        item.vehiculo = VehiculoBusiness.Current.GetById(item.vehiculo.idVehiculo);
+                        item.objTipoTarifa = TipoTarifaBusiness.Current.ListByID(item.objTipoTarifa.idTipoTarifa);
+                    }
+
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+
+
+            }
+        }
+
+        public Ingreso BuscarUnaPatente(string patente)
+        {
+
+
+            try
+            {
+
+                if (patente == "") throw new Exception("Debe ingresar una patente");
+                Ingreso data = new Ingreso();
+                using (var context = FactoryDao.UnitOfWork.Create())
+                {
+                    data = context.Repositories.IngresoRepository.BuscarUnaPatente(patente);
+
+                    if (data != null)
+                    {
+                        data.cliente = ClienteBusiness.Current.GetById(data.cliente.idCliente);
+                        data.vehiculo = VehiculoBusiness.Current.GetById(data.vehiculo.idVehiculo);
+                        data.objTipoTarifa = TipoTarifaBusiness.Current.ListByID(data.objTipoTarifa.idTipoTarifa);
+                    }
+                    else
+                    {
+                        throw new Exception("No se encontro la patente ingresada");
+                    }
+
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }

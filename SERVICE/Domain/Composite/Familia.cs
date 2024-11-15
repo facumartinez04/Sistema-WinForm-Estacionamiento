@@ -9,44 +9,24 @@ namespace SERVICE.Domain.Composite
 {
     public class Familia : Acceso
     {
-        private List<Acceso> accesos = new List<Acceso>();
-
-        public Guid idFamilia { get; set; }
-
-        public string Nombre { get; set; }
-
-        public Familia()
-        {
-
-        }
-
-        public Familia(Acceso component, string nombre)
-        {
-
-            accesos.Add(component);
-
-            Nombre = nombre;
-        }
-
-        public List<Acceso> GetChildrens()
-        {
-            return accesos;
-        }
-
+        public Guid IdFamilia { get; set; }
+        public string NombreFamilia { get; set; }
+        public List<Acceso> Componentes { get; set; } = new List<Acceso>();
+        public DateTime Timestamp { get; set; }
 
         public override void Add(Acceso component)
         {
-            accesos.Add(component);
-        }
-
-        public override int GetCount()
-        {
-            return accesos.Count;
+            Componentes.Add(component);
         }
 
         public override void Remove(Acceso component)
         {
-            accesos.Remove(component);
+            Componentes.Remove(component);
+        }
+
+        public override int GetCount()
+        {
+            return Componentes.Count;
         }
     }
 }

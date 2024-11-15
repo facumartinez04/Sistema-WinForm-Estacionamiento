@@ -10,5 +10,6 @@ namespace DAO.Contracts
 {
     public interface IFacturaDAO : IGenericDao<Factura>
     {
+        Factura obtenerPorID(int ID);
     }
 }

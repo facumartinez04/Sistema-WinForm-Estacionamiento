@@ -10,5 +10,8 @@ namespace DAO.Contracts
 {
     public interface IMetodoPagoDAO : IGenericDao<MetodoPago>
     {
+        void Eliminar(int id);
+
+        MetodoPago ObtenerPorId(int id);
     }
 }

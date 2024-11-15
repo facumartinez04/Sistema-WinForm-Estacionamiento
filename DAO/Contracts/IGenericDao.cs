@@ -24,5 +24,7 @@ namespace Dao.Contracts
 
         List<T> GetAll();
 
+
+
     }
 }

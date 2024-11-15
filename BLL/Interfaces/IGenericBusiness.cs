@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Interfaces
 {
-    internal interface IGenericBusiness<T>
+    public interface IGenericBusiness<T>
     {
         void Add(T entity);
 

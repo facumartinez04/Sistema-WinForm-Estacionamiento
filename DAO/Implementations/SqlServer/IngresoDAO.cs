@@ -34,8 +34,11 @@ namespace DAO.Implementations.SqlServer
 
         private string IngresoPorPatenteStatement
         {
-            get => "SELECT * FROM [dbo].[Ingreso] WHERE FechaHorario_Salida IS NULL";
+
+            get => "SELECT * FROM [DBEstacionamiento].[dbo].[Ingreso] i INNER JOIN [DBEstacionamiento].[dbo].[Vehiculo] v ON i.idVehiculo = v.idVehiculo INNER JOIN [DBEstacionamiento].[dbo].[TipoTarifa] t ON i.idTipoTarifa = t.idTipoTarifa WHERE v.patente = @patente AND FechaHorario_Salida IS NOT NULL";
         }
+
+
 
 
         private string RegistroSalida
@@ -55,8 +58,19 @@ namespace DAO.Implementations.SqlServer
 
         private string SelectOneStatement
         {
-            get => "SELECT idIngreso, idIngreso,idCliente,FechaHorario_Ingreso,FechaHorario_Salida FROM [dbo].[Ingreso] WHERE idIngreso = @idIngreso";
+            get => "SELECT * FROM [dbo].[Ingreso] WHERE idIngreso = @idIngreso";
         }
+
+        private string SeleccionarPorFechas
+        {
+            get => "SELECT * FROM [dbo].[Ingreso] WHERE  FechaHorario_Salida IS NOT NULL AND FechaHorario_Ingreso BETWEEN @fechaInicio AND @fechaFin";
+        }
+
+        private string BuscarLaPatente
+        {
+            get => "SELECT * FROM [dbo].[Ingreso] i INNER JOIN [dbo].[Vehiculo] v ON i.idVehiculo = v.idVehiculo WHERE v.patente = @patente AND i.FechaHorario_Salida IS NULL;";
+        }
+
 
         private string SelectAllStatement
         {
@@ -89,7 +103,25 @@ namespace DAO.Implementations.SqlServer
 
         public Ingreso GetById(Guid id)
         {
-            throw new NotImplementedException();
+
+            Ingreso ingreso = null;
+            using (var reader = ExecuteReader(SelectOneStatement, CommandType.Text,
+                new SqlParameter[] { new SqlParameter("@idIngreso", id) }))
+            {
+                while (reader.Read())
+                {
+
+
+                    object[] data = new object[reader.FieldCount];
+                    reader.GetValues(data);
+
+                    ingreso = IngresoMapper.Current.Fill(data);
+
+                    
+
+                }
+                return ingreso;
+            }
         }
 
      
@@ -153,9 +185,65 @@ namespace DAO.Implementations.SqlServer
             return ingresos;
         }
 
-        public Ingreso BuscarPorPatente(string patente)
+        public List<Ingreso> BuscarPorPatente(string patente)
         {
-            throw new NotImplementedException();
+
+            List<Ingreso> ingresos = new List<Ingreso>();
+            using (var reader = ExecuteReader(IngresoPorPatenteStatement, CommandType.Text,
+                new SqlParameter[] { new SqlParameter("@patente", patente) }))
+            {
+                while (reader.Read())
+                {
+
+                    object[] data = new object[reader.FieldCount];
+                    reader.GetValues(data);
+
+                    Ingreso ingreso = IngresoMapper.Current.Fill(data);
+                    ingresos.Add(ingreso);
+                }
+            }
+            return ingresos;
+
+        }
+
+        public List<Ingreso> ListarPorFechas(DateTime desde, DateTime hasta)
+        {
+
+            List<Ingreso> ingresos = new List<Ingreso>();
+            using (var reader = ExecuteReader(SeleccionarPorFechas, CommandType.Text,
+                new SqlParameter[] { new SqlParameter("@fechaInicio", desde.ToString("yyyy-MM-dd 00:00:00")), new SqlParameter("@fechaFin", hasta.ToString("yyyy-MM-dd 23:59:59")) }))
+            {
+                while (reader.Read())
+                {
+
+                    object[] data = new object[reader.FieldCount];
+                    reader.GetValues(data);
+
+                    Ingreso ingreso = IngresoMapper.Current.Fill(data);
+                    ingresos.Add(ingreso);
+                }
+            }
+            return ingresos;
+        }
+
+        public Ingreso BuscarUnaPatente(string patente)
+        {
+
+            Ingreso ingreso = null;
+
+            using (var reader = ExecuteReader(BuscarLaPatente, CommandType.Text,
+                new SqlParameter[] { new SqlParameter("@patente", patente) }))
+            {
+                while (reader.Read())
+                {
+
+                    object[] data = new object[reader.FieldCount];
+                    reader.GetValues(data);
+
+                    ingreso = IngresoMapper.Current.Fill(data);
+                }
+            }
+            return ingreso;
         }
     }
 }

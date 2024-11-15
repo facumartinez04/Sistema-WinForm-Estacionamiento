@@ -36,7 +36,7 @@ namespace SERVICE.DAL.Implementations.Mappers
         {
             Familia familia = new Familia();
             familia.Id = Guid.Parse(values[0].ToString());
-            familia.Nombre = values[1].ToString();
+            familia.NombreFamilia = values[1].ToString();
             return familia;
         }
     }

@@ -1,4 +1,5 @@
-﻿using SERVICE.Services;
+﻿using SERVICE.DAL.Implementations;
+using SERVICE.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,17 +11,16 @@ namespace SERVICE.Domain.Composite
 {
     public class Usuario
     {
-        public Guid idUsuario { get; set; }
-
-        public string Username { get; set; }
-
+        public Guid IdUsuario { get; set; }
+        public string UserName { get; set; }
         public string Password { get; set; }
+        public DateTime Timestamp { get; set; }
 
         public string HashDH
         {
             get
             {
-                return CryptographyService.HashPassword(Username + Password);
+                return CryptographyService.HashPassword(UserName + Password);
             }
         }
 
@@ -32,35 +32,55 @@ namespace SERVICE.Domain.Composite
             }
         }
 
-        public List<Acceso> Permisos { get; set; }
+        public List<Acceso> Accesos { get; set; } = new List<Acceso>();
 
-        public Usuario()
+        public List<Patente> GetAllPatentes()
         {
-            Permisos = new List<Acceso>();
+            List<Patente> patentes = new List<Patente>();
+            GetAllPatentesRecursive(Accesos, patentes);
+            return patentes;
         }
 
 
 
-
-        private static void RecorrerComposite(List<Patente> patentes, List<Acceso> components, string tab)
+        private void GetAllPatentesRecursive(List<Acceso> accesos, List<Patente> patentesReturn)
         {
-            foreach (var item in components)
+            foreach (var acceso in accesos)
             {
-                if (item.GetCount() == 0)
+                if (acceso is Patente patente)
                 {
-                    Patente patente1 = item as Patente;
-                    Console.WriteLine($"{tab} Patente: {patente1.Name}");
-
-                    if (!patentes.Exists(o => o.Name == patente1.Name))
-                        patentes.Add(patente1);
+                    if (!patentesReturn.Any(o => o.Id == patente.Id))
+                    {
+                        patentesReturn.Add(patente);
+                    }
                 }
-                else
+                else if (acceso is Familia familia)
                 {
-                    Familia familia = item as Familia;
-                    RecorrerComposite(patentes, familia.GetChildrens(), tab + "-");
+                    GetAllPatentesRecursive(familia.Componentes, patentesReturn);
+                }
+            }
+        }
+
+        public List<Familia> GetFamilias()
+        {
+            List<Familia> familias = new List<Familia>();
+            GetAllFamilias(Accesos, familias);
+            return familias;
+        }
+
+        private void GetAllFamilias(List<Acceso> accesos, List<Familia> familiasReturn)
+        {
+            foreach (var acceso in accesos)
+            {
+                if (acceso is Familia familia)
+                {
+                    if (!familiasReturn.Any(o => o.Id == familia.Id))
+                    {
+                        familiasReturn.Add(familia);
+                    }
+                    GetAllFamilias(familia.Componentes, familiasReturn);
                 }
             }
         }
     }
-
 }

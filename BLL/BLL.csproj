@@ -48,8 +48,10 @@
     <Compile Include="Implementations\PagoBusiness.cs" />
     <Compile Include="Implementations\TipoTarifaBusiness.cs" />
     <Compile Include="Implementations\VehiculoBusiness.cs" />
+    <Compile Include="Interfaces\IFacturaBusiness.cs" />
     <Compile Include="Interfaces\IGenericBusiness.cs" />
     <Compile Include="Interfaces\IIngresoBusiness.cs" />
+    <Compile Include="Interfaces\IMetodoPagoBusiness.cs" />
     <Compile Include="Interfaces\ITipoTarifaBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

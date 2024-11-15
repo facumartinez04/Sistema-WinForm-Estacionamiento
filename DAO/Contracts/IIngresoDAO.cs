@@ -17,8 +17,12 @@ namespace DAO.Contracts
 
         List<Ingreso> IngresosActuales();
 
-        Ingreso BuscarPorPatente(string patente);
+        List<Ingreso> BuscarPorPatente(string patente);
 
+        List<Ingreso> ListarPorFechas(DateTime desde, DateTime hasta);
+
+
+        Ingreso BuscarUnaPatente(string patente);
 
 
     }

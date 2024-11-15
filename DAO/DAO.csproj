@@ -63,7 +63,9 @@
     <Compile Include="Implementations\SqlServer\Helpers\SqlTransactRepository.cs" />
     <Compile Include="Implementations\SqlServer\IngresoDAO.cs" />
     <Compile Include="Implementations\SqlServer\Mappers\ClienteMapper.cs" />
+    <Compile Include="Implementations\SqlServer\Mappers\FacturaMapper.cs" />
     <Compile Include="Implementations\SqlServer\Mappers\IngresoMapper.cs" />
+    <Compile Include="Implementations\SqlServer\Mappers\MetodoPagoMapper.cs" />
     <Compile Include="Implementations\SqlServer\Mappers\PagoMapper.cs" />
     <Compile Include="Implementations\SqlServer\Mappers\RolMapper.cs" />
     <Compile Include="Implementations\SqlServer\Mappers\TipoTarifaMapper.cs" />

@@ -45,7 +45,9 @@ namespace DAO.Implementations.SqlServer.Mappers
 
 			}
 			ingreso.objTipoTarifa = new TipoTarifa() { idTipoTarifa = (int)values[5] };
-			ingreso.estado = (Estado)values[6];
+			if (values[6].ToString() != "") ingreso.estado = (Estado)values[6];
+			else ingreso.estado = Estado.Ingresado;
+
 
             return ingreso;
         }

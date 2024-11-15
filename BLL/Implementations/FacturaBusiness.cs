@@ -1,4 +1,5 @@
 ﻿using BLL.Interfaces;
+using Dao.Factory;
 using DOMAIN;
 using System;
 using System.Collections.Generic;
@@ -8,11 +9,46 @@ using System.Threading.Tasks;
 
 namespace BLL.Implementations
 {
-    public class FacturaBusiness : IGenericBusiness<Factura>
+    public sealed class FacturaBusiness : IFacturaBusiness
     {
+
+         #region singleton
+            private readonly static FacturaBusiness _instance = new FacturaBusiness();
+
+            public static FacturaBusiness Current
+            {
+                get
+                {
+                    return _instance;
+                }
+            }
+
+            private FacturaBusiness()
+            {
+                //Implent here the initialization of your singleton
+            }
+            #endregion
+        
+
+
         public void Add(Factura entity)
         {
-            throw new NotImplementedException();
+
+
+            try
+            {
+                using (var context = FactoryDao.UnitOfWork.Create())
+                {
+                    context.Repositories.FacturaRepository.Add(entity);
+
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
         }
 
         public void Delete(Guid id)
@@ -22,7 +58,22 @@ namespace BLL.Implementations
 
         public List<Factura> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<Factura> data = new List<Factura>();
+                using (var context = FactoryDao.UnitOfWork.Create())
+                {
+                    data = context.Repositories.FacturaRepository.GetAll();
+                }
+
+                return data;
+
+            }
+            catch (Exception ex)
+
+            {
+                throw;
+            }
         }
 
         public Factura GetById(Guid id)
@@ -30,9 +81,34 @@ namespace BLL.Implementations
             throw new NotImplementedException();
         }
 
+        public Factura obtenerPorID(int ID)
+        {
+            Factura factura = null;
+
+            using (var context = FactoryDao.UnitOfWork.Create())
+            {
+                factura = context.Repositories.FacturaRepository.obtenerPorID(ID);
+            }
+
+            return factura;
+        }
+
         public void Update(Factura entity)
         {
-            throw new NotImplementedException();
+
+            try
+            {
+                using (var context = FactoryDao.UnitOfWork.Create())
+                {
+                    context.Repositories.FacturaRepository.Update(entity);
+
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
     

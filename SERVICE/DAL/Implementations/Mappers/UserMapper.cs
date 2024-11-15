@@ -36,9 +36,11 @@ namespace SERVICE.DAL.Implementations.Mappers
         {
             return new Usuario
             {
-                idUsuario = (Guid)values[0],
-                Username = (string)values[1],
+                IdUsuario = (Guid)values[0],
+                UserName = (string)values[1],
                 Password = (string)values[2],
+
+
 
             };
         }

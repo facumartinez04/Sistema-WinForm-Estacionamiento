@@ -16,7 +16,7 @@ namespace SERVICE.Services
         public static void Register(Usuario user)
         {
 
-            if(user.Username == "" || user.Password == "")
+            if (user.UserName == "" || user.Password == "")
             {
                 throw new Exception("El usuario o la contraseña no pueden ser nulos");
             }
@@ -25,7 +25,7 @@ namespace SERVICE.Services
             bool checheando = UsuarioRepository.Current.Add(user);
 
 
-            if(checheando == false)
+            if (checheando == false)
             {
                 throw new Exception("El usuario ya existe");
             }
@@ -38,36 +38,79 @@ namespace SERVICE.Services
 
         }
 
-        public static void Validate(Usuario user)
+        public static Usuario Validate(Usuario user)
         {
 
 
-            if (user.Username == "" || user.Password == "")
+            if (user.UserName == "" || user.Password == "")
             {
                 throw new Exception("El usuario o la contraseña no pueden ser nulos");
             }
 
 
-            Usuario userCheck = UsuarioRepository.Current.GetAll().FirstOrDefault(x => x.Username == user.Username);
+            Usuario userCheck = UsuarioRepository.Current.GetAll().FirstOrDefault(x => x.UserName == user.UserName);
+
+
+
 
             if (userCheck == null)
             {
                 throw new Exception("El usuario no existe");
             }
+            else if (!CryptographyService.ComparePassword(user.Password, userCheck.Password))
+            {
+                throw new Exception("La contraseña es incorrecta");
+            }
             else
             {
-                if (!CryptographyService.ComparePassword(user.Password,userCheck.Password))
+                user.IdUsuario = userCheck.IdUsuario;
+                user.UserName = userCheck.UserName;
+                user.Password = userCheck.Password;
+
+                var usuarioFamilas = UsuarioFamiliaRepository.Current.GetAll().Where(x => x.idUsuario == user.IdUsuario).ToList();
+                var usuarioPatentes = UsuarioPatenteRepository.Current.GetAll().Where(x => x.idUsuario == user.IdUsuario).ToList();
+
+                var familiasList = new List<Familia>();
+                var patentesList = new List<Patente>();
+
+                foreach (var item in usuarioFamilas)
                 {
-                    throw new Exception("La contraseña es incorrecta");
+                    var familia = FamiliaRepository.Current.GetAll().FirstOrDefault(x => x.Id == item.idFamilia);
+                    familiasList.Add(familia);
                 }
 
+                foreach (var item in usuarioPatentes)
+                {
+                    var patente = PatenteRepository.Current.GetAll().FirstOrDefault(x => x.Id == item.idPatente);
+                    patentesList.Add(patente);
+                }
+
+                user.Accesos = new List<Acceso>();
+
+                foreach (var familia in familiasList)
+                {
+                    user.Accesos.Add(familia);
+                }
+
+                foreach (var patente in patentesList)
+                {
+                    user.Accesos.Add(patente);
+                }
+
+                user.GetAllPatentes();
+                user.GetFamilias();
+
+                return user;
+
+
+
+
             }
-
-
 
         }
 
 
-
     }
+
 }
+

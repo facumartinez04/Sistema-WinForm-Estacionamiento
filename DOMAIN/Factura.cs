@@ -11,6 +11,8 @@ namespace DOMAIN
         public int idFactura { get; set; }
         public Ingreso ingreso { get; set; }
 
+        public MetodoPago metodoPago { get; set; }
+
         public Double monto_total { get; set; }
     }
 }

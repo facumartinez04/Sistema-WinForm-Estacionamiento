@@ -41,24 +41,24 @@ namespace SERVICE.DAL.Implementations
             {
 
 
-                if(obj.idUsuario == Guid.Empty)
+                if(obj.IdUsuario == Guid.Empty)
                 {
 
 
-                    Usuario userCheck = GetAll().FirstOrDefault(x => x.Username == obj.Username);
+                    Usuario userCheck = GetAll().FirstOrDefault(x => x.UserName == obj.UserName);
 
 
                     if (userCheck != null) return false;
 
 
-                    obj.idUsuario = Guid.NewGuid();
+                    obj.IdUsuario = Guid.NewGuid();
                 }
 
 
 
                 int data = SqlHelper.ExecuteNonQuery("UsuarioInsert", CommandType.StoredProcedure,
-                new SqlParameter[] { new SqlParameter("@IdUsuario", obj.idUsuario),
-                                   new SqlParameter("@UserName", obj.Username),
+                new SqlParameter[] { new SqlParameter("@IdUsuario", obj.IdUsuario),
+                                   new SqlParameter("@UserName", obj.UserName),
                                    new SqlParameter("@Password", obj.HashPassword) });
 
                if(data < 0)

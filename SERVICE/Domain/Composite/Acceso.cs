@@ -13,6 +13,7 @@ namespace SERVICE.Domain.Composite
         public string Name { get; set; }
 
 
+
         public abstract void Add(Acceso component);
 
         public abstract void Remove(Acceso component);

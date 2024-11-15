@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using UI___Estacionamiento.AdminPanels;
 using UI___Estacionamiento.Auth;
 using UI___Estacionamiento.PanelsMain;
 using UI___Estacionamiento.PanelsMain.IngresosForms;
@@ -24,7 +23,7 @@ namespace UI___Estacionamiento
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-ES");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new formMain());
+            Application.Run(new formAuthMain());
         }
     }
 }

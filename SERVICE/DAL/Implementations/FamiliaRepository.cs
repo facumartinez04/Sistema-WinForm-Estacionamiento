@@ -38,11 +38,11 @@ namespace SERVICE.DAL.Implementations
 
         public bool Add(Familia obj)
         {
-            obj.idFamilia = Guid.NewGuid();
+            obj.IdFamilia = Guid.NewGuid();
 
             int data =  SqlHelper.ExecuteNonQuery("FamiliaInsert", CommandType.StoredProcedure,
-            new SqlParameter[] { new SqlParameter("@IdFamilia", obj.idFamilia),
-                                   new SqlParameter("@Nombre", obj.Nombre) });
+            new SqlParameter[] { new SqlParameter("@IdFamilia", obj.IdFamilia),
+                                   new SqlParameter("@Nombre", obj.NombreFamilia) });
 
 
             if (data < 0)

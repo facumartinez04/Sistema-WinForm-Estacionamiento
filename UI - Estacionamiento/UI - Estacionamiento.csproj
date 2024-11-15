@@ -47,72 +47,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminPanels\FormAdminPanel.cs">
+    <Compile Include="Auth\formAuthMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdminPanels\FormAdminPanel.Designer.cs">
-      <DependentUpon>FormAdminPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AdminPanels\RolesyPermisos\formRolesyPermisos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AdminPanels\RolesyPermisos\formRolesyPermisos.Designer.cs">
-      <DependentUpon>formRolesyPermisos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AdminPanels\RolesyPermisos\formRolyPermsCE.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AdminPanels\RolesyPermisos\formRolyPermsCE.Designer.cs">
-      <DependentUpon>formRolyPermsCE.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Auth\formAuth.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Auth\formAuth.Designer.cs">
-      <DependentUpon>formAuth.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Auth\formAuthRegister.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Auth\formAuthRegister.Designer.cs">
-      <DependentUpon>formAuthRegister.cs</DependentUpon>
+    <Compile Include="Auth\formAuthMain.Designer.cs">
+      <DependentUpon>formAuthMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Domain\Observer\FormObserver.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="PanelsMain\FacturacionForms\formFacturacionMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="PanelsMain\FacturacionForms\formFacturacionMain.Designer.cs">
+      <DependentUpon>formFacturacionMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="formCliente.cs">
+    <Compile Include="PanelsMain\FacturacionForms\formFacturacionPago.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formCliente.Designer.cs">
-      <DependentUpon>formCliente.cs</DependentUpon>
-    </Compile>
-    <Compile Include="formIngresos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formIngresos.Designer.cs">
-      <DependentUpon>formIngresos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="formRol.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formRol.Designer.cs">
-      <DependentUpon>formRol.cs</DependentUpon>
-    </Compile>
-    <Compile Include="formSalidas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formSalidas.Designer.cs">
-      <DependentUpon>formSalidas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="formTipoTarifa.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formTipoTarifa.Designer.cs">
-      <DependentUpon>formTipoTarifa.cs</DependentUpon>
+    <Compile Include="PanelsMain\FacturacionForms\formFacturacionPago.Designer.cs">
+      <DependentUpon>formFacturacionPago.cs</DependentUpon>
     </Compile>
     <Compile Include="PanelsMain\formMain.cs">
       <SubType>Form</SubType>
@@ -120,11 +72,29 @@
     <Compile Include="PanelsMain\formMain.Designer.cs">
       <DependentUpon>formMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="PanelsMain\HistorialForms\formHistorialMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelsMain\HistorialForms\formHistorialMain.Designer.cs">
+      <DependentUpon>formHistorialMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="PanelsMain\IngresosForms\formIngresoMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PanelsMain\IngresosForms\formIngresoMain.Designer.cs">
       <DependentUpon>formIngresoMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PanelsMain\MetodoPagoForms\formMetodoPagoMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelsMain\MetodoPagoForms\formMetodoPagoMain.Designer.cs">
+      <DependentUpon>formMetodoPagoMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PanelsMain\SalidaForms\formSalidaMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelsMain\SalidaForms\formSalidaMain.Designer.cs">
+      <DependentUpon>formSalidaMain.cs</DependentUpon>
     </Compile>
     <Compile Include="PanelsMain\TarifaForms\formTarifasMain.cs">
       <SubType>Form</SubType>
@@ -134,57 +104,52 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AdminPanels\FormAdminPanel.resx">
-      <DependentUpon>FormAdminPanel.cs</DependentUpon>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UIReference.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIReference.Designer.cs">
+      <DependentUpon>UIReference.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Auth\formAuthMain.resx">
+      <DependentUpon>formAuthMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminPanels\RolesyPermisos\formRolesyPermisos.resx">
-      <DependentUpon>formRolesyPermisos.cs</DependentUpon>
+    <EmbeddedResource Include="PanelsMain\FacturacionForms\formFacturacionMain.resx">
+      <DependentUpon>formFacturacionMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminPanels\RolesyPermisos\formRolyPermsCE.resx">
-      <DependentUpon>formRolyPermsCE.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Auth\formAuth.resx">
-      <DependentUpon>formAuth.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Auth\formAuthRegister.resx">
-      <DependentUpon>formAuthRegister.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formCliente.resx">
-      <DependentUpon>formCliente.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formIngresos.resx">
-      <DependentUpon>formIngresos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formRol.resx">
-      <DependentUpon>formRol.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formSalidas.resx">
-      <DependentUpon>formSalidas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formTipoTarifa.resx">
-      <DependentUpon>formTipoTarifa.cs</DependentUpon>
+    <EmbeddedResource Include="PanelsMain\FacturacionForms\formFacturacionPago.resx">
+      <DependentUpon>formFacturacionPago.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PanelsMain\formMain.resx">
       <DependentUpon>formMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PanelsMain\HistorialForms\formHistorialMain.resx">
+      <DependentUpon>formHistorialMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PanelsMain\IngresosForms\formIngresoMain.resx">
       <DependentUpon>formIngresoMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PanelsMain\MetodoPagoForms\formMetodoPagoMain.resx">
+      <DependentUpon>formMetodoPagoMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PanelsMain\SalidaForms\formSalidaMain.resx">
+      <DependentUpon>formSalidaMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PanelsMain\TarifaForms\formTarifasMain.resx">
       <DependentUpon>formTarifasMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
+    <EmbeddedResource Include="UIReference.resx">
+      <DependentUpon>UIReference.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="I18n\language.en-US" />
     <None Include="I18n\language.es-ES" />
     <None Include="Properties\Settings.settings">
@@ -214,6 +179,74 @@
       <Name>SERVICE</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Estacionamiento-cubierto-Aeropuerto-Ezeiza-7-min-2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\a7046d_8db80e67a33e4216bab447550167cb43_mv2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\angles-right-svgrepo-com %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\angles-right-svgrepo-com %281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\angles-right-svgrepo-com.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\a7046d_8db80e67a33e4216bab447550167cb43_mv21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\car %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\car %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\car %283%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\history.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\receipt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\payment-method.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrows.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\coche.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\magnifying-glass.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
