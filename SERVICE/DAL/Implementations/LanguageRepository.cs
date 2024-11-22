@@ -39,7 +39,6 @@ namespace SERVICE.DAL.Implementations
         public static void WriteKey(string key)
         {
             string language = Thread.CurrentThread.CurrentUICulture.Name;
-
         }
 
         public static List<string> GetLanguages()

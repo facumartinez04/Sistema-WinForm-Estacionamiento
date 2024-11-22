@@ -1,5 +1,6 @@
 ﻿using BLL.Implementations;
 using DOMAIN;
+using SERVICE.Facade.Extentions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,11 +12,12 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI___Estacionamiento.Domain.Observer;
 using UI___Estacionamiento.PanelsMain.FacturacionForms;
 
 namespace UI___Estacionamiento.PanelsMain.IngresosForms
 {
-    public partial class formIngresoMain : Form
+    public partial class formIngresoMain : Form, IFormObserver
     {
         private Ingreso _ingresoseleccionado;
 
@@ -26,6 +28,7 @@ namespace UI___Estacionamiento.PanelsMain.IngresosForms
         public formIngresoMain()
         {
             InitializeComponent();
+            Update(this);
         }
 
         private void formIngresoMain_Load(object sender, EventArgs e)
@@ -65,12 +68,12 @@ namespace UI___Estacionamiento.PanelsMain.IngresosForms
 
             DBIngresosList.Columns["idIngreso"].Visible = false;
 
+            DBIngresosList.Columns["PatenteVehiculo"].HeaderText = "car-patent".Translate();
+            DBIngresosList.Columns["IngresoFecha"].HeaderText = "date".Translate();
+            DBIngresosList.Columns["Horario"].HeaderText = "time".Translate();
+            DBIngresosList.Columns["TipoDeTarifa"].HeaderText = "rate".Translate();
 
 
-            DBIngresosList.Columns["PatenteVehiculo"].HeaderText = "Patente";
-            DBIngresosList.Columns["IngresoFecha"].HeaderText = "Fecha";
-            DBIngresosList.Columns["Horario"].HeaderText = "Horario";
-            DBIngresosList.Columns["TipoDeTarifa"].HeaderText = "Tarifa";
 
 
         }
@@ -102,7 +105,7 @@ namespace UI___Estacionamiento.PanelsMain.IngresosForms
                 };
 
                 IngresoBusiness.Current.RegistrarEntrada(objIngreso);
-                MessageBox.Show("Vehiculo ingresado correctamente");
+                MessageBox.Show($"vehicle-joined-success".Translate());
                 ListarIngresos();
                 txtPatente.Text = "";
             }
@@ -218,6 +221,19 @@ namespace UI___Estacionamiento.PanelsMain.IngresosForms
 
             SendMessage(this.Handle, 0x112, 0xf012, 0);
 
+        }
+
+        public void Update(Form form)
+        {
+
+            btnIngresar.Text = "join-car".Translate();
+            lblVehiculoIngresados.Text = "vehicles-entered".Translate();
+            lblHoraActual.Text = "current-time".Translate();
+            button4.Text = "close".Translate();
+
+            ListarIngresos();
+
+         
         }
     }
 }

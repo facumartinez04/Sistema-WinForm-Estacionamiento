@@ -36,9 +36,9 @@ namespace SERVICE.Domain.Composite
 
         public List<Patente> GetAllPatentes()
         {
-            List<Patente> patentes = new List<Patente>();
-            GetAllPatentesRecursive(Accesos, patentes);
-            return patentes;
+            List<Patente> patentesReturn = new List<Patente>();
+            UsuarioPatenteRepository.Current.usuarioPatentes(this.IdUsuario).ForEach(o => patentesReturn.Add(PatenteRepository.Current.GetById(o.idPatente)));
+            return patentesReturn;
         }
 
 
@@ -63,8 +63,9 @@ namespace SERVICE.Domain.Composite
 
         public List<Familia> GetFamilias()
         {
+
             List<Familia> familias = new List<Familia>();
-            GetAllFamilias(Accesos, familias);
+            UsuarioFamiliaRepository.Current.GetFamiliasByUsuario(this.IdUsuario).ForEach(o => familias.Add(FamiliaRepository.Current.GetById(o.idFamilia)));
             return familias;
         }
 

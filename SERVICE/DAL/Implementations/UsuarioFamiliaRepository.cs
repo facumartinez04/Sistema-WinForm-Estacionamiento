@@ -16,7 +16,7 @@ namespace SERVICE.DAL.Implementations
     {
 
        
-            #region singleton
+        #region singleton
             private readonly static UsuarioFamiliaRepository _instance = new UsuarioFamiliaRepository();
 
             public static UsuarioFamiliaRepository Current
@@ -99,7 +99,8 @@ namespace SERVICE.DAL.Implementations
 
             UsuarioFamilia user = null;
 
-            using (var reader = SqlHelper.ExecuteReader("Usuario_FamiliaSelectByIdUsuario", CommandType.StoredProcedure))
+            using (var reader = SqlHelper.ExecuteReader("Usuario_FamiliaSelectByIdUsuario", CommandType.StoredProcedure,
+                new SqlParameter[] { new SqlParameter("@IdUsuario", id) }))
             {
                 while (reader.Read())
                 {
@@ -120,7 +121,7 @@ namespace SERVICE.DAL.Implementations
 
             try
             {
-                int data = SqlHelper.ExecuteNonQuery("Usuario_FamiliaDelete", CommandType.StoredProcedure,
+                int data = SqlHelper.ExecuteNonQuery("Usuario_FamiliaDeleteByIdUsuario", CommandType.StoredProcedure,
                 new SqlParameter[] { new SqlParameter("@IdUsuario", id) });
 
                 if (data < 0)
@@ -171,7 +172,8 @@ namespace SERVICE.DAL.Implementations
         {
             List<UsuarioFamilia> familias = new List<UsuarioFamilia>();
 
-            using (var reader = SqlHelper.ExecuteReader("Usuario_FamiliaSelectByIdUsuario", CommandType.StoredProcedure))
+            using (var reader = SqlHelper.ExecuteReader("Usuario_FamiliaSelectByIdUsuario", CommandType.StoredProcedure,
+                new SqlParameter[] { new SqlParameter("@IdUsuario", idUsuario) }))
             {
                 while (reader.Read())
                 {

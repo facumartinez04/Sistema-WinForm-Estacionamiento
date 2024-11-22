@@ -1,4 +1,5 @@
-﻿using DOMAIN;
+﻿using BLL.Implementations;
+using DOMAIN;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,6 +18,11 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
     public partial class formFacturacionMain : Form
     {
 
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
         private formIngresoMain form;
         private Ingreso _ingreso;
 
@@ -23,20 +30,8 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
         {
 
             InitializeComponent();
-        
-        }
-
-        private void formFacturacionMain_Load(object sender, EventArgs e)
-        {
 
         }
-
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button6_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -44,6 +39,167 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
 
         private void formFacturacionMain_Load_1(object sender, EventArgs e)
         {
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+
+
+        private void ListarFacturas()
+        {
+            List<Factura> facturas = FacturaBusiness.Current.GetAll();
+            dgvFacturas.DataSource = null;
+
+            var listafacturas = facturas.Select(f => new
+            {
+                Patente = f.ingreso.vehiculo.patente,
+                fecha = f.fechaRegistro.ToString("dd/MM/yyyy"),
+                hora = f.fechaRegistro.ToString("HH:mm:ss"),
+                monto_total = f.monto_total.ToString("C", new CultureInfo("es-AR")),
+                metodoPago = f.metodoPago.descripcion,
+                verificador = f.verificador
+            }).ToList();
+
+            dgvFacturas.DataSource = listafacturas;
+
+            dgvFacturas.Columns[0].HeaderText = "Patente";
+            dgvFacturas.Columns[1].HeaderText = "Fecha";
+            dgvFacturas.Columns[2].HeaderText = "Hora";
+            dgvFacturas.Columns[3].HeaderText = "Monto Total";
+            dgvFacturas.Columns[4].HeaderText = "Metodo de Pago";
+
+            dgvFacturas.Columns[5].Visible = false;
+
+
+
+            ConfigurarDataGridView(dgvFacturas);
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        private void ConfigurarDataGridView(DataGridView dataGridView)
+        {
+            dataGridView.BackgroundColor = Color.FromArgb(45, 45, 48);
+            dataGridView.ForeColor = Color.White;
+            dataGridView.GridColor = Color.FromArgb(30, 30, 30);
+            dataGridView.DefaultCellStyle.BackColor = Color.FromArgb(30, 30, 30);
+            dataGridView.DefaultCellStyle.ForeColor = Color.White;
+            dataGridView.DefaultCellStyle.SelectionBackColor = Color.FromArgb(70, 70, 70);
+            dataGridView.DefaultCellStyle.SelectionForeColor = Color.White;
+            dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(45, 45, 48);
+            dataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView.EnableHeadersVisualStyles = false;
+            dataGridView.BorderStyle = BorderStyle.None;
+            dataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView.MultiSelect = false;
+            dataGridView.AllowUserToAddRows = false;
+            dataGridView.AllowUserToDeleteRows = false;
+            dataGridView.AllowUserToResizeRows = false;
+        }
+
+        private void cerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+
+        }
+
+        private void btnBuscarPatente_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                var lista = FacturaBusiness.Current.obtenerPorPatente(txtPatente.Text);
+
+                dgvFacturas.DataSource = null;
+
+                var listafacturas = lista.Select(f => new
+                {
+                    Patente = f.ingreso.vehiculo.patente,
+                    fecha = f.fechaRegistro.ToString("dd/MM/yyyy"),
+                    hora = f.fechaRegistro.ToString("HH:mm:ss"),
+                    monto_total = f.monto_total.ToString("C", new CultureInfo("es-AR")),
+                    metodoPago = f.metodoPago.descripcion,
+                    verificador = f.verificador
+                }).ToList();
+
+                dgvFacturas.DataSource = listafacturas;
+
+                dgvFacturas.Columns[0].HeaderText = "Patente";
+                dgvFacturas.Columns[1].HeaderText = "Fecha";
+                dgvFacturas.Columns[2].HeaderText = "Hora";
+                dgvFacturas.Columns[3].HeaderText = "Monto Total";
+                dgvFacturas.Columns[4].HeaderText = "Metodo de Pago";
+
+                dgvFacturas.Columns[5].Visible = false;
+
+                ConfigurarDataGridView(dgvFacturas);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }   
+
+        }
+
+   
+        private void btnBuscarFecha_Click(object sender, EventArgs e)
+        {
+
+            var lista = FacturaBusiness.Current.obtenerPorFecha(dtpDesde.Value, dtpHasta.Value);
+
+            dgvFacturas.DataSource = null;
+
+            var listafacturas = lista.Select(f => new
+            {
+                Patente = f.ingreso.vehiculo.patente,
+                fecha = f.fechaRegistro.ToString("dd/MM/yyyy"),
+                hora = f.fechaRegistro.ToString("HH:mm:ss"),
+                monto_total = f.monto_total.ToString("C", new CultureInfo("es-AR")),
+                metodoPago = f.metodoPago.descripcion,
+                verificador = f.verificador
+            }).ToList();
+
+            dgvFacturas.DataSource = listafacturas;
+
+            dgvFacturas.Columns[0].HeaderText = "Patente";
+            dgvFacturas.Columns[1].HeaderText = "Fecha";
+            dgvFacturas.Columns[2].HeaderText = "Hora";
+            dgvFacturas.Columns[3].HeaderText = "Monto Total";
+            dgvFacturas.Columns[4].HeaderText = "Metodo de Pago";
+
+            dgvFacturas.Columns[5].Visible = false;
+
+            ConfigurarDataGridView(dgvFacturas);
 
         }
     }

@@ -60,11 +60,15 @@
             this.txtCobro = new System.Windows.Forms.TextBox();
             this.btnCobrar = new System.Windows.Forms.Button();
             this.tiempos = new System.Windows.Forms.Timer(this.components);
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cmbmetodoPago = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -365,11 +369,12 @@
             // 
             // label5
             // 
+            this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(6, 25);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(158, 22);
+            this.label5.Size = new System.Drawing.Size(134, 17);
             this.label5.TabIndex = 25;
             this.label5.Text = "TIPO  DE LA TARIFA:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -402,22 +407,56 @@
             this.btnCobrar.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCobrar.ForeColor = System.Drawing.Color.White;
             this.btnCobrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCobrar.Location = new System.Drawing.Point(6, 397);
+            this.btnCobrar.Location = new System.Drawing.Point(6, 468);
             this.btnCobrar.Name = "btnCobrar";
             this.btnCobrar.Padding = new System.Windows.Forms.Padding(15);
             this.btnCobrar.Size = new System.Drawing.Size(373, 52);
             this.btnCobrar.TabIndex = 39;
             this.btnCobrar.Text = "Cobrar Ahora";
             this.btnCobrar.UseVisualStyleBackColor = false;
+            this.btnCobrar.Click += new System.EventHandler(this.btnCobrar_Click);
             // 
             // tiempos
             // 
             this.tiempos.Tick += new System.EventHandler(this.tiempos_Tick_1);
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.cmbmetodoPago);
+            this.groupBox5.Controls.Add(this.label9);
+            this.groupBox5.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold);
+            this.groupBox5.Location = new System.Drawing.Point(385, 398);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(395, 122);
+            this.groupBox5.TabIndex = 40;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "METODOS DE PAGO";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Black;
+            this.label9.Location = new System.Drawing.Point(8, 36);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(153, 17);
+            this.label9.TabIndex = 29;
+            this.label9.Text = "Elegir metodo de pago:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // cmbmetodoPago
+            // 
+            this.cmbmetodoPago.FormattingEnabled = true;
+            this.cmbmetodoPago.Location = new System.Drawing.Point(11, 56);
+            this.cmbmetodoPago.Name = "cmbmetodoPago";
+            this.cmbmetodoPago.Size = new System.Drawing.Size(178, 29);
+            this.cmbmetodoPago.TabIndex = 30;
+            // 
             // formFacturacionPago
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(209)))), ((int)(((byte)(195)))));
-            this.ClientSize = new System.Drawing.Size(794, 484);
+            this.ClientSize = new System.Drawing.Size(794, 532);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.btnCobrar);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtCobro);
@@ -440,6 +479,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -478,5 +519,8 @@
         private System.Windows.Forms.Timer tiempos;
         private System.Windows.Forms.TextBox txtMontoHora;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.ComboBox cmbmetodoPago;
+        private System.Windows.Forms.Label label9;
     }
 }

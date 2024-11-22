@@ -34,6 +34,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,14 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\Contracts\IBitacoraDAO.cs" />
     <Compile Include="DAL\Contracts\IGenericDAO.cs" />
     <Compile Include="DAL\Contracts\IJoinRepository.cs" />
     <Compile Include="DAL\Contracts\IObjectMapper.cs" />
     <Compile Include="DAL\Contracts\IUsuarioFamiliaDAO.cs" />
+    <Compile Include="DAL\Contracts\IUsuarioPatenteDAO.cs" />
     <Compile Include="DAL\Factory\ServiceFactory.cs" />
+    <Compile Include="DAL\Implementations\BitacoraRespository.cs" />
     <Compile Include="DAL\Implementations\FamiliaPatenteRepository.cs" />
     <Compile Include="DAL\Implementations\FamiliaRepository.cs" />
     <Compile Include="DAL\Implementations\LanguageRepository.cs" />
+    <Compile Include="DAL\Implementations\Mappers\BitacoraMapper.cs" />
     <Compile Include="DAL\Implementations\Mappers\FamiliaMapper.cs" />
     <Compile Include="DAL\Implementations\Mappers\FamiliaPatenteMapper.cs" />
     <Compile Include="DAL\Implementations\Mappers\PatenteMapper.cs" />
@@ -60,11 +65,11 @@
     <Compile Include="DAL\Implementations\UsuarioFamiliaRepository.cs" />
     <Compile Include="DAL\Implementations\UsuarioPatenteRepository.cs" />
     <Compile Include="DAL\Implementations\UsuarioRepository.cs" />
+    <Compile Include="Domain\Bitacora.cs" />
     <Compile Include="Domain\Composite\Acceso.cs" />
     <Compile Include="Domain\Composite\Familia.cs" />
     <Compile Include="Domain\Composite\FamiliaPatente.cs" />
     <Compile Include="Domain\Composite\Patente.cs" />
-    <Compile Include="Domain\Composite\Perfil.cs" />
     <Compile Include="Domain\Composite\Usuario.cs" />
     <Compile Include="DAL\Helper\SqlHelper.cs" />
     <Compile Include="Domain\Composite\UsuarioFamilia.cs" />
@@ -74,9 +79,12 @@
     <Compile Include="Facade\Extentions\StringExtention.cs" />
     <Compile Include="Facade\LanguageService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BackupService.cs" />
+    <Compile Include="Services\BitacoraService.cs" />
     <Compile Include="Services\CryptographyService.cs" />
     <Compile Include="Services\LanguageManager.cs" />
     <Compile Include="Services\LoginService.cs" />
+    <Compile Include="Services\SessionService.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

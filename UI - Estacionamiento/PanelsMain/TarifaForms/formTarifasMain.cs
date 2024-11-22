@@ -124,10 +124,6 @@ namespace UI___Estacionamiento.PanelsMain.TarifaForms
             try
             {
 
-
-
-
-
                 if (DBTarifasList.SelectedRows.Count > 0)
                 {
                     idEditTarifa = Convert.ToInt32(DBTarifasList.SelectedRows[0].Cells["idTipoTarifa"].Value);

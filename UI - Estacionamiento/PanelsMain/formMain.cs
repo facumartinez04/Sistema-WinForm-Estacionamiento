@@ -1,12 +1,19 @@
-﻿using System;
+﻿using SERVICE.Domain.Composite;
+using SERVICE.Facade.Extentions;
+using SERVICE.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI___Estacionamiento.Auth;
+using UI___Estacionamiento.Domain.Observer;
+using UI___Estacionamiento.PanelsMain.AdminForms;
 using UI___Estacionamiento.PanelsMain.FacturacionForms;
 using UI___Estacionamiento.PanelsMain.HistorialForms;
 using UI___Estacionamiento.PanelsMain.IngresosForms;
@@ -16,24 +23,35 @@ using UI___Estacionamiento.PanelsMain.TarifaForms;
 
 namespace UI___Estacionamiento.PanelsMain
 {
-    public partial class formMain : Form
+    public partial class formMain : Form, IFormObserver
     {
-        public formMain()
+        private Usuario _user;
+        private formAuthMain _formAuthMain;
+        public formMain(formAuthMain formAuthMain)
         {
+            _formAuthMain = formAuthMain;
+            _user = SessionService.GetUsuario();
+
             InitializeComponent();
+            ListarPorPermisos();
+
+
+            this.Shown += formMain_Shown;
+
         }
 
         private void formMain_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-
             ActualizarDiayHorario();
             horarioDia.Interval = 1000;
             horarioDia.Tick += new EventHandler(horarioDia_Tick);
             horarioDia.Start();
-
+            lblUser.Text = _user.UserName.ToUpper();
 
         }
+
+
 
         private void AbrirFormEnPanel(Form formHijo)
         {
@@ -71,11 +89,61 @@ namespace UI___Estacionamiento.PanelsMain
         private void lblHorario_Click(object sender, EventArgs e)
         {
 
-            
-
         }
 
-        private void horarioDia_Tick(object sender, EventArgs e)
+
+        private void ListarPorPermisos()
+        {
+
+            if (_user.GetFamilias().FirstOrDefault(x => x.NombreFamilia == "Administrador") != null) return;
+            
+
+
+            List<Patente> patentes = _user.GetAllPatentes();
+
+
+
+            button4.Visible = false;
+            button1.Visible = false;
+            btnTarifa.Visible = false;
+            btnMetodoPago.Visible = false;
+            btnHistorial.Visible = false;
+            button2.Visible = false;
+            button3.Visible = false;
+
+                
+
+
+            foreach (var patente in patentes)
+            {
+                switch (patente.DataKey)
+                {
+                    case "mnuIngresos":
+                        button4.Visible = true;
+                        break;
+                    case "mnuFacturacion":
+                        button1.Visible = true;
+                        break;
+                    case "mnuTarifas":
+                        btnTarifa.Visible = true;
+                        break;
+                    case "mnuMetodosPago":
+                        btnMetodoPago.Visible = true;
+                        break;
+                    case "mnuHistorial":
+                        btnHistorial.Visible = true;
+                        break;
+                    case "mnuSalidas":
+                        button2.Visible = true;
+                        break;
+                    case "mnuAdmin":
+                        button3.Visible = true;
+                        break;
+                }
+            }
+        }
+
+            private void horarioDia_Tick(object sender, EventArgs e)
         {
             ActualizarDiayHorario();
         }
@@ -116,6 +184,101 @@ namespace UI___Estacionamiento.PanelsMain
         private void panelContenedor_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            _formAuthMain.Show();
+            SessionService.Clear();
+            this.Close();
+
+        }
+
+        private void lblUser_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel(new formAdminMain());
+        }
+
+        private void formMain_Click(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void formMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (SessionService.IsLogged())
+            {
+
+                Application.Exit();
+            }
+            else
+            {
+
+                _formAuthMain.Show();
+            }
+        }
+
+        public void Update(Form form)
+        {
+            string translatedText = "income".Translate();
+            button4.Text = translatedText;
+            button4.Visible = true;
+            button4.Enabled = true;
+
+            button1.Text = "billing".Translate();
+            btnTarifa.Text = "rates".Translate();
+            btnMetodoPago.Text = "payment-methods".Translate();
+            btnHistorial.Text = "history".Translate();
+            btnCerrar.Text = "logout".Translate();
+            button2.Text = "leaves".Translate();
+            button3.Text = "admin".Translate();
+
+
+            lblSelectIdioma.Text = "select-language".Translate();
+            form.Invalidate();
+            form.Refresh();
+
+        }
+
+        private void spainLeng_Click(object sender, EventArgs e)
+        {
+            _formAuthMain.SetLenguaje("es-ES");
+            ReloadForm();
+        }
+
+        private void EngLeng_Click(object sender, EventArgs e)
+        {
+            _formAuthMain.SetLenguaje("en-US");
+
+            ReloadForm();
+        }
+
+        private void formMain_Shown(object sender, EventArgs e)
+        {
+            
+            Update(this);
+        }
+
+        public void ReloadForm()
+        {
+            Form parent = this.Owner;
+
+            this.Dispose();
+
+            formMain newForm = new formMain(_formAuthMain);
+
+            if (parent != null)
+            {
+                newForm.Owner = parent;
+            }
+
+            newForm.Show();
         }
     }
 }

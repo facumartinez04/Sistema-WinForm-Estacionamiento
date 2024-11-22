@@ -41,19 +41,7 @@ namespace SERVICE.DAL.Implementations
             {
 
 
-                if(obj.IdUsuario == Guid.Empty)
-                {
-
-
-                    Usuario userCheck = GetAll().FirstOrDefault(x => x.UserName == obj.UserName);
-
-
-                    if (userCheck != null) return false;
-
-
-                    obj.IdUsuario = Guid.NewGuid();
-                }
-
+                obj.IdUsuario = Guid.NewGuid();
 
 
                 int data = SqlHelper.ExecuteNonQuery("UsuarioInsert", CommandType.StoredProcedure,
@@ -61,7 +49,17 @@ namespace SERVICE.DAL.Implementations
                                    new SqlParameter("@UserName", obj.UserName),
                                    new SqlParameter("@Password", obj.HashPassword) });
 
-               if(data < 0)
+
+
+                foreach (var item in obj.GetFamilias())
+                {
+                    UsuarioFamiliaRepository.Current.Add(new UsuarioFamilia() { idUsuario = obj.IdUsuario, idFamilia = item.IdFamilia });
+
+                }
+
+
+
+                if (data < 0)
                 {
 
                     return true;
@@ -124,7 +122,46 @@ namespace SERVICE.DAL.Implementations
 
         public bool Update(Usuario obj)
         {
-            throw new NotImplementedException();
+
+
+            try
+            {
+
+
+                int data = SqlHelper.ExecuteNonQuery("UsuarioUpdate", CommandType.StoredProcedure,
+                new SqlParameter[] { new SqlParameter("@IdUsuario", obj.IdUsuario),
+                                   new SqlParameter("@UserName", obj.UserName),
+                                   new SqlParameter("@Password", obj.Password) });
+
+
+                UsuarioPatenteRepository.Current.Remove(obj.IdUsuario);
+
+                foreach (var item in obj.GetFamilias())
+                {
+                    UsuarioFamiliaRepository.Current.Add(new UsuarioFamilia() { idUsuario = obj.IdUsuario, idFamilia = item.IdFamilia });
+
+                }
+
+
+              
+
+
+                if (data < 0)
+                {
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
         }
 
 

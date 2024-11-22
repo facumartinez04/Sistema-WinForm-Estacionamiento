@@ -116,6 +116,18 @@ namespace Dao.Implementations.SqlServer.UnitOfWork
 
 
 
+            Type facturaType = Type.GetType(facturaDAO);
+
+            var facturaInstance = Activator.CreateInstance(facturaType, new object[]
+            {
+                context, transaction
+            });
+
+            FacturaRepository = facturaInstance as IFacturaDAO;
+
+
+
+
         }
     }
 }

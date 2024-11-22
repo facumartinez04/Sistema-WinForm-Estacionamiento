@@ -34,29 +34,29 @@
             this.button4 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button7 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblIngresados = new System.Windows.Forms.Label();
             this.DBIngresosList = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
             this.txtPatente = new System.Windows.Forms.TextBox();
             this.searchPatente = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblfechahorarioIngreso = new System.Windows.Forms.Label();
             this.lblHoraIngreso = new System.Windows.Forms.Label();
             this.lblDiaIngreso = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblDiaSalida = new System.Windows.Forms.Label();
             this.lblHoraSalida = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.label8lblfechahorarioSalida = new System.Windows.Forms.Label();
             this.btnPagar = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lblsegundosTranscurridos = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblseconds = new System.Windows.Forms.Label();
             this.lblMinutosTranscurridos = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.lblminutes = new System.Windows.Forms.Label();
             this.lblHorasTranscurridas = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lblhours = new System.Windows.Forms.Label();
             this.lblDiaTranscurrido = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lblday = new System.Windows.Forms.Label();
             this.tiempos = new System.Windows.Forms.Timer(this.components);
             this.ClearTodo = new System.Windows.Forms.PictureBox();
             this.panel2.SuspendLayout();
@@ -113,7 +113,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(66)))), ((int)(((byte)(95)))));
             this.panel1.Controls.Add(this.button7);
-            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.lblIngresados);
             this.panel1.Location = new System.Drawing.Point(750, 46);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(383, 38);
@@ -134,17 +134,17 @@
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // label3
+            // lblIngresados
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(11, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(156, 20);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Vehiculos Ingresados";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblIngresados.AutoSize = true;
+            this.lblIngresados.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIngresados.ForeColor = System.Drawing.Color.White;
+            this.lblIngresados.Location = new System.Drawing.Point(11, 9);
+            this.lblIngresados.Name = "lblIngresados";
+            this.lblIngresados.Size = new System.Drawing.Size(156, 20);
+            this.lblIngresados.TabIndex = 0;
+            this.lblIngresados.Text = "Vehiculos Ingresados";
+            this.lblIngresados.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DBIngresosList
             // 
@@ -176,6 +176,7 @@
             this.txtPatente.Size = new System.Drawing.Size(463, 101);
             this.txtPatente.TabIndex = 19;
             this.txtPatente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPatente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPatente_KeyPress);
             // 
             // searchPatente
             // 
@@ -191,16 +192,16 @@
             this.searchPatente.TabStop = false;
             this.searchPatente.Click += new System.EventHandler(this.searchPatente_Click);
             // 
-            // label1
+            // lblfechahorarioIngreso
             // 
-            this.label1.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(-1, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(269, 39);
-            this.label1.TabIndex = 22;
-            this.label1.Text = "FECHA Y HORA DE INGRESO";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblfechahorarioIngreso.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblfechahorarioIngreso.ForeColor = System.Drawing.Color.Black;
+            this.lblfechahorarioIngreso.Location = new System.Drawing.Point(-1, 0);
+            this.lblfechahorarioIngreso.Name = "lblfechahorarioIngreso";
+            this.lblfechahorarioIngreso.Size = new System.Drawing.Size(269, 39);
+            this.lblfechahorarioIngreso.TabIndex = 22;
+            this.lblfechahorarioIngreso.Text = "FECHA Y HORA DE INGRESO";
+            this.lblfechahorarioIngreso.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblHoraIngreso
             // 
@@ -228,7 +229,7 @@
             // 
             this.groupBox1.Controls.Add(this.lblDiaIngreso);
             this.groupBox1.Controls.Add(this.lblHoraIngreso);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblfechahorarioIngreso);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.Location = new System.Drawing.Point(37, 198);
             this.groupBox1.Name = "groupBox1";
@@ -240,7 +241,7 @@
             // 
             this.groupBox2.Controls.Add(this.lblDiaSalida);
             this.groupBox2.Controls.Add(this.lblHoraSalida);
-            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.label8lblfechahorarioSalida);
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox2.Location = new System.Drawing.Point(340, 198);
             this.groupBox2.Name = "groupBox2";
@@ -270,16 +271,16 @@
             this.lblHoraSalida.Text = "00:00:00";
             this.lblHoraSalida.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label8
+            // label8lblfechahorarioSalida
             // 
-            this.label8.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(-1, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(269, 39);
-            this.label8.TabIndex = 22;
-            this.label8.Text = "FECHA Y HORA DE SALIDA:";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label8lblfechahorarioSalida.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8lblfechahorarioSalida.ForeColor = System.Drawing.Color.Black;
+            this.label8lblfechahorarioSalida.Location = new System.Drawing.Point(-1, 0);
+            this.label8lblfechahorarioSalida.Name = "label8lblfechahorarioSalida";
+            this.label8lblfechahorarioSalida.Size = new System.Drawing.Size(269, 39);
+            this.label8lblfechahorarioSalida.TabIndex = 22;
+            this.label8lblfechahorarioSalida.Text = "FECHA Y HORA DE SALIDA:";
+            this.label8lblfechahorarioSalida.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnPagar
             // 
@@ -301,13 +302,13 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.lblsegundosTranscurridos);
-            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.lblseconds);
             this.groupBox3.Controls.Add(this.lblMinutosTranscurridos);
-            this.groupBox3.Controls.Add(this.label14);
+            this.groupBox3.Controls.Add(this.lblminutes);
             this.groupBox3.Controls.Add(this.lblHorasTranscurridas);
-            this.groupBox3.Controls.Add(this.label12);
+            this.groupBox3.Controls.Add(this.lblhours);
             this.groupBox3.Controls.Add(this.lblDiaTranscurrido);
-            this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Controls.Add(this.lblday);
             this.groupBox3.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold);
             this.groupBox3.Location = new System.Drawing.Point(36, 387);
             this.groupBox3.Name = "groupBox3";
@@ -327,16 +328,16 @@
             this.lblsegundosTranscurridos.Text = "00";
             this.lblsegundosTranscurridos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label4
+            // lblseconds
             // 
-            this.label4.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(455, 12);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 24);
-            this.label4.TabIndex = 31;
-            this.label4.Text = "SEGUNDOS";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblseconds.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblseconds.ForeColor = System.Drawing.Color.Black;
+            this.lblseconds.Location = new System.Drawing.Point(455, 12);
+            this.lblseconds.Name = "lblseconds";
+            this.lblseconds.Size = new System.Drawing.Size(97, 24);
+            this.lblseconds.TabIndex = 31;
+            this.lblseconds.Text = "SEGUNDOS";
+            this.lblseconds.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblMinutosTranscurridos
             // 
@@ -349,16 +350,16 @@
             this.lblMinutosTranscurridos.Text = "00";
             this.lblMinutosTranscurridos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label14
+            // lblminutes
             // 
-            this.label14.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(360, 12);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(89, 24);
-            this.label14.TabIndex = 29;
-            this.label14.Text = "MINUTOS";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblminutes.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblminutes.ForeColor = System.Drawing.Color.Black;
+            this.lblminutes.Location = new System.Drawing.Point(360, 12);
+            this.lblminutes.Name = "lblminutes";
+            this.lblminutes.Size = new System.Drawing.Size(89, 24);
+            this.lblminutes.TabIndex = 29;
+            this.lblminutes.Text = "MINUTOS";
+            this.lblminutes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblHorasTranscurridas
             // 
@@ -371,16 +372,16 @@
             this.lblHorasTranscurridas.Text = "00";
             this.lblHorasTranscurridas.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label12
+            // lblhours
             // 
-            this.label12.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(279, 12);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(75, 24);
-            this.label12.TabIndex = 27;
-            this.label12.Text = "HORAS";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblhours.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblhours.ForeColor = System.Drawing.Color.Black;
+            this.lblhours.Location = new System.Drawing.Point(279, 12);
+            this.lblhours.Name = "lblhours";
+            this.lblhours.Size = new System.Drawing.Size(75, 24);
+            this.lblhours.TabIndex = 27;
+            this.lblhours.Text = "HORAS";
+            this.lblhours.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblDiaTranscurrido
             // 
@@ -393,16 +394,16 @@
             this.lblDiaTranscurrido.Text = "000";
             this.lblDiaTranscurrido.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label10
+            // lblday
             // 
-            this.label10.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(203, 12);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(80, 24);
-            this.label10.TabIndex = 25;
-            this.label10.Text = "DIAS";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblday.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblday.ForeColor = System.Drawing.Color.Black;
+            this.lblday.Location = new System.Drawing.Point(203, 12);
+            this.lblday.Name = "lblday";
+            this.lblday.Size = new System.Drawing.Size(80, 24);
+            this.lblday.TabIndex = 25;
+            this.lblday.Text = "DIAS";
+            this.lblday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tiempos
             // 
@@ -445,7 +446,6 @@
             this.Text = "formSalidaMain";
             this.Load += new System.EventHandler(this.formSalidaMain_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint_1);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.formSalidaMain_MouseDown);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -467,30 +467,30 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblIngresados;
         private System.Windows.Forms.DataGridView DBIngresosList;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtPatente;
         private System.Windows.Forms.PictureBox searchPatente;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblfechahorarioIngreso;
         private System.Windows.Forms.Label lblHoraIngreso;
         private System.Windows.Forms.Label lblDiaIngreso;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lblDiaSalida;
         private System.Windows.Forms.Label lblHoraSalida;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label8lblfechahorarioSalida;
         private System.Windows.Forms.Button btnPagar;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label lblMinutosTranscurridos;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lblminutes;
         private System.Windows.Forms.Label lblHorasTranscurridas;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblhours;
         private System.Windows.Forms.Label lblDiaTranscurrido;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblday;
         private System.Windows.Forms.Timer tiempos;
         private System.Windows.Forms.Label lblsegundosTranscurridos;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblseconds;
         private System.Windows.Forms.PictureBox ClearTodo;
     }
 }

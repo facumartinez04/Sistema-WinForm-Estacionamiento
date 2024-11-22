@@ -1,6 +1,7 @@
 using BLL.Interfaces;
 using Dao.Factory;
 using DOMAIN;
+using SERVICE.Facade.Extentions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -106,7 +107,7 @@ namespace BLL.Implementations
             try
             {
 
-               if(entity.vehiculo.patente == "") throw new Exception("Debe ingresar una patente");
+               if(entity.vehiculo.patente == "") throw new Exception($"vehicle-text-empty".Translate());
 
                 if (entity.cliente == null)
                 {
@@ -122,7 +123,7 @@ namespace BLL.Implementations
                     VehiculoBusiness.Current.Add(entity.vehiculo);
                 }
 
-                if (ingresocheck != null) throw new Exception("El auto ya esta ingresado");
+                if (ingresocheck != null) throw new Exception($"vehicle-error-car-already-entered".Translate());
 
 
                 entity.vehiculo = VehiculoBusiness.Current.GetAll().FirstOrDefault(x => x.patente == entity.vehiculo.patente);
@@ -148,7 +149,7 @@ namespace BLL.Implementations
             {
                 Ingreso ingresoCheck = IngresosActuales().FirstOrDefault(x => x.idIngreso == entity.idIngreso);
 
-                if (ingresoCheck == null) throw new Exception("El auto no esta ingresado");
+                if (ingresoCheck == null) throw new Exception($"vehicle-not-entered".Translate());
 
 
                 entity.fechaEgreso = DateTime.Now;
@@ -195,7 +196,7 @@ namespace BLL.Implementations
         {
             try
             {
-                if (patente == "") throw new Exception("Debe ingresar una patente");
+                if (patente == "") throw new Exception($"vehicle-text-empty".Translate());
                 List <Ingreso> data = new List<Ingreso>();
                 using (var context = FactoryDao.UnitOfWork.Create())
                 {
@@ -252,7 +253,7 @@ namespace BLL.Implementations
             try
             {
 
-                if (patente == "") throw new Exception("Debe ingresar una patente");
+                if (patente == "") throw new Exception($"vehicle-text-empty".Translate());
                 Ingreso data = new Ingreso();
                 using (var context = FactoryDao.UnitOfWork.Create())
                 {
@@ -266,7 +267,7 @@ namespace BLL.Implementations
                     }
                     else
                     {
-                        throw new Exception("No se encontro la patente ingresada");
+                        throw new Exception($"vehicle-not-found".Translate());
                     }
 
                     return data;

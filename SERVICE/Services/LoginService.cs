@@ -81,7 +81,7 @@ namespace SERVICE.Services
 
                 foreach (var item in usuarioPatentes)
                 {
-                    var patente = PatenteRepository.Current.GetAll().FirstOrDefault(x => x.Id == item.idPatente);
+                    var patente = PatenteRepository.Current.GetAll().FirstOrDefault(x => x.idPatente == item.idPatente);
                     patentesList.Add(patente);
                 }
 

@@ -1,4 +1,5 @@
 ﻿using SERVICE.DAL.Implementations;
+using SERVICE.Domain;
 using SERVICE.Domain.Composite;
 using SERVICE.Services;
 using System;
@@ -6,16 +7,24 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI___Estacionamiento.Domain.Observer;
+using UI___Estacionamiento.PanelsMain;
 
 namespace UI___Estacionamiento.Auth
 {
     public partial class formAuthMain : Form
     {
+
+        private static List<IFormObserver> formularios = new List<IFormObserver>();
+
         [DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
         [DllImport("user32.dll")]
@@ -23,6 +32,7 @@ namespace UI___Estacionamiento.Auth
         public formAuthMain()
         {
             InitializeComponent();
+            txtContra.PasswordChar = '*';
         }
 
         private void btnclose_Click(object sender, EventArgs e)
@@ -41,22 +51,28 @@ namespace UI___Estacionamiento.Auth
                     Password = txtContra.Text
                 };
 
+                var data = CryptographyService.HashPassword(Usuario.Password);
+
                 Usuario userCargado = LoginService.Validate(Usuario);
 
                 MessageBox.Show("Usuario logueado con exito");
 
                 List<Patente> list = new List<Patente>();
                 list = userCargado.GetAllPatentes();
-                foreach (Patente item in list) {
-                    MessageBox.Show(item.Nombre);
-                }
 
-
-
+                SessionService.SetUsuario(userCargado);
 
                 this.Hide();
 
+                formMain form = new formMain(this);
+                form.Show();
 
+                txtContra.Text = "";
+                txtUsuario.Text = "";
+
+                BitacoraService.RegistrarEvento(new Bitacora { usuario = SessionService.GetUsuario().UserName, accion = $"El usuario {SessionService.GetUsuario().UserName} inicio session" });
+
+                AddFormularios();
 
             }
             catch (Exception ex)
@@ -79,5 +95,62 @@ namespace UI___Estacionamiento.Auth
         {
 
         }
+
+        private void txtContra_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                btnLogin_Click(sender, e);
+            }
+
+        }
+
+
+        public static void Detach(IFormObserver formulario)
+        {
+            formularios.Remove(formulario);
+        }
+
+
+        public void Notify()
+        {
+            foreach (IFormObserver formulario in formularios)
+            {
+                formulario.Update(this);
+            }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void formAuthMain_Load(object sender, EventArgs e)
+        {
+          
+        }
+
+        public void SetLenguaje(string leng)
+        {
+            if(leng == "es-ES")
+            {
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-ES");
+                Notify();
+            }
+            else
+            {
+
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+
+                Notify();   
+            }
+        }
+
+        private void AddFormularios()
+        {
+            formularios.Add(new formMain(this));
+
+        }
+
     }
 }

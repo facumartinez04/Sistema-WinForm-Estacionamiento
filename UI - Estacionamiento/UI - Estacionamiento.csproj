@@ -54,6 +54,30 @@
       <DependentUpon>formAuthMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Domain\Observer\FormObserver.cs" />
+    <Compile Include="PanelsMain\AdminForms\Backup\formAdminBackups.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelsMain\AdminForms\Backup\formAdminBackups.Designer.cs">
+      <DependentUpon>formAdminBackups.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PanelsMain\AdminForms\Bitacora\formAdminBitacora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelsMain\AdminForms\Bitacora\formAdminBitacora.Designer.cs">
+      <DependentUpon>formAdminBitacora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PanelsMain\AdminForms\formAdminMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelsMain\AdminForms\formAdminMain.Designer.cs">
+      <DependentUpon>formAdminMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PanelsMain\AdminForms\Usuarios\formUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelsMain\AdminForms\Usuarios\formUsuarios.Designer.cs">
+      <DependentUpon>formUsuarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="PanelsMain\FacturacionForms\formFacturacionMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +141,18 @@
     </Compile>
     <EmbeddedResource Include="Auth\formAuthMain.resx">
       <DependentUpon>formAuthMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PanelsMain\AdminForms\Backup\formAdminBackups.resx">
+      <DependentUpon>formAdminBackups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PanelsMain\AdminForms\Bitacora\formAdminBitacora.resx">
+      <DependentUpon>formAdminBitacora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PanelsMain\AdminForms\formAdminMain.resx">
+      <DependentUpon>formAdminMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PanelsMain\AdminForms\Usuarios\formUsuarios.resx">
+      <DependentUpon>formUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PanelsMain\FacturacionForms\formFacturacionMain.resx">
       <DependentUpon>formFacturacionMain.cs</DependentUpon>
@@ -247,6 +283,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\magnifying-glass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\admin-con-ruedas-dentadas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\united-kingdom.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

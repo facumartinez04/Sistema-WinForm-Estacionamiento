@@ -12,7 +12,7 @@ using SERVICE.DAL.Implementations.Mappers;
 
 namespace SERVICE.DAL.Implementations
 {
-    public class UsuarioPatenteRepository : IGenericDAO<UsuarioPatente>
+    public class UsuarioPatenteRepository : IUsuarioPatenteDAO
     {
 
 
@@ -29,7 +29,6 @@ namespace SERVICE.DAL.Implementations
 
         private UsuarioPatenteRepository()
         {
-            //Implent here the initialization of your singleton
         }
         #endregion
 
@@ -109,7 +108,7 @@ namespace SERVICE.DAL.Implementations
             try
             {
                 int result = SqlHelper.ExecuteNonQuery(
-                    "Usuario_PatenteDelete",
+                    "Usuario_PatenteDeleteByIdUsuario",
                     CommandType.StoredProcedure,
                     new SqlParameter[]
                     {
@@ -117,12 +116,10 @@ namespace SERVICE.DAL.Implementations
                     }
                 );
 
-                // Asumiendo que un resultado > 0 indica éxito
                 return result > 0;
             }
             catch (Exception)
             {
-                // Considera registrar la excepción para depuración
                 return false;
             }
         }
@@ -131,6 +128,8 @@ namespace SERVICE.DAL.Implementations
         {
             try
             {
+
+
                 int result = SqlHelper.ExecuteNonQuery(
                     "Usuario_PatenteUpdate",
                     CommandType.StoredProcedure,
@@ -141,14 +140,37 @@ namespace SERVICE.DAL.Implementations
                     }
                 );
 
-                // Asumiendo que un resultado > 0 indica éxito
                 return result > 0;
             }
             catch (Exception)
             {
-                // Considera registrar la excepción para depuración
                 return false;
             }
+        }
+
+        public List<UsuarioPatente> usuarioPatentes(Guid idUsuario)
+        {
+
+            List<UsuarioPatente> patentes = new List<UsuarioPatente>();
+
+            using (var reader = SqlHelper.ExecuteReader(
+                "Usuario_PatenteSelectByIdUsuario",
+                CommandType.StoredProcedure,
+                new SqlParameter[]
+                {
+                new SqlParameter("@IdUsuario", idUsuario)
+                }))
+            {
+                while (reader.Read())
+                {
+                    object[] data = new object[reader.FieldCount];
+                    reader.GetValues(data);
+
+                    patentes.Add(UsuarioPatenteMapper.Current.Fill(data));
+                }
+            }
+
+            return patentes;
         }
     }
 }

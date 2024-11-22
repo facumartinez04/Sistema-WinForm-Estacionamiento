@@ -13,6 +13,10 @@ namespace DOMAIN
 
         public MetodoPago metodoPago { get; set; }
 
-        public Double monto_total { get; set; }
+        public Decimal monto_total { get; set; }
+
+        public DateTime fechaRegistro { get; set; }
+
+        public string verificador { get; set; }
     }
 }

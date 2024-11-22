@@ -22,7 +22,7 @@ namespace DAO.Implementations.SqlServer
         #region Statements
         private string InsertStatement
         {
-            get => "INSERT INTO [dbo].[Factura] (idFactura,idIngreso,idMetodoPago,monto_total) VALUES (@idFactura,@idIngreso,@idMetodoPago,@monto_total)";
+            get => "INSERT INTO [dbo].[Factura] (idIngreso,idMetodoPago,monto_total,fecha_registro,verificador) VALUES (@idIngreso,@idMetodoPago,@monto_total,@fecha_registro,@verificador)";
         }
 
         private string UpdateStatement
@@ -44,6 +44,19 @@ namespace DAO.Implementations.SqlServer
         {
             get => "SELECT * FROM [dbo].[Factura]";
         }
+
+
+        private string SelectPorPatenteStatement
+        {
+            get => "SELECT f.idFactura, f.idIngreso, f.idMetodoPago, f.monto_total, f.fecha_registro, f.verificador, i.idIngreso, i.idVehiculo, i.idCliente, i.FechaHorario_Ingreso, i.FechaHorario_Salida, i.idTipoTarifa, i.estado, v.idVehiculo, v.patente, v.marca, v.modelo FROM [DBEstacionamiento].[dbo].[Factura] f JOIN [DBEstacionamiento].[dbo].[Ingreso] i ON f.idIngreso = i.idIngreso JOIN [DBEstacionamiento].[dbo].[Vehiculo] v ON i.idVehiculo = v.idVehiculo WHERE v.patente = @patente;";
+        }
+
+
+        private string SelectPorFechaStatement
+        {
+            get => "SELECT * FROM [dbo].[Factura] WHERE fecha_registro BETWEEN @fechaDesde AND @fechaHasta";
+        }
+
         #endregion
 
 
@@ -52,10 +65,13 @@ namespace DAO.Implementations.SqlServer
             try
             {
                 int esCargado = ExecuteNonQuery(InsertStatement, CommandType.Text,
-                    new SqlParameter("@idFactura", obj.idFactura),
                     new SqlParameter("@idIngreso", obj.ingreso.idIngreso),
                     new SqlParameter("@idMetodoPago", obj.metodoPago.idMetodoPago),
-                    new SqlParameter("@monto_total", obj.monto_total)
+                    new SqlParameter("@monto_total", obj.monto_total),
+                    new SqlParameter("@fecha_registro", obj.fechaRegistro),
+                    new SqlParameter("@verificador", obj.verificador)
+
+
                     );
 
                 if (esCargado == 0)
@@ -97,7 +113,34 @@ namespace DAO.Implementations.SqlServer
             throw new NotImplementedException();
         }
 
-        public Factura obtenerPorID(int ID)
+        public List<Factura> obtenerPorFecha(DateTime fechaDesde, DateTime fechaHasta)
+        {
+
+            List<Factura> facturas = new List<Factura>();
+            try
+            {
+                using (var reader = ExecuteReader(SelectPorFechaStatement, CommandType.Text,
+                new SqlParameter("@fechaDesde", fechaDesde.ToString("yyyy-MM-dd 00:00:00")),
+                new SqlParameter("@fechaHasta", fechaHasta.ToString("yyyy-MM-dd 23:59:59"))))
+                {
+                    while (reader.Read())
+                    {
+                        object[] data = new object[reader.FieldCount];
+                        reader.GetValues(data);
+
+                        Factura factura = FacturaMapper.Current.Fill(data);
+                        facturas.Add(factura);
+                    }
+                    return facturas;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+            public Factura obtenerPorID(int ID)
         {
 
             Factura factura = null;
@@ -119,6 +162,32 @@ namespace DAO.Implementations.SqlServer
             }
         }
 
+        public List<Factura> obtenerPorPatente(string patente)
+        {
+
+            try
+            {
+                List<Factura> facturas = new List<Factura>();
+                using (var reader = ExecuteReader(SelectPorPatenteStatement, CommandType.Text,
+                    new SqlParameter("@patente", patente)))
+                {
+                    while (reader.Read())
+                    {
+                        object[] data = new object[reader.FieldCount];
+                        reader.GetValues(data);
+
+                        Factura factura = FacturaMapper.Current.Fill(data);
+                        facturas.Add(factura);
+                    }
+                }
+                return facturas;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void Remove(Guid id)
         {
             throw new NotImplementedException();
@@ -130,7 +199,8 @@ namespace DAO.Implementations.SqlServer
                 new SqlParameter("@idFactura", obj.idFactura),
                 new SqlParameter("@idIngreso", obj.ingreso.idIngreso),
                 new SqlParameter("@idMetodoPago", obj.metodoPago.idMetodoPago),
-                new SqlParameter("@monto_total", obj.monto_total)
+                new SqlParameter("@monto_total", obj.monto_total),
+                new SqlParameter("@verificador", obj.verificador)
                 ))
             {
                 if (reader.Read())

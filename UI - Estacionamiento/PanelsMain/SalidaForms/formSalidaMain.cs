@@ -204,22 +204,29 @@ namespace UI___Estacionamiento.PanelsMain.SalidaForms
                 MessageBox.Show("Tenes que ingresar una patente a pagar");
                 return;
             }
-            formFacturacionPago formFacturacionPago = new formFacturacionPago(_ingreso);
+            formFacturacionPago formFacturacionPago = new formFacturacionPago(_ingreso,this);
             formFacturacionPago.Show();
 
         }
 
         private void panel2_Paint_1(object sender, PaintEventArgs e)
         {
-            ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
 
         }
 
         private void formSalidaMain_MouseDown(object sender, MouseEventArgs e)
         {
+
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void txtPatente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                searchPatente_Click(sender, e);
+            }
 
         }
     }
