@@ -9,20 +9,17 @@ namespace SERVICE.Domain
 {
     public class Log
     {
-        public string Message { get; set; }
-
-        public TraceLevel TraceLevel { get; set; }
+        public Log(DateTime date, string message, TraceLevel level = TraceLevel.Info)
+        {
+            Date = date;
+            Message = message;
+            Level = level;
+        }
 
         public DateTime Date { get; set; }
 
-        public Log(string message, TraceLevel traceLevel = TraceLevel.Info, DateTime date = default)
-        {
-            Message = message;
-            TraceLevel = traceLevel;
-            Date = (date == default) ? DateTime.Now : date;
-        }
+        public string Message { get; set; }
 
-        //Definir lo que ustedes crean conveniente para registro de una bitácora...
-
+        public TraceLevel Level { get; set; }
     }
 }
