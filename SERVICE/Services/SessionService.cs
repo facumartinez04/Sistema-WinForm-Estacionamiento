@@ -1,4 +1,5 @@
-﻿using SERVICE.Domain.Composite;
+﻿using SERVICE.Domain;
+using SERVICE.Domain.Composite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace SERVICE.Services
         public static void SetUsuario(Usuario usuario)
         {
             usuarioActual = usuario;
+            BitacoraService.RegistrarEvento(new Bitacora(GetUsuario().UserName, $"Inicio sesion en el sistema"));
         }
 
         public static Usuario GetUsuario()

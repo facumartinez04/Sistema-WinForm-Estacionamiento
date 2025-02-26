@@ -63,7 +63,7 @@ namespace SERVICE.DAL.Implementations
 
         private string SelectByUserStatement
         {
-            get => "SELECT * FROM [dbo].[Bitacora] WHERE usuario = @usuario";
+            get => "SELECT id_bitacora, usuario, fecha, accion, detalles FROM [dbo].[Bitacora] WHERE usuario = @usuario ORDER BY fecha DESC;";
         }
 
         private string SelectByDateStatement
@@ -73,7 +73,7 @@ namespace SERVICE.DAL.Implementations
 
         private string SelectByUserDateStatement
         {
-            get => "SELECT id_bitacora,usuario,fecha,accion,detalles FROM [dbo].[Bitacora] WHERE usuario = @usuario AND fecha = @fecha";
+            get => "SELECT id_bitacora, usuario, fecha, accion, detalles FROM [dbo].[Bitacora] WHERE usuario = @usuario AND CAST(fecha AS DATE) = @fecha ORDER BY fecha DESC;";
         }
 
 
@@ -194,7 +194,7 @@ namespace SERVICE.DAL.Implementations
 
                 using (var reader = SqlHelper.ExecuteReader(SelectByUserDateStatement, CommandType.Text,
                     new SqlParameter[] { new SqlParameter("@usuario", usuario),
-                    new SqlParameter("@fecha", dateTime) }))
+                    new SqlParameter("@fecha", dateTime.ToString("yyyy-MM-dd")) }))
                 {
                     while (reader.Read())
                     {

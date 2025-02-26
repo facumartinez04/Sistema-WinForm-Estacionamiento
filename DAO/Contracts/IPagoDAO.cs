@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 
 namespace DAO.Contracts
 {
-    public interface IPagoDAO : IGenericDao<Pago>
+    /// <summary>
+    /// //Interfaz de la clase PagoDAO
+    /// </summary>
+    public interface IPagoDAO 
     {
     }
 }

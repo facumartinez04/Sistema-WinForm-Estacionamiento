@@ -12,46 +12,73 @@ namespace SERVICE.DAL
 {
     internal static class LoggerDao
     {
-        public static string PathLogError { get; set; } = ConfigurationManager.AppSettings["PathLogError"].ToString();
-
-        public static string PathLogInfo { get; set; } = ConfigurationManager.AppSettings["PathInfoError"].ToString();
+        public static string PathLogError { get; set; } = ConfigurationManager.AppSettings["PathLogError"];
+        public static string PathLogInfo { get; set; } = ConfigurationManager.AppSettings["PathLogInfo"];
 
         public static void WriteLog(Log log, Exception ex = null)
         {
-            string message = FormatMessage(log);
-
-            switch (log.Level)
+            try
             {
-                case TraceLevel.Error:
-                    message += ex.StackTrace;
+                string message = FormatMessage(log);
 
-                    WriteLogToFile(PathLogError, message);
+                if (ex != null)
+                {
+                    message += $"\nExcepción: {ex.Message}";
+                    message += $"\nInnerException: {ex.InnerException?.Message ?? "N/A"}";
+                    message += $"\nStackTrace: {ex.StackTrace}";
+                }
 
-                    break;
-                case TraceLevel.Warning:
-                    break;
-                case TraceLevel.Info:
+                switch (log.Level)
+                {
+                    case TraceLevel.Error:
+                        WriteLogToFile(PathLogError, message);
+                        break;
 
-                    message = FormatMessage(log);
-                    WriteLogToFile(PathLogInfo, message);
-                    break;
-                default:
-                    break;
+                    case TraceLevel.Warning:
+                        WriteLogToFile(PathLogError, message);
+                        break;
+
+                    case TraceLevel.Info:
+                        WriteLogToFile(PathLogInfo, message);
+                        break;
+
+                    default:
+                        throw new ArgumentOutOfRangeException($"Nivel de log no soportado: {log.Level}");
+                }
+            }
+            catch (Exception loggerException)
+            {
+                Console.WriteLine($"Error en el LoggerDao: {loggerException.Message}");
             }
         }
 
-        public static string FormatMessage(Log log)
+        private static string FormatMessage(Log log)
         {
-            return $"{log.Date.ToString("dd/MM/yyyy HH:mm:ss")} - {log.Level}: {log.Message} - ";
+            return $"[{log.Date:yyyy-MM-dd HH:mm:ss}] {log.Level}: {log.Message}";
         }
 
-        public static void WriteLogToFile(string path, string message)
+        private static void WriteLogToFile(string fileName, string message)
         {
-            path = DateTime.Now.ToString("dd-MM-yyyy") + path;
-
-            using (StreamWriter str = new StreamWriter(path, true))
+            try
             {
-                str.WriteLine(message);
+                string folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
+
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                string fullPath = Path.Combine(folderPath, $"{DateTime.Now:yyyy-MM-dd}-{fileName}");
+
+                using (StreamWriter writer = new StreamWriter(fullPath, true))
+                {
+                    writer.WriteLine(message);
+                    writer.WriteLine(new string('-', 80));
+                }
+            }
+            catch (Exception fileException)
+            {
+                Console.WriteLine($"Error al escribir el log en el archivo: {fileException.Message}");
             }
         }
     }

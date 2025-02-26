@@ -29,21 +29,22 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbseachpatente = new System.Windows.Forms.GroupBox();
             this.txtPatente = new System.Windows.Forms.TextBox();
             this.btnBuscarPatente = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gbsearchfechas = new System.Windows.Forms.GroupBox();
             this.btnBuscarFecha = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblhasta = new System.Windows.Forms.Label();
             this.dtpHasta = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lbldesde = new System.Windows.Forms.Label();
             this.dtpDesde = new System.Windows.Forms.DateTimePicker();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.lblPatente = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.gbseachpatente.SuspendLayout();
+            this.gbsearchfechas.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,16 +56,17 @@
             this.dataGridView1.Size = new System.Drawing.Size(1010, 321);
             this.dataGridView1.TabIndex = 0;
             // 
-            // groupBox1
+            // gbseachpatente
             // 
-            this.groupBox1.Controls.Add(this.txtPatente);
-            this.groupBox1.Controls.Add(this.btnBuscarPatente);
-            this.groupBox1.Location = new System.Drawing.Point(13, 50);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(316, 127);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Buscar por patente";
+            this.gbseachpatente.Controls.Add(this.lblPatente);
+            this.gbseachpatente.Controls.Add(this.txtPatente);
+            this.gbseachpatente.Controls.Add(this.btnBuscarPatente);
+            this.gbseachpatente.Location = new System.Drawing.Point(13, 50);
+            this.gbseachpatente.Name = "gbseachpatente";
+            this.gbseachpatente.Size = new System.Drawing.Size(316, 127);
+            this.gbseachpatente.TabIndex = 1;
+            this.gbseachpatente.TabStop = false;
+            this.gbseachpatente.Text = "Buscar por patente";
             // 
             // txtPatente
             // 
@@ -91,19 +93,19 @@
             this.btnBuscarPatente.UseVisualStyleBackColor = false;
             this.btnBuscarPatente.Click += new System.EventHandler(this.btnBuscarPatente_Click);
             // 
-            // groupBox2
+            // gbsearchfechas
             // 
-            this.groupBox2.Controls.Add(this.btnBuscarFecha);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.dtpHasta);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.dtpDesde);
-            this.groupBox2.Location = new System.Drawing.Point(345, 50);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(403, 127);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Buscar por fechas";
+            this.gbsearchfechas.Controls.Add(this.btnBuscarFecha);
+            this.gbsearchfechas.Controls.Add(this.lblhasta);
+            this.gbsearchfechas.Controls.Add(this.dtpHasta);
+            this.gbsearchfechas.Controls.Add(this.lbldesde);
+            this.gbsearchfechas.Controls.Add(this.dtpDesde);
+            this.gbsearchfechas.Location = new System.Drawing.Point(345, 50);
+            this.gbsearchfechas.Name = "gbsearchfechas";
+            this.gbsearchfechas.Size = new System.Drawing.Size(403, 127);
+            this.gbsearchfechas.TabIndex = 2;
+            this.gbsearchfechas.TabStop = false;
+            this.gbsearchfechas.Text = "Buscar por fechas";
             // 
             // btnBuscarFecha
             // 
@@ -119,17 +121,17 @@
             this.btnBuscarFecha.UseVisualStyleBackColor = false;
             this.btnBuscarFecha.Click += new System.EventHandler(this.btnBuscarFecha_Click);
             // 
-            // label1
+            // lblhasta
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(156, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 20);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "HASTA:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblhasta.AutoSize = true;
+            this.lblhasta.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblhasta.ForeColor = System.Drawing.Color.Black;
+            this.lblhasta.Location = new System.Drawing.Point(156, 33);
+            this.lblhasta.Name = "lblhasta";
+            this.lblhasta.Size = new System.Drawing.Size(62, 20);
+            this.lblhasta.TabIndex = 13;
+            this.lblhasta.Text = "HASTA:";
+            this.lblhasta.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dtpHasta
             // 
@@ -139,17 +141,17 @@
             this.dtpHasta.Size = new System.Drawing.Size(131, 20);
             this.dtpHasta.TabIndex = 12;
             // 
-            // label4
+            // lbldesde
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(6, 33);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 20);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "DESDE:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbldesde.AutoSize = true;
+            this.lbldesde.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbldesde.ForeColor = System.Drawing.Color.Black;
+            this.lbldesde.Location = new System.Drawing.Point(6, 33);
+            this.lbldesde.Name = "lbldesde";
+            this.lbldesde.Size = new System.Drawing.Size(59, 20);
+            this.lbldesde.TabIndex = 11;
+            this.lbldesde.Text = "DESDE:";
+            this.lbldesde.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dtpDesde
             // 
@@ -183,21 +185,33 @@
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // button4
+            // btnClose
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(20)))), ((int)(((byte)(55)))));
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(394, 519);
-            this.button4.Name = "button4";
-            this.button4.Padding = new System.Windows.Forms.Padding(15);
-            this.button4.Size = new System.Drawing.Size(182, 52);
-            this.button4.TabIndex = 20;
-            this.button4.Text = "Cerrar";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(20)))), ((int)(((byte)(55)))));
+            this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClose.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.Color.White;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(394, 519);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Padding = new System.Windows.Forms.Padding(15);
+            this.btnClose.Size = new System.Drawing.Size(182, 52);
+            this.btnClose.TabIndex = 20;
+            this.btnClose.Text = "Cerrar";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // lblPatente
+            // 
+            this.lblPatente.AutoSize = true;
+            this.lblPatente.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPatente.ForeColor = System.Drawing.Color.Black;
+            this.lblPatente.Location = new System.Drawing.Point(2, 33);
+            this.lblPatente.Name = "lblPatente";
+            this.lblPatente.Size = new System.Drawing.Size(59, 20);
+            this.lblPatente.TabIndex = 14;
+            this.lblPatente.Text = "DESDE:";
+            this.lblPatente.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // formHistorialMain
             // 
@@ -205,10 +219,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(209)))), ((int)(((byte)(195)))));
             this.ClientSize = new System.Drawing.Size(1034, 577);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbsearchfechas);
+            this.Controls.Add(this.gbseachpatente);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "formHistorialMain";
@@ -216,10 +230,10 @@
             this.Load += new System.EventHandler(this.formHistorialMain_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.formHistorialMain_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.gbseachpatente.ResumeLayout(false);
+            this.gbseachpatente.PerformLayout();
+            this.gbsearchfechas.ResumeLayout(false);
+            this.gbsearchfechas.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -228,17 +242,18 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gbseachpatente;
+        private System.Windows.Forms.GroupBox gbsearchfechas;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button btnBuscarPatente;
         private System.Windows.Forms.TextBox txtPatente;
         private System.Windows.Forms.DateTimePicker dtpDesde;
         private System.Windows.Forms.Button btnBuscarFecha;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblhasta;
         private System.Windows.Forms.DateTimePicker dtpHasta;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label lbldesde;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Label lblPatente;
     }
 }

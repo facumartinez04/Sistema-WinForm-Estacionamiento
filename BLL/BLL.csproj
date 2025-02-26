@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\BLL.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,11 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implementations\ClienteBusiness.cs" />
     <Compile Include="Implementations\FacturaBusiness.cs" />
     <Compile Include="Implementations\IngresoBusiness.cs" />
     <Compile Include="Implementations\MetodoPagoBusiness.cs" />
-    <Compile Include="Implementations\PagoBusiness.cs" />
     <Compile Include="Implementations\TipoTarifaBusiness.cs" />
     <Compile Include="Implementations\VehiculoBusiness.cs" />
     <Compile Include="Interfaces\IFacturaBusiness.cs" />
@@ -55,9 +55,7 @@
     <Compile Include="Interfaces\ITipoTarifaBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BusinessExceptions\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DAO\DAO.csproj">
       <Project>{ce4566b5-171e-4b15-a291-ccc8b63241f7}</Project>

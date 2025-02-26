@@ -27,11 +27,15 @@ namespace DAO.Implementations.SqlServer.Mappers
 			{
 				//Implent here the initialization of your singleton
 			}
-			#endregion
-		
+        #endregion
 
 
-		public Factura Fill(object[] values)
+        /// <summary>
+        /// //Con fill vamos a concretar la adapción de cada backend en un objeto de nuestra app.
+        /// </summary>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public Factura Fill(object[] values)
         {
             Factura factura = new Factura();
             factura.idFactura = (int)values[0];

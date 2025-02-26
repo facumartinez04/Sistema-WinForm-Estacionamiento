@@ -71,6 +71,7 @@
     <Compile Include="Domain\Composite\Acceso.cs" />
     <Compile Include="Domain\Composite\Familia.cs" />
     <Compile Include="Domain\Composite\FamiliaPatente.cs" />
+    <Compile Include="Domain\Composite\FamiliaFamilia.cs" />
     <Compile Include="Domain\Composite\Patente.cs" />
     <Compile Include="Domain\Composite\Usuario.cs" />
     <Compile Include="DAL\Helper\SqlHelper.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Services\BitacoraService.cs" />
     <Compile Include="Services\CryptographyService.cs" />
     <Compile Include="Services\ExceptionService.cs" />
+    <Compile Include="Services\LabelsService.cs" />
     <Compile Include="Services\LanguageManager.cs" />
     <Compile Include="Services\LoggerService.cs" />
     <Compile Include="Services\LoginService.cs" />

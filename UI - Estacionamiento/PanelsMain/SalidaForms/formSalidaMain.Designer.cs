@@ -31,12 +31,12 @@
             this.components = new System.ComponentModel.Container();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button7 = new System.Windows.Forms.Button();
             this.lblIngresados = new System.Windows.Forms.Label();
             this.DBIngresosList = new System.Windows.Forms.DataGridView();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblpatente = new System.Windows.Forms.Label();
             this.txtPatente = new System.Windows.Forms.TextBox();
             this.searchPatente = new System.Windows.Forms.PictureBox();
             this.lblfechahorarioIngreso = new System.Windows.Forms.Label();
@@ -48,7 +48,7 @@
             this.lblHoraSalida = new System.Windows.Forms.Label();
             this.label8lblfechahorarioSalida = new System.Windows.Forms.Label();
             this.btnPagar = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.gbtiempotrans = new System.Windows.Forms.GroupBox();
             this.lblsegundosTranscurridos = new System.Windows.Forms.Label();
             this.lblseconds = new System.Windows.Forms.Label();
             this.lblMinutosTranscurridos = new System.Windows.Forms.Label();
@@ -65,7 +65,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.searchPatente)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.gbtiempotrans.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ClearTodo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,20 +94,20 @@
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // button4
+            // btnClose
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(20)))), ((int)(((byte)(55)))));
-            this.button4.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(750, 610);
-            this.button4.Name = "button4";
-            this.button4.Padding = new System.Windows.Forms.Padding(15);
-            this.button4.Size = new System.Drawing.Size(383, 52);
-            this.button4.TabIndex = 18;
-            this.button4.Text = "Cerrar";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(20)))), ((int)(((byte)(55)))));
+            this.btnClose.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.Color.White;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(750, 610);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Padding = new System.Windows.Forms.Padding(15);
+            this.btnClose.Size = new System.Drawing.Size(383, 52);
+            this.btnClose.TabIndex = 18;
+            this.btnClose.Text = "Cerrar";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.button4_Click);
             // 
             // panel1
             // 
@@ -155,17 +155,17 @@
             this.DBIngresosList.Size = new System.Drawing.Size(383, 519);
             this.DBIngresosList.TabIndex = 16;
             // 
-            // label5
+            // lblpatente
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(32, 46);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 20);
-            this.label5.TabIndex = 20;
-            this.label5.Text = "PATENTE:";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblpatente.AutoSize = true;
+            this.lblpatente.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblpatente.ForeColor = System.Drawing.Color.Black;
+            this.lblpatente.Location = new System.Drawing.Point(32, 46);
+            this.lblpatente.Name = "lblpatente";
+            this.lblpatente.Size = new System.Drawing.Size(77, 20);
+            this.lblpatente.TabIndex = 20;
+            this.lblpatente.Text = "PATENTE:";
+            this.lblpatente.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtPatente
             // 
@@ -295,27 +295,27 @@
             this.btnPagar.Padding = new System.Windows.Forms.Padding(15);
             this.btnPagar.Size = new System.Drawing.Size(572, 91);
             this.btnPagar.TabIndex = 26;
-            this.btnPagar.Text = "PAGAR";
+            this.btnPagar.Text = "COBRAR";
             this.btnPagar.UseVisualStyleBackColor = false;
             this.btnPagar.Click += new System.EventHandler(this.btnPagar_Click);
             // 
-            // groupBox3
+            // gbtiempotrans
             // 
-            this.groupBox3.Controls.Add(this.lblsegundosTranscurridos);
-            this.groupBox3.Controls.Add(this.lblseconds);
-            this.groupBox3.Controls.Add(this.lblMinutosTranscurridos);
-            this.groupBox3.Controls.Add(this.lblminutes);
-            this.groupBox3.Controls.Add(this.lblHorasTranscurridas);
-            this.groupBox3.Controls.Add(this.lblhours);
-            this.groupBox3.Controls.Add(this.lblDiaTranscurrido);
-            this.groupBox3.Controls.Add(this.lblday);
-            this.groupBox3.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold);
-            this.groupBox3.Location = new System.Drawing.Point(36, 387);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(572, 120);
-            this.groupBox3.TabIndex = 27;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "TIEMPO TRANSCURRIDO";
+            this.gbtiempotrans.Controls.Add(this.lblsegundosTranscurridos);
+            this.gbtiempotrans.Controls.Add(this.lblseconds);
+            this.gbtiempotrans.Controls.Add(this.lblMinutosTranscurridos);
+            this.gbtiempotrans.Controls.Add(this.lblminutes);
+            this.gbtiempotrans.Controls.Add(this.lblHorasTranscurridas);
+            this.gbtiempotrans.Controls.Add(this.lblhours);
+            this.gbtiempotrans.Controls.Add(this.lblDiaTranscurrido);
+            this.gbtiempotrans.Controls.Add(this.lblday);
+            this.gbtiempotrans.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold);
+            this.gbtiempotrans.Location = new System.Drawing.Point(36, 387);
+            this.gbtiempotrans.Name = "gbtiempotrans";
+            this.gbtiempotrans.Size = new System.Drawing.Size(572, 120);
+            this.gbtiempotrans.TabIndex = 27;
+            this.gbtiempotrans.TabStop = false;
+            this.gbtiempotrans.Text = "TIEMPO TRANSCURRIDO";
             // 
             // lblsegundosTranscurridos
             // 
@@ -430,14 +430,14 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(209)))), ((int)(((byte)(195)))));
             this.ClientSize = new System.Drawing.Size(1145, 667);
             this.Controls.Add(this.ClearTodo);
-            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.gbtiempotrans);
             this.Controls.Add(this.btnPagar);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.searchPatente);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblpatente);
             this.Controls.Add(this.txtPatente);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.DBIngresosList);
@@ -453,7 +453,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.searchPatente)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
+            this.gbtiempotrans.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ClearTodo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -464,12 +464,12 @@
 
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label lblIngresados;
         private System.Windows.Forms.DataGridView DBIngresosList;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblpatente;
         private System.Windows.Forms.TextBox txtPatente;
         private System.Windows.Forms.PictureBox searchPatente;
         private System.Windows.Forms.Label lblfechahorarioIngreso;
@@ -481,7 +481,7 @@
         private System.Windows.Forms.Label lblHoraSalida;
         private System.Windows.Forms.Label label8lblfechahorarioSalida;
         private System.Windows.Forms.Button btnPagar;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox gbtiempotrans;
         private System.Windows.Forms.Label lblMinutosTranscurridos;
         private System.Windows.Forms.Label lblminutes;
         private System.Windows.Forms.Label lblHorasTranscurridas;

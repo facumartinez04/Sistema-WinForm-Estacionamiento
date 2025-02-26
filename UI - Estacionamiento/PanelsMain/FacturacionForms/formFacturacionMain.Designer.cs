@@ -31,22 +31,22 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.cerrar = new System.Windows.Forms.PictureBox();
             this.dgvFacturas = new System.Windows.Forms.DataGridView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.gboxdate = new System.Windows.Forms.GroupBox();
+            this.lbldesde = new System.Windows.Forms.Label();
             this.btnBuscarFecha = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblhasta = new System.Windows.Forms.Label();
             this.dtpHasta = new System.Windows.Forms.DateTimePicker();
             this.dtpDesde = new System.Windows.Forms.DateTimePicker();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gboxpatente = new System.Windows.Forms.GroupBox();
             this.txtPatente = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblIngresarPatente = new System.Windows.Forms.Label();
             this.btnBuscarPatente = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFacturas)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.gboxdate.SuspendLayout();
+            this.gboxpatente.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -56,7 +56,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1087, 30);
+            this.panel1.Size = new System.Drawing.Size(866, 30);
             this.panel1.TabIndex = 0;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
@@ -65,7 +65,7 @@
             this.cerrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(66)))), ((int)(((byte)(95)))));
             this.cerrar.Dock = System.Windows.Forms.DockStyle.Right;
             this.cerrar.Image = global::UI___Estacionamiento.Properties.Resources.close__1_;
-            this.cerrar.Location = new System.Drawing.Point(1058, 0);
+            this.cerrar.Location = new System.Drawing.Point(837, 0);
             this.cerrar.Name = "cerrar";
             this.cerrar.Size = new System.Drawing.Size(29, 30);
             this.cerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -75,37 +75,39 @@
             // 
             // dgvFacturas
             // 
+            this.dgvFacturas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvFacturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFacturas.Location = new System.Drawing.Point(12, 188);
             this.dgvFacturas.Name = "dgvFacturas";
-            this.dgvFacturas.Size = new System.Drawing.Size(1063, 347);
+            this.dgvFacturas.Size = new System.Drawing.Size(842, 347);
             this.dgvFacturas.TabIndex = 1;
             // 
-            // groupBox2
+            // gboxdate
             // 
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.btnBuscarFecha);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.dtpHasta);
-            this.groupBox2.Controls.Add(this.dtpDesde);
-            this.groupBox2.Location = new System.Drawing.Point(344, 55);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(403, 127);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Buscar por fechas";
+            this.gboxdate.Controls.Add(this.lbldesde);
+            this.gboxdate.Controls.Add(this.btnBuscarFecha);
+            this.gboxdate.Controls.Add(this.lblhasta);
+            this.gboxdate.Controls.Add(this.dtpHasta);
+            this.gboxdate.Controls.Add(this.dtpDesde);
+            this.gboxdate.Location = new System.Drawing.Point(344, 55);
+            this.gboxdate.Name = "gboxdate";
+            this.gboxdate.Size = new System.Drawing.Size(403, 127);
+            this.gboxdate.TabIndex = 4;
+            this.gboxdate.TabStop = false;
+            this.gboxdate.Text = "Buscar por fechas";
             // 
-            // label3
+            // lbldesde
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(2, 33);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 20);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "DESDE:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbldesde.AutoSize = true;
+            this.lbldesde.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbldesde.ForeColor = System.Drawing.Color.Black;
+            this.lbldesde.Location = new System.Drawing.Point(2, 33);
+            this.lbldesde.Name = "lbldesde";
+            this.lbldesde.Size = new System.Drawing.Size(59, 20);
+            this.lbldesde.TabIndex = 14;
+            this.lbldesde.Text = "DESDE:";
+            this.lbldesde.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnBuscarFecha
             // 
@@ -121,17 +123,17 @@
             this.btnBuscarFecha.UseVisualStyleBackColor = false;
             this.btnBuscarFecha.Click += new System.EventHandler(this.btnBuscarFecha_Click);
             // 
-            // label1
+            // lblhasta
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(156, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 20);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "HASTA:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblhasta.AutoSize = true;
+            this.lblhasta.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblhasta.ForeColor = System.Drawing.Color.Black;
+            this.lblhasta.Location = new System.Drawing.Point(156, 33);
+            this.lblhasta.Name = "lblhasta";
+            this.lblhasta.Size = new System.Drawing.Size(62, 20);
+            this.lblhasta.TabIndex = 13;
+            this.lblhasta.Text = "HASTA:";
+            this.lblhasta.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dtpHasta
             // 
@@ -149,17 +151,17 @@
             this.dtpDesde.Size = new System.Drawing.Size(131, 20);
             this.dtpDesde.TabIndex = 0;
             // 
-            // groupBox1
+            // gboxpatente
             // 
-            this.groupBox1.Controls.Add(this.txtPatente);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.btnBuscarPatente);
-            this.groupBox1.Location = new System.Drawing.Point(12, 55);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(316, 127);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Buscar por patente";
+            this.gboxpatente.Controls.Add(this.txtPatente);
+            this.gboxpatente.Controls.Add(this.lblIngresarPatente);
+            this.gboxpatente.Controls.Add(this.btnBuscarPatente);
+            this.gboxpatente.Location = new System.Drawing.Point(12, 55);
+            this.gboxpatente.Name = "gboxpatente";
+            this.gboxpatente.Size = new System.Drawing.Size(316, 127);
+            this.gboxpatente.TabIndex = 3;
+            this.gboxpatente.TabStop = false;
+            this.gboxpatente.Text = "Buscar por patente";
             // 
             // txtPatente
             // 
@@ -172,17 +174,17 @@
             this.txtPatente.Size = new System.Drawing.Size(177, 29);
             this.txtPatente.TabIndex = 2;
             // 
-            // label2
+            // lblIngresarPatente
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(6, 33);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(169, 20);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "INGRESA LA PATENTE:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblIngresarPatente.AutoSize = true;
+            this.lblIngresarPatente.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIngresarPatente.ForeColor = System.Drawing.Color.Black;
+            this.lblIngresarPatente.Location = new System.Drawing.Point(6, 33);
+            this.lblIngresarPatente.Name = "lblIngresarPatente";
+            this.lblIngresarPatente.Size = new System.Drawing.Size(169, 20);
+            this.lblIngresarPatente.TabIndex = 14;
+            this.lblIngresarPatente.Text = "INGRESA LA PATENTE:";
+            this.lblIngresarPatente.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnBuscarPatente
             // 
@@ -198,29 +200,30 @@
             this.btnBuscarPatente.UseVisualStyleBackColor = false;
             this.btnBuscarPatente.Click += new System.EventHandler(this.btnBuscarPatente_Click);
             // 
-            // button4
+            // btnClose
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(20)))), ((int)(((byte)(55)))));
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(424, 548);
-            this.button4.Name = "button4";
-            this.button4.Padding = new System.Windows.Forms.Padding(15);
-            this.button4.Size = new System.Drawing.Size(182, 52);
-            this.button4.TabIndex = 21;
-            this.button4.Text = "Cerrar";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(20)))), ((int)(((byte)(55)))));
+            this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClose.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.Color.White;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(323, 548);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Padding = new System.Windows.Forms.Padding(15);
+            this.btnClose.Size = new System.Drawing.Size(208, 52);
+            this.btnClose.TabIndex = 21;
+            this.btnClose.Text = "Cerrar";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.button4_Click);
             // 
             // formFacturacionMain
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(209)))), ((int)(((byte)(195)))));
-            this.ClientSize = new System.Drawing.Size(1087, 612);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(866, 612);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.gboxdate);
+            this.Controls.Add(this.gboxpatente);
             this.Controls.Add(this.dgvFacturas);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -229,10 +232,10 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cerrar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFacturas)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gboxdate.ResumeLayout(false);
+            this.gboxdate.PerformLayout();
+            this.gboxpatente.ResumeLayout(false);
+            this.gboxpatente.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -245,16 +248,16 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox cerrar;
         private System.Windows.Forms.DataGridView dgvFacturas;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox gboxdate;
+        private System.Windows.Forms.Label lbldesde;
         private System.Windows.Forms.Button btnBuscarFecha;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblhasta;
         private System.Windows.Forms.DateTimePicker dtpHasta;
         private System.Windows.Forms.DateTimePicker dtpDesde;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gboxpatente;
         private System.Windows.Forms.TextBox txtPatente;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblIngresarPatente;
         private System.Windows.Forms.Button btnBuscarPatente;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnClose;
     }
 }

@@ -10,8 +10,6 @@ namespace DOMAIN
     {
         public Guid idIngreso { get;set; }
 
-        public Cliente cliente { get; set; }
-
         public Vehiculo vehiculo { get; set; }
 
         public TipoTarifa objTipoTarifa { get; set; }
@@ -26,8 +24,8 @@ namespace DOMAIN
         public Double CalcularImporte(DateTime fechaIngreso, DateTime fechaEgreso, TipoTarifa objTipoTarifa)
         {
             TimeSpan ts = fechaEgreso - fechaIngreso;
-            Double importePorMinuto = objTipoTarifa.monto_por_hora / 60; // Calcula el importe por minuto
-            Double importeTotal = Math.Ceiling(ts.TotalMinutes) * importePorMinuto; // Calcula el importe por minutos redondeando hacia arriba
+            Double importePorMinuto = objTipoTarifa.monto_por_hora / 60; 
+            Double importeTotal = Math.Ceiling(ts.TotalMinutes) * importePorMinuto; 
 
             return importeTotal;
         }

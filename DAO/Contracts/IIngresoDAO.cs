@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace DAO.Contracts
 {
+
+    /// <summary>
+    /// //La interfaz IIngresoDAO hereda de IGenericDao<Ingreso> y agrega metodos especificos para la entidad Ingreso
+    /// </summary>
     public interface IIngresoDAO : IGenericDao<Ingreso>
     {
 
@@ -23,6 +27,11 @@ namespace DAO.Contracts
 
 
         Ingreso BuscarUnaPatente(string patente);
+
+
+        int GetCountIngresosActuales();
+
+        int GetCountIngresoDelDia();
 
 
     }

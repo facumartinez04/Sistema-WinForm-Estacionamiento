@@ -6,6 +6,10 @@ using System.Linq;
 
 namespace Dao.Implementations.SqlServer.Helpers
 {
+
+    /// <summary>
+    /// // This class is used to connect to the database and execute the command.
+    /// </summary>
     internal static class SqlHelper
     {
         public readonly static string conString;

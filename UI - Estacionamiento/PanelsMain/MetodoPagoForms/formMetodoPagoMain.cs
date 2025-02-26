@@ -1,5 +1,6 @@
 ﻿using BLL.Implementations;
 using DOMAIN;
+using SERVICE.Facade.Extentions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,10 +11,11 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI___Estacionamiento.Domain.Observer;
 
 namespace UI___Estacionamiento.PanelsMain.MetodoPagoForms
 {
-    public partial class formMetodoPagoMain : Form
+    public partial class formMetodoPagoMain : Form, IFormObserver
     {
 
         [DllImport("user32.dll")]
@@ -26,19 +28,22 @@ namespace UI___Estacionamiento.PanelsMain.MetodoPagoForms
         public formMetodoPagoMain()
         {
             InitializeComponent();
+            Update(this);
         }
 
         private void btnEditarAddMP_Click(object sender, EventArgs e)
         {
             try
             {
-                if (btnEditarAddMP.Text == "Agregar")
+                if (btnEditarAddMP.Text == "add".Translate())
                 {
                     NuevoMetodoPago();
+
                 }
                 else
                 {
                     EditarMetodoPago();
+
                 }
 
                 txtMetodoPago.Text = "";
@@ -46,6 +51,11 @@ namespace UI___Estacionamiento.PanelsMain.MetodoPagoForms
             catch (Exception ex)
             {
                 MessageBox.Show("Error " + ex.Message);
+
+                _metodoPago = null;
+
+                btnEditarAddMP.Text = "add".Translate();
+                txtMetodoPago.Text = "";
 
             }
 
@@ -60,6 +70,7 @@ namespace UI___Estacionamiento.PanelsMain.MetodoPagoForms
 
             MetodoPagoBusiness.Current.Add(metodo);
 
+            MessageBox.Show("payment-method-added".Translate());
             ListarMetodos();
 
         }
@@ -76,11 +87,13 @@ namespace UI___Estacionamiento.PanelsMain.MetodoPagoForms
 
             MetodoPagoBusiness.Current.Update(metodo);
 
+            MessageBox.Show("payment-method-updated".Translate());
+
             ListarMetodos();
 
             _metodoPago = null;
 
-            btnEditarAddMP.Text = "Agregar";
+            btnEditarAddMP.Text = "add".Translate();
         }
 
         private void ListarMetodos()
@@ -93,7 +106,7 @@ namespace UI___Estacionamiento.PanelsMain.MetodoPagoForms
 
             DBMetodosPago.Columns["idMetodoPago"].Visible = false;
 
-            DBMetodosPago.Columns["descripcion"].HeaderText = "Nombre de Metodo de Pago";
+            DBMetodosPago.Columns["descripcion"].HeaderText = "name-of-payment-method".Translate();
 
 
             ConfigurarDataGridView(DBMetodosPago);
@@ -139,7 +152,7 @@ namespace UI___Estacionamiento.PanelsMain.MetodoPagoForms
 
 
 
-            btnEditarAddMP.Text = "Editar";
+            btnEditarAddMP.Text = "edit".Translate();
 
         }
 
@@ -158,6 +171,15 @@ namespace UI___Estacionamiento.PanelsMain.MetodoPagoForms
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
 
+        }
+
+        public void Update(Form form)
+        {
+            lblmetodospago.Text = "payment-methods".Translate();
+            btnClose.Text = "close".Translate();
+            btnEditarAddMP.Text = "add".Translate();
+            lblnombremetodopago.Text = "name-of-payment-method".Translate();
+            groupBx1.Text = "payment-method".Translate();
         }
     }
 }

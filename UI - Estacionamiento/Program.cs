@@ -23,7 +23,19 @@ namespace UI___Estacionamiento
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-ES");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new formAuthMain());
+
+            if (Properties.Settings.Default.IsFirstTime)
+            {
+
+                Application.Run(new formAuthRegister());
+               
+            }
+            else
+            {
+                Application.Run(new formAuthMain());
+            }
+
+
         }
     }
 }

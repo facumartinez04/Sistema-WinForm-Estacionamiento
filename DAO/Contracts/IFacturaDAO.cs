@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace DAO.Contracts
 {
+    /// <summary>
+    /// La interfaz IFacturaDAO contiene los métodos que implementará la clase FacturaDAO
+    /// </summary>
     public interface IFacturaDAO : IGenericDao<Factura>
     {
         Factura obtenerPorID(int ID);

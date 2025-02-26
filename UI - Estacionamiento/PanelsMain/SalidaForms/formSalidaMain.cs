@@ -1,5 +1,6 @@
 ﻿using BLL.Implementations;
 using DOMAIN;
+using SERVICE.Facade.Extentions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,11 +11,12 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI___Estacionamiento.Domain.Observer;
 using UI___Estacionamiento.PanelsMain.FacturacionForms;
 
 namespace UI___Estacionamiento.PanelsMain.SalidaForms
 {
-    public partial class formSalidaMain : Form
+    public partial class formSalidaMain : Form, IFormObserver
     {
 
         private Ingreso _ingreso;
@@ -28,6 +30,7 @@ namespace UI___Estacionamiento.PanelsMain.SalidaForms
         public formSalidaMain()
         {
             InitializeComponent();
+            Update(this);
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -82,10 +85,10 @@ namespace UI___Estacionamiento.PanelsMain.SalidaForms
 
 
 
-            DBIngresosList.Columns["PatenteVehiculo"].HeaderText = "Patente";
-            DBIngresosList.Columns["IngresoFecha"].HeaderText = "Fecha";
-            DBIngresosList.Columns["Horario"].HeaderText = "Horario";
-            DBIngresosList.Columns["TipoDeTarifa"].HeaderText = "Tarifa";
+            DBIngresosList.Columns["PatenteVehiculo"].HeaderText = "patent".Translate();
+            DBIngresosList.Columns["IngresoFecha"].HeaderText = "date".Translate();
+            DBIngresosList.Columns["Horario"].HeaderText = "time".Translate();
+            DBIngresosList.Columns["TipoDeTarifa"].HeaderText = "rate".Translate();
 
 
         }
@@ -149,18 +152,12 @@ namespace UI___Estacionamiento.PanelsMain.SalidaForms
             {
 
 
-                if (string.IsNullOrEmpty(txtPatente.Text))
-                {
-                    MessageBox.Show("Debe ingresar una patente");
-                    return;
-                }
+                
                 Ingreso ingreso = IngresoBusiness.Current.BuscarUnaPatente(txtPatente.Text);
 
                 _ingreso = ingreso;
 
-
-
-
+                MessageBox.Show("patente-search-success".Translate());
 
                 CargarTiempos();
                 CargarLabels();
@@ -197,11 +194,16 @@ namespace UI___Estacionamiento.PanelsMain.SalidaForms
 
         }
 
+        public void LimpiarTodo()
+        {
+            ClearTodo_Click(null, null);
+        }
+
         private void btnPagar_Click(object sender, EventArgs e)
         {
             if (_ingreso == null)
             {
-                MessageBox.Show("Tenes que ingresar una patente a pagar");
+                MessageBox.Show("have-to-enter-the-patent".Translate());
                 return;
             }
             formFacturacionPago formFacturacionPago = new formFacturacionPago(_ingreso,this);
@@ -228,6 +230,21 @@ namespace UI___Estacionamiento.PanelsMain.SalidaForms
                 searchPatente_Click(sender, e);
             }
 
+        }
+
+        public void Update(Form form)
+        {
+            lblpatente.Text = "patent".Translate();
+            lblIngresados.Text = "vehicles-entered".Translate();
+            lblfechahorarioIngreso.Text = "date-and-hour-joined".Translate();
+            label8lblfechahorarioSalida.Text = "date-and-hour-exited".Translate();
+            btnPagar.Text = "charge".Translate();
+            lblday.Text = "days".Translate();
+            lblhours.Text = "hours".Translate();
+            lblminutes.Text = "minutes".Translate();
+            lblseconds.Text = "seconds".Translate();
+            btnClose.Text = "close".Translate();
+            gbtiempotrans.Text = "time-elapsed".Translate();
         }
     }
 }

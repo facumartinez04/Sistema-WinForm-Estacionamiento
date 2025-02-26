@@ -30,12 +30,12 @@
         {
             this.DBMetodosPago = new System.Windows.Forms.DataGridView();
             this.groupBx1 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblnombremetodopago = new System.Windows.Forms.Label();
             this.txtMetodoPago = new System.Windows.Forms.TextBox();
             this.btnEditarAddMP = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
+            this.lblmetodospago = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DBMetodosPago)).BeginInit();
@@ -55,7 +55,7 @@
             // 
             // groupBx1
             // 
-            this.groupBx1.Controls.Add(this.label4);
+            this.groupBx1.Controls.Add(this.lblnombremetodopago);
             this.groupBx1.Controls.Add(this.txtMetodoPago);
             this.groupBx1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.groupBx1.Location = new System.Drawing.Point(12, 43);
@@ -65,17 +65,17 @@
             this.groupBx1.TabStop = false;
             this.groupBx1.Text = "Metodo de pago";
             // 
-            // label4
+            // lblnombremetodopago
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(6, 37);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(244, 20);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "NOMBRE DEL METODO DE PAGO:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblnombremetodopago.AutoSize = true;
+            this.lblnombremetodopago.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblnombremetodopago.ForeColor = System.Drawing.Color.Black;
+            this.lblnombremetodopago.Location = new System.Drawing.Point(6, 37);
+            this.lblnombremetodopago.Name = "lblnombremetodopago";
+            this.lblnombremetodopago.Size = new System.Drawing.Size(244, 20);
+            this.lblnombremetodopago.TabIndex = 10;
+            this.lblnombremetodopago.Text = "NOMBRE DEL METODO DE PAGO:";
+            this.lblnombremetodopago.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtMetodoPago
             // 
@@ -101,39 +101,39 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(66)))), ((int)(((byte)(95)))));
-            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.lblmetodospago);
             this.panel1.Location = new System.Drawing.Point(396, 43);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(268, 38);
             this.panel1.TabIndex = 8;
             // 
-            // label3
+            // lblmetodospago
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(11, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(131, 20);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Metodos de pago";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblmetodospago.AutoSize = true;
+            this.lblmetodospago.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblmetodospago.ForeColor = System.Drawing.Color.White;
+            this.lblmetodospago.Location = new System.Drawing.Point(11, 9);
+            this.lblmetodospago.Name = "lblmetodospago";
+            this.lblmetodospago.Size = new System.Drawing.Size(131, 20);
+            this.lblmetodospago.TabIndex = 0;
+            this.lblmetodospago.Text = "Metodos de pago";
+            this.lblmetodospago.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button4
+            // btnClose
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(20)))), ((int)(((byte)(55)))));
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(396, 309);
-            this.button4.Name = "button4";
-            this.button4.Padding = new System.Windows.Forms.Padding(15);
-            this.button4.Size = new System.Drawing.Size(268, 52);
-            this.button4.TabIndex = 17;
-            this.button4.Text = "Cerrar";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(20)))), ((int)(((byte)(55)))));
+            this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClose.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.Color.White;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(396, 309);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Padding = new System.Windows.Forms.Padding(15);
+            this.btnClose.Size = new System.Drawing.Size(268, 52);
+            this.btnClose.TabIndex = 17;
+            this.btnClose.Text = "Cerrar";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.button4_Click);
             // 
             // panel2
             // 
@@ -166,7 +166,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(209)))), ((int)(((byte)(195)))));
             this.ClientSize = new System.Drawing.Size(684, 407);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBx1);
             this.Controls.Add(this.DBMetodosPago);
@@ -192,10 +192,10 @@
         private System.Windows.Forms.GroupBox groupBx1;
         private System.Windows.Forms.Button btnEditarAddMP;
         private System.Windows.Forms.TextBox txtMetodoPago;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblnombremetodopago;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label lblmetodospago;
+        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button6;
     }

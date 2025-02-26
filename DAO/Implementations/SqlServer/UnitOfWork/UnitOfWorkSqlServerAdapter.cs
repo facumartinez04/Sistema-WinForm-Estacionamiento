@@ -1,4 +1,7 @@
 ﻿using Dao.Contracts.UnitOfWork;
+using SERVICE.Domain.ServicesExceptions;
+using SERVICE.Services;
+using System;
 using System.Data.SqlClient;
 
 namespace Dao.Implementations.SqlServer.UnitOfWork
@@ -11,12 +14,14 @@ namespace Dao.Implementations.SqlServer.UnitOfWork
 
         public UnitOfWorkSqlServerAdapter(string connectionString)
         {
+            
             _context = new SqlConnection(connectionString);
             _context.Open();
 
             _transaction = _context.BeginTransaction();
 
             Repositories = new UnitOfWorkSqlServerRepository(_context, _transaction);
+        
         }
 
         public void Dispose()

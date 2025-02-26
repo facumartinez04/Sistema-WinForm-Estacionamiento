@@ -2,6 +2,8 @@
 using DAO.Contracts.UnitOfWork;
 using DAO.Implementations.SqlServer.Mappers;
 using DOMAIN;
+using SERVICE.Domain.ServicesExceptions;
+using SERVICE.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,14 +12,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+/// <summary>
+/// Clase que implementa la interfaz IVehiculoDAO para manejar operaciones CRUD sobre la entidad Vehiculo en la base de datos.
+/// </summary>
 namespace DAO.Implementations.SqlServer
 {
-    public class VehiculoDAO : SqlTransactRepository,IVehiculoDAO
+    public class VehiculoDAO : SqlTransactRepository, IVehiculoDAO
     {
         public VehiculoDAO(SqlConnection context, SqlTransaction _transaction) : base(context, _transaction)
         {
         }
-
 
         #region Statements
         private string InsertStatement
@@ -27,7 +32,7 @@ namespace DAO.Implementations.SqlServer
 
         private string UpdateStatement
         {
-            get => "UPDATE [dbo].[Vehiculo] SET (idVehiculo,patente,marca,modelo) WHERE idVehiculo = @idVehiculo";
+            get => "UPDATE [dbo].[Vehiculo] SET patente = @patente,marca = @marca,modelo = @modelo WHERE idVehiculo = @idVehiculo";
         }
 
         private string DeleteStatement
@@ -46,84 +51,146 @@ namespace DAO.Implementations.SqlServer
         }
         #endregion
 
-
+        /// <summary>
+        /// Agrega un nuevo vehículo a la base de datos.
+        /// </summary>
+        /// <param name="obj">Objeto Vehiculo a agregar.</param>
         public void Add(Vehiculo obj)
         {
-            int esCargado = ExecuteNonQuery(InsertStatement, CommandType.Text,
-           new SqlParameter[] { new SqlParameter("@idVehiculo", obj.idVehiculo),
-                                     new SqlParameter("@patente", obj.patente),
-                                     new SqlParameter("@marca", obj.marca),
-                                     new SqlParameter("@modelo", obj.modelo)
-           });
-            if (esCargado == 0)
+            try
             {
-                throw new Exception("No se pudo insertar el vehiculo");
+                int esCargado = ExecuteNonQuery(InsertStatement, CommandType.Text,
+                    new SqlParameter[] {
+                        new SqlParameter("@idVehiculo", obj.idVehiculo),
+                        new SqlParameter("@patente", obj.patente),
+                        new SqlParameter("@marca", obj.marca),
+                        new SqlParameter("@modelo", obj.modelo)
+                    });
+
+                if (esCargado == 0)
+                {
+                    throw new Exception("No se pudo insertar el vehículo");
+                }
             }
-
-
+            catch (Exception ex)
+            {
+                ExceptionService.Current.HandleException(new DALException(ex));
+                throw;
+            }
         }
 
+        /// <summary>
+        /// Obtiene todos los vehículos registrados en la base de datos.
+        /// </summary>
+        /// <returns>Lista de objetos Vehiculo.</returns>
         public List<Vehiculo> GetAll()
         {
-            List<Vehiculo> vehiculos = new List<Vehiculo>();
-
-            using (var reader = ExecuteReader(SelectAllStatement, CommandType.Text,
-                new SqlParameter[] { }))
+            try
             {
-                while (reader.Read())
+                List<Vehiculo> vehiculos = new List<Vehiculo>();
+
+                using (var reader = ExecuteReader(SelectAllStatement, CommandType.Text,
+                    new SqlParameter[] { }))
                 {
+                    while (reader.Read())
+                    {
+                        object[] data = new object[reader.FieldCount];
+                        reader.GetValues(data);
 
-                    object[] data = new object[reader.FieldCount];
-                    reader.GetValues(data);
-
-                    Vehiculo vehiculo = VehiculoMapper.Current.Fill(data);
-                    vehiculos.Add(vehiculo);
+                        Vehiculo vehiculo = VehiculoMapper.Current.Fill(data);
+                        vehiculos.Add(vehiculo);
+                    }
                 }
-            }
 
-            return vehiculos;
+                return vehiculos;
+            }
+            catch (Exception ex)
+            {
+                ExceptionService.Current.HandleException(new DALException(ex));
+                throw;
+            }
         }
 
+        /// <summary>
+        /// Obtiene un vehículo por su identificador único.
+        /// </summary>
+        /// <param name="id">Identificador único del Vehiculo.</param>
+        /// <returns>Objeto Vehiculo.</returns>
         public Vehiculo GetById(Guid id)
         {
-            Vehiculo vehiculo = null;
-
-            using (var reader = ExecuteReader(SelectOneStatement, CommandType.Text,
-                               new SqlParameter[] { new SqlParameter("@idVehiculo", id) }))
+            try
             {
-                if (reader.Read())
+                Vehiculo vehiculo = null;
+
+                using (var reader = ExecuteReader(SelectOneStatement, CommandType.Text,
+                    new SqlParameter[] { new SqlParameter("@idVehiculo", id) }))
                 {
-                    object[] data = new object[reader.FieldCount];
-                    reader.GetValues(data);
+                    if (reader.Read())
+                    {
+                        object[] data = new object[reader.FieldCount];
+                        reader.GetValues(data);
 
-                    vehiculo = VehiculoMapper.Current.Fill(data);
+                        vehiculo = VehiculoMapper.Current.Fill(data);
+                    }
                 }
-            }
 
-            return vehiculo;
+                return vehiculo;
+            }
+            catch (Exception ex)
+            {
+                ExceptionService.Current.HandleException(new DALException(ex));
+                throw;
+            }
         }
 
+        /// <summary>
+        /// Elimina un vehículo por su identificador único.
+        /// </summary>
+        /// <param name="id">Identificador único del Vehiculo.</param>
         public void Remove(Guid id)
         {
-            int esCargado = ExecuteNonQuery(DeleteStatement, CommandType.Text,
-                               new SqlParameter[] { new SqlParameter("@idVehiculo", id) });
-            if (esCargado == 0)
+            try
             {
-                throw new Exception("No se pudo eliminar el vehiculo");
+                int esCargado = ExecuteNonQuery(DeleteStatement, CommandType.Text,
+                    new SqlParameter[] { new SqlParameter("@idVehiculo", id) });
+
+                if (esCargado == 0)
+                {
+                    throw new Exception("No se pudo eliminar el vehículo");
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionService.Current.HandleException(new DALException(ex));
+                throw;
             }
         }
 
+        /// <summary>
+        /// Actualiza los datos de un vehículo existente.
+        /// </summary>
+        /// <param name="obj">Objeto Vehiculo con los datos actualizados.</param>
         public void Update(Vehiculo obj)
         {
-            int esCargado = ExecuteNonQuery(UpdateStatement, CommandType.Text,
-                                              new SqlParameter[] { new SqlParameter("@idVehiculo", obj.idVehiculo),
-                                              new SqlParameter("@patente", obj.patente),
-                                              new SqlParameter("@marca", obj.marca),
-                                              new SqlParameter("@modelo", obj.modelo)
-                                              });
-            if (esCargado == 0)
+            try
             {
-                throw new Exception("No se pudo actualizar el vehiculo");
+                int esCargado = ExecuteNonQuery(UpdateStatement, CommandType.Text,
+                    new SqlParameter[] {
+                        new SqlParameter("@idVehiculo", obj.idVehiculo),
+                        new SqlParameter("@patente", obj.patente),
+                        new SqlParameter("@marca", obj.marca),
+                        new SqlParameter("@modelo", obj.modelo)
+                    });
+
+                if (esCargado == 0)
+                {
+                    throw new Exception("No se pudo actualizar el vehículo");
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionService.Current.HandleException(new DALException(ex));
+                throw;
             }
         }
     }

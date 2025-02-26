@@ -28,10 +28,14 @@ namespace DAO.Implementations.SqlServer.Mappers
 			{
 				//Implent here the initialization of your singleton
 			}
-			#endregion
+        #endregion
 
-
-		public Vehiculo Fill(object[] values)
+        /// <summary>
+        /// //Con fill vamos a concretar la adapción de cada backend en un objeto de nuestra app.
+        /// </summary>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public Vehiculo Fill(object[] values)
         {
 			Vehiculo vehiculo = new Vehiculo();
             vehiculo.idVehiculo = (Guid)values[0];

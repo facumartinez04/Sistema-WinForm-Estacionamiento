@@ -10,6 +10,7 @@ namespace SERVICE.Services
     public class CryptographyService
     {
         public static string HashPassword(string textPlainPass)
+        
         {
             StringBuilder sb = new StringBuilder();
 
@@ -24,7 +25,11 @@ namespace SERVICE.Services
             return sb.ToString();
         }
 
+
+
+
         public static bool ComparePassword(string textPlainPass, string hashPass)
+        
         {
             return HashPassword(textPlainPass) == hashPass;
         }

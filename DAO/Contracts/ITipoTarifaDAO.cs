@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace DAO.Contracts
 {
+    /// <summary>
+    /// //Pensamos un CRUD para cualquier entidad
+    /// </summary>
     public interface ITipoTarifaDAO : IGenericDao<TipoTarifa>
     {
         TipoTarifa ListById(int id);

@@ -1,5 +1,6 @@
 ﻿using BLL.Implementations;
 using DOMAIN;
+using SERVICE.Facade.Extentions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,10 +11,11 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI___Estacionamiento.Domain.Observer;
 
 namespace UI___Estacionamiento.PanelsMain.TarifaForms
 {
-    public partial class formTarifasMain : Form
+    public partial class formTarifasMain : Form, IFormObserver
     {
 
         [DllImport("user32.dll")]
@@ -25,13 +27,14 @@ namespace UI___Estacionamiento.PanelsMain.TarifaForms
         public formTarifasMain()
         {
             InitializeComponent();
+            Update(this);
         }
 
         private void btnAddEditTarifa_Click(object sender, EventArgs e)
         {
             try
             {
-                if(btnAddEditTarifa.Text == "Agregar")
+                if(btnAddEditTarifa.Text == "add".Translate())
                 {
                     NuevaTarifa();
                 }
@@ -59,9 +62,9 @@ namespace UI___Estacionamiento.PanelsMain.TarifaForms
 
             DBTarifasList.Columns["idTipoTarifa"].Visible = false;
 
-            DBTarifasList.Columns["descripcion"].HeaderText = "Nombre de Tarifa";
+            DBTarifasList.Columns["descripcion"].HeaderText = "name-of-rate".Translate();
 
-            DBTarifasList.Columns["monto_por_hora"].HeaderText = "Monto por Hora";
+            DBTarifasList.Columns["monto_por_hora"].HeaderText = "amount-of-rate".Translate();
 
             DBTarifasList.Columns["monto_por_hora"].DefaultCellStyle.Format = "C";
             DBTarifasList.Columns["monto_por_hora"].DefaultCellStyle.FormatProvider = new System.Globalization.CultureInfo("es-AR");
@@ -89,7 +92,7 @@ namespace UI___Estacionamiento.PanelsMain.TarifaForms
             };
 
             TipoTarifaBusiness.Current.Add(objTarifa);
-            MessageBox.Show("Se ingreso una nueva tarifa correctamente");
+            MessageBox.Show("rate-added".Translate());
             CargarListaTarifas();
 
         }
@@ -104,11 +107,11 @@ namespace UI___Estacionamiento.PanelsMain.TarifaForms
             };
 
             TipoTarifaBusiness.Current.Update(objTarifa);
-            MessageBox.Show("Se edito la tarifa correctamente");
+            MessageBox.Show("rate-edited".Translate());
             CargarListaTarifas();
             LimpiarTextBox();
             idEditTarifa = 0;
-            btnAddEditTarifa.Text = "Agregar";
+            btnAddEditTarifa.Text = "add".Translate();
 
         }
 
@@ -129,7 +132,7 @@ namespace UI___Estacionamiento.PanelsMain.TarifaForms
                     idEditTarifa = Convert.ToInt32(DBTarifasList.SelectedRows[0].Cells["idTipoTarifa"].Value);
                     txtNombreTarifa.Text = DBTarifasList.SelectedRows[0].Cells["descripcion"].Value.ToString();
                     txtMontoTarifa.Text = DBTarifasList.SelectedRows[0].Cells["monto_por_hora"].Value.ToString();
-                    btnAddEditTarifa.Text = "Editar";
+                    btnAddEditTarifa.Text = "edit".Translate();
                 }
             }
             catch (Exception ex)
@@ -189,6 +192,17 @@ namespace UI___Estacionamiento.PanelsMain.TarifaForms
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
 
+        }
+
+        public void Update(Form form)
+        {
+            gbTarifa.Text = "rate".Translate();
+            lblanametarifa.Text = "name-of-rate".Translate();
+            gbMonto.Text = "amount".Translate();
+            lblmontohora.Text = "rates-amount-one-hour".Translate();
+            lbltarifas.Text = "rates".Translate();
+            btnClose.Text = "close".Translate();
+            btnAddEditTarifa.Text = "add".Translate();
         }
     }
 }

@@ -4,9 +4,11 @@ using DAO.Contracts.UnitOfWork;
 
 namespace Dao.Contracts.UnitOfWork
 {
+    /// <summary>
+    /// //Interface que define los repositorios que se van a utilizar en la unidad de trabajo
+    /// </summary>
     public interface IUnitOfWorkRepository
     {
-        IClienteDAO ClienteRepository { get; }
 
         IIngresoDAO IngresoRepository { get; }
 
@@ -17,8 +19,6 @@ namespace Dao.Contracts.UnitOfWork
         IMetodoPagoDAO MetodoPagoRepository { get; }
 
         IFacturaDAO FacturaRepository { get; }
-
-        IPagoDAO PagoRepository { get; }
 
     }
 }

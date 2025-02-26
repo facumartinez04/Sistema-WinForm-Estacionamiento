@@ -14,8 +14,11 @@ namespace SERVICE.Domain.Composite
         public List<Acceso> Componentes { get; set; } = new List<Acceso>();
         public DateTime Timestamp { get; set; }
 
+
+
         public override void Add(Acceso component)
         {
+
             Componentes.Add(component);
         }
 

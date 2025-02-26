@@ -1,6 +1,10 @@
-﻿using SERVICE.Domain.ServicesExceptions;
+﻿using SERVICE.DAL;
+using SERVICE.Domain;
+using SERVICE.Domain.ServicesExceptions;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,34 +34,38 @@ namespace SERVICE.Services
 
         public void HandleException(DALException ex)
         {
-            //Bitacora
-            //Ver bitácora... Severidad, format
-            Console.WriteLine(ex.InnerException.Message + ex.StackTrace);
-            throw ex;
+            LoggerDao.WriteLog(new Log("Ocurrio un error en la base de datos.", TraceLevel.Error), ex);
+            throw new Exception("Ocurrio un error en la base de datos.", ex.InnerException);
         }
 
         public void HandleException(BLLException ex)
         {
-            //Política en BLL pero de exceptions desde la DAL
-            if (ex.InnerException is DALException)
+            if (ex.InnerException is DALException dalEx)
             {
-                //Aplicar política de envoltura....
-                throw ex;
+                LoggerService.WriteLog(
+                    new Log("Error crítico en la capa de datos.", TraceLevel.Error),
+                    dalEx
+                );
+
+                throw new Exception(
+                    $"Ocurrio un error en la base de datos: {dalEx.Message}",
+                    dalEx.InnerException
+                );
             }
 
-            //Política de reglas propias del negocio
             if (ex.IsBusinessException)
             {
-                //Política de exceptions propias de mi negocio
-                //ClienteNoExisteException...
-                //Bitacora
-                //Ver bitácora... Severidad, format
-                Console.WriteLine(ex.InnerException.Message + ex.StackTrace);
-                throw ex;
+                LoggerService.WriteLog(
+                    new Log("Error crítico en la capa de negocio.", TraceLevel.Error),
+                    ex
+                );
+
+                throw new Exception(
+                    $"Ocurrió un error en la capa de negocio: {ex.Message}",
+                    ex.InnerException
+                );
             }
 
-            //? Estoy en un punto donde no tengo ni Exception de Acceso a datos y tampoco tengo una regla de negocio aplicada....
-            // Bug?
 
         }
 

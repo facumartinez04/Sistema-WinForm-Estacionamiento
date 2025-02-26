@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SERVICE.DAL.Implementations.Mappers;
+using SERVICE.Domain.ServicesExceptions;
+using SERVICE.Services;
 
 namespace SERVICE.DAL.Implementations
 {
@@ -69,9 +71,14 @@ namespace SERVICE.DAL.Implementations
 
 
 
-            } catch (Exception ex)
+            }
+
+
+
+            catch (Exception ex)
             {
-                return false;
+                ExceptionService.Current.HandleException(new DALException(ex));
+                throw;
             }
 
 
@@ -80,40 +87,58 @@ namespace SERVICE.DAL.Implementations
 
         public List<Patente> GetAll()
         {
-            List<Patente> patentes = new List<Patente>();
+            
+            try {
+                List<Patente> patentes = new List<Patente>();
 
-            using (var reader = SqlHelper.ExecuteReader("PatenteSelectAll", CommandType.StoredProcedure))
-            {
-                while (reader.Read())
+                using (var reader = SqlHelper.ExecuteReader("PatenteSelectAll", CommandType.StoredProcedure))
                 {
-                    object[] data = new object[reader.FieldCount];
-                    reader.GetValues(data);
+                    while (reader.Read())
+                    {
+                        object[] data = new object[reader.FieldCount];
+                        reader.GetValues(data);
 
-                    patentes.Add(PatenteMapper.Current.Fill(data));
+                        patentes.Add(PatenteMapper.Current.Fill(data));
+                    }
                 }
-            }
 
-            return patentes;
+                return patentes;
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionService.Current.HandleException(new DALException(ex));
+                throw;
+            }
         }
 
         public Patente GetById(Guid id)
         {
-            Patente patente = default;
-
-            using (var reader = SqlHelper.ExecuteReader("PatenteSelect", CommandType.StoredProcedure,
-              new SqlParameter[] { new SqlParameter("@IdPatente", id) }))
+            try
             {
-                //Mientras tenga algo en mi tabla de Customers
-                if (reader.Read())
+
+                Patente patente = default;
+
+                using (var reader = SqlHelper.ExecuteReader("PatenteSelect", CommandType.StoredProcedure,
+                  new SqlParameter[] { new SqlParameter("@IdPatente", id) }))
                 {
-                    object[] data = new object[reader.FieldCount];
-                    reader.GetValues(data);
+                    //Mientras tenga algo en mi tabla de Customers
+                    if (reader.Read())
+                    {
+                        object[] data = new object[reader.FieldCount];
+                        reader.GetValues(data);
 
-                    patente = PatenteMapper.Current.Fill(data);
+                        patente = PatenteMapper.Current.Fill(data);
+                    }
                 }
-            }
 
-            return patente;
+                return patente;
+            }
+            catch (Exception ex)
+            {
+                ExceptionService.Current.HandleException(new DALException(ex));
+                throw;
+            }
         }
 
         public bool Update(Patente obj)
@@ -121,7 +146,7 @@ namespace SERVICE.DAL.Implementations
 
             try
             {
-
+               
                 int escorrecto = SqlHelper.ExecuteNonQuery("PatenteUpdate", CommandType.StoredProcedure,
                     new SqlParameter[] { new SqlParameter("@IdPatente", obj.idPatente),
                                     new SqlParameter("@Nombre", obj.Nombre),
@@ -140,7 +165,8 @@ namespace SERVICE.DAL.Implementations
             }
             catch (Exception ex)
             {
-                return false;
+                ExceptionService.Current.HandleException(new DALException(ex));
+                throw;
             }
         }
 
@@ -163,7 +189,8 @@ namespace SERVICE.DAL.Implementations
             }
             catch (Exception ex)
             {
-                return false;
+                ExceptionService.Current.HandleException(new DALException(ex));
+                throw;
             }
         }
     }

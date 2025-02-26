@@ -32,11 +32,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cerrar = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnBackups = new System.Windows.Forms.Button();
             this.btnUser = new System.Windows.Forms.Button();
-            this.btnLogs = new System.Windows.Forms.Button();
             this.btnBitacora = new System.Windows.Forms.Button();
             this.panelContenedor = new System.Windows.Forms.Panel();
-            this.btnBackups = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cerrar)).BeginInit();
             this.panel2.SuspendLayout();
@@ -44,12 +43,15 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(142)))), ((int)(((byte)(153)))));
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.cerrar);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1171, 30);
+            this.panel1.Size = new System.Drawing.Size(1063, 30);
             this.panel1.TabIndex = 1;
             // 
             // label4
@@ -69,7 +71,7 @@
             this.cerrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(66)))), ((int)(((byte)(95)))));
             this.cerrar.Dock = System.Windows.Forms.DockStyle.Right;
             this.cerrar.Image = global::UI___Estacionamiento.Properties.Resources.close__1_;
-            this.cerrar.Location = new System.Drawing.Point(1142, 0);
+            this.cerrar.Location = new System.Drawing.Point(1034, 0);
             this.cerrar.Name = "cerrar";
             this.cerrar.Size = new System.Drawing.Size(29, 30);
             this.cerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -79,14 +81,30 @@
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.btnBackups);
             this.panel2.Controls.Add(this.btnUser);
-            this.panel2.Controls.Add(this.btnLogs);
             this.panel2.Controls.Add(this.btnBitacora);
             this.panel2.Location = new System.Drawing.Point(0, 28);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1171, 51);
+            this.panel2.Size = new System.Drawing.Size(1063, 51);
             this.panel2.TabIndex = 2;
+            // 
+            // btnBackups
+            // 
+            this.btnBackups.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(20)))), ((int)(((byte)(55)))));
+            this.btnBackups.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnBackups.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnBackups.ForeColor = System.Drawing.Color.White;
+            this.btnBackups.Location = new System.Drawing.Point(350, 0);
+            this.btnBackups.Name = "btnBackups";
+            this.btnBackups.Size = new System.Drawing.Size(184, 51);
+            this.btnBackups.TabIndex = 4;
+            this.btnBackups.Text = "Backups";
+            this.btnBackups.UseVisualStyleBackColor = false;
+            this.btnBackups.Click += new System.EventHandler(this.btnBackups_Click);
             // 
             // btnUser
             // 
@@ -94,26 +112,13 @@
             this.btnUser.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnUser.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnUser.ForeColor = System.Drawing.Color.White;
-            this.btnUser.Location = new System.Drawing.Point(332, 0);
+            this.btnUser.Location = new System.Drawing.Point(166, 0);
             this.btnUser.Name = "btnUser";
             this.btnUser.Size = new System.Drawing.Size(184, 51);
             this.btnUser.TabIndex = 3;
             this.btnUser.Text = "Usuarios";
             this.btnUser.UseVisualStyleBackColor = false;
             this.btnUser.Click += new System.EventHandler(this.btnUser_Click);
-            // 
-            // btnLogs
-            // 
-            this.btnLogs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(20)))), ((int)(((byte)(55)))));
-            this.btnLogs.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnLogs.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnLogs.ForeColor = System.Drawing.Color.White;
-            this.btnLogs.Location = new System.Drawing.Point(166, 0);
-            this.btnLogs.Name = "btnLogs";
-            this.btnLogs.Size = new System.Drawing.Size(166, 51);
-            this.btnLogs.TabIndex = 1;
-            this.btnLogs.Text = "Logs";
-            this.btnLogs.UseVisualStyleBackColor = false;
             // 
             // btnBitacora
             // 
@@ -131,31 +136,20 @@
             // 
             // panelContenedor
             // 
+            this.panelContenedor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelContenedor.Location = new System.Drawing.Point(0, 76);
             this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(1171, 566);
+            this.panelContenedor.Size = new System.Drawing.Size(1063, 566);
             this.panelContenedor.TabIndex = 3;
-            // 
-            // btnBackups
-            // 
-            this.btnBackups.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(20)))), ((int)(((byte)(55)))));
-            this.btnBackups.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnBackups.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnBackups.ForeColor = System.Drawing.Color.White;
-            this.btnBackups.Location = new System.Drawing.Point(516, 0);
-            this.btnBackups.Name = "btnBackups";
-            this.btnBackups.Size = new System.Drawing.Size(184, 51);
-            this.btnBackups.TabIndex = 4;
-            this.btnBackups.Text = "Backups";
-            this.btnBackups.UseVisualStyleBackColor = false;
-            this.btnBackups.Click += new System.EventHandler(this.btnBackups_Click);
             // 
             // formAdminMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(209)))), ((int)(((byte)(195)))));
-            this.ClientSize = new System.Drawing.Size(1171, 641);
+            this.ClientSize = new System.Drawing.Size(1063, 641);
             this.Controls.Add(this.panelContenedor);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -175,7 +169,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox cerrar;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnLogs;
         private System.Windows.Forms.Button btnBitacora;
         private System.Windows.Forms.Panel panelContenedor;
         private System.Windows.Forms.Label label4;

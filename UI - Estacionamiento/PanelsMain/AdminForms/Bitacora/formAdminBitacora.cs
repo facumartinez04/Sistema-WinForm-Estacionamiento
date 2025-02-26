@@ -106,7 +106,7 @@ namespace UI___Estacionamiento.PanelsMain.AdminForms
             dgvBitacora.Columns[2].HeaderText = "Hora";
             dgvBitacora.Columns[2].FillWeight = 20;
             dgvBitacora.Columns[3].HeaderText = "Accion";
-            dgvBitacora.Columns[4].HeaderText = "Detalles";
+            dgvBitacora.Columns[4].Visible = false;
             ConfigurarDataGridView(dgvBitacora);
 
 
@@ -137,7 +137,7 @@ namespace UI___Estacionamiento.PanelsMain.AdminForms
             dgvBitacora.Columns[2].HeaderText = "Hora";
             dgvBitacora.Columns[2].FillWeight = 20;
             dgvBitacora.Columns[3].HeaderText = "Accion";
-            dgvBitacora.Columns[4].HeaderText = "Detalles";
+            dgvBitacora.Columns[4].Visible = false;
             ConfigurarDataGridView(dgvBitacora);
 
         }
@@ -167,7 +167,7 @@ namespace UI___Estacionamiento.PanelsMain.AdminForms
             dgvBitacora.Columns[2].HeaderText = "Hora";
             dgvBitacora.Columns[2].FillWeight = 20;
             dgvBitacora.Columns[3].HeaderText = "Accion";
-            dgvBitacora.Columns[4].HeaderText = "Detalles";
+            dgvBitacora.Columns[4].Visible = false;
             ConfigurarDataGridView(dgvBitacora);
 
         }
@@ -207,6 +207,16 @@ namespace UI___Estacionamiento.PanelsMain.AdminForms
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
+            }
+
+        }
+
+        private void txtUser_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (e.KeyChar == (char)13)
+            {
+                e.Handled = true;
             }
 
         }

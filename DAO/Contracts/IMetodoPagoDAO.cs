@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace DAO.Contracts
 {
+    /// <summary>
+    /// //Pensamos un CRUD para cualquier entidad
+    /// </summary>
     public interface IMetodoPagoDAO : IGenericDao<MetodoPago>
     {
         void Eliminar(int id);

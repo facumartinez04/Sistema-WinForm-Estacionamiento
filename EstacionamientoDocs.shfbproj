@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Importa las propiedades comunes para soportar la restauración de NuGet -->
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <!-- Versión del framework de destino requerida -->
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <!-- Configuración y plataforma para determinar qué ensamblados incluir -->
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{fa56a8ba-21be-46d5-85b4-1145908f3939}</ProjectGuid>
+    <SHFBSchemaVersion>2017.9.26.0</SHFBSchemaVersion>
+    <AssemblyName>Documentation</AssemblyName>
+    <RootNamespace>Documentation</RootNamespace>
+    <Name>Documentation</Name>
+    <!-- Propiedades específicas de SHFB -->
+    <FrameworkVersion>.NET Framework 4.7.2</FrameworkVersion>
+    <OutputPath>.\Help\</OutputPath>
+    <HtmlHelpName>Documentation</HtmlHelpName>
+    <Language>en-US</Language>
+    <!-- <BuildAssemblerVerbosity>Verbose</BuildAssemblerVerbosity> -->
+    <ShowMissingSummaries>true</ShowMissingSummaries>
+    <!-- Mostrar advertencias para resúmenes faltantes -->
+    <ApiFilter>
+      <NamespaceApiFilter>
+        <Api name="BLL" expose="true" />
+        <Api name="DAO" expose="true" />
+        <Api name="DOMAIN" expose="true" />
+        <Api name="SERVICE" expose="true" />
+      </NamespaceApiFilter>
+    </ApiFilter>
+    <Visibility>
+      <IncludePrivateMembers>true</IncludePrivateMembers>
+      <IncludeProtectedMembers>true</IncludeProtectedMembers>
+      <IncludeInternalMembers>true</IncludeInternalMembers>
+      <IncludePublicMembers>true</IncludePublicMembers>
+    </Visibility>
+    <!-- Fuentes de documentación -->
+    <DocumentationSources>
+      <DocumentationSource sourceFile="BLL\bin\Debug\BLL.dll" />
+      <DocumentationSource sourceFile="BLL\bin\Debug\BLL.xml" />
+      <DocumentationSource sourceFile="BLL\bin\Debug\DAO.dll" />
+      <DocumentationSource sourceFile="BLL\bin\Debug\DAO.xml" />
+      <DocumentationSource sourceFile="BLL\bin\Debug\DOMAIN.dll" />
+      <DocumentationSource sourceFile="BLL\bin\Debug\DOMAIN.xml" />
+      <DocumentationSource sourceFile="BLL\bin\Debug\SERVICE.dll" />
+      <DocumentationSource sourceFile="BLL\bin\Debug\SERVICE.xml" />
+    </DocumentationSources>
+    <HelpTitle>Documentacion de Sistema de Estacionamiento</HelpTitle>
+    <HelpFileVersion>1.0.0.0</HelpFileVersion>
+    <NamingMethod>Guid</NamingMethod>
+    <ContentPlacement>AboveNamespaces</ContentPlacement>
+    <RootNamespaceContainer>True</RootNamespaceContainer>
+    <RootNamespaceTitle>Manual del programador</RootNamespaceTitle>
+    <NamespaceGrouping>True</NamespaceGrouping>
+    <MaximumGroupParts>30</MaximumGroupParts>
+    <Preliminary>False</Preliminary>
+    <SdkLinkTarget>Blank</SdkLinkTarget>
+    <NamespaceSummaries>
+      <NamespaceSummaryItem name="(global)" isDocumented="False" xmlns="" />
+<NamespaceSummaryItem name="BLL (Group)" isGroup="True" isDocumented="True" xmlns="" />
+<NamespaceSummaryItem name="SERVICE.DAL.Implementations" isDocumented="True" xmlns="" /></NamespaceSummaries>
+    <VisibleItems>Attributes, ExplicitInterfaceImplementations, InheritedMembers, InheritedFrameworkMembers, InheritedFrameworkInternalMembers, InheritedFrameworkPrivateMembers, Internals, Privates, PrivateFields, Protected, SealedProtected, ProtectedInternalAsProtected, NoPIATypes, PublicCompilerGenerated, EditorBrowsableNever, NonBrowsable, InternalAndPrivateIfExternal</VisibleItems>
+    <MissingTags>AutoDocumentCtors, AutoDocumentDispose</MissingTags>
+    <HelpFileFormat>Website</HelpFileFormat>
+    <SyntaxFilters>Standard</SyntaxFilters>
+    <PresentationStyle>Default2022</PresentationStyle>
+    <CleanIntermediates>True</CleanIntermediates>
+    <KeepLogFile>True</KeepLogFile>
+    <DisableCodeBlockComponent>False</DisableCodeBlockComponent>
+    <IndentHtml>False</IndentHtml>
+    <BuildAssemblerVerbosity>OnlyWarningsAndErrors</BuildAssemblerVerbosity>
+    <SaveComponentCacheCapacity>100</SaveComponentCacheCapacity>
+  </PropertyGroup>
+  <!-- Configuraciones específicas por plataforma -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' " />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' " />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' " />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' " />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' " />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Win32' " />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Win32' " />
+  <!-- Importa las configuraciones comunes durante la restauración de NuGet -->
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="'$(MSBuildRestoreSessionId)' != ''" />
+  <!-- Importa los targets de Sandcastle durante el build -->
+  <Import Project="$(SHFBROOT)\SandcastleHelpFileBuilder.targets" Condition="'$(MSBuildRestoreSessionId)' == ''" />
+  <!-- Eventos previos y posteriores a la compilación -->
+  <PropertyGroup>
+    <PreBuildEvent />
+    <PostBuildEvent />
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
+</Project>

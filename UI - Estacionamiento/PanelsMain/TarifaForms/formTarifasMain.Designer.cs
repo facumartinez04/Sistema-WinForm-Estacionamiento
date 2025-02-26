@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             this.DBTarifasList = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.gbTarifa = new System.Windows.Forms.GroupBox();
+            this.lblanametarifa = new System.Windows.Forms.Label();
             this.txtNombreTarifa = new System.Windows.Forms.TextBox();
             this.btnAddEditTarifa = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lbltarifas = new System.Windows.Forms.Label();
             this.txtMontoTarifa = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
+            this.gbMonto = new System.Windows.Forms.GroupBox();
+            this.lblmontohora = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DBTarifasList)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.gbTarifa.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.gbMonto.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,30 +59,30 @@
             this.DBTarifasList.TabIndex = 0;
             this.DBTarifasList.DoubleClick += new System.EventHandler(this.DBTarifasList_DoubleClick);
             // 
-            // groupBox1
+            // gbTarifa
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.gbTarifa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtNombreTarifa);
-            this.groupBox1.Location = new System.Drawing.Point(22, 38);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(261, 83);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Tarifa";
+            this.gbTarifa.Controls.Add(this.lblanametarifa);
+            this.gbTarifa.Controls.Add(this.txtNombreTarifa);
+            this.gbTarifa.Location = new System.Drawing.Point(22, 38);
+            this.gbTarifa.Name = "gbTarifa";
+            this.gbTarifa.Size = new System.Drawing.Size(261, 83);
+            this.gbTarifa.TabIndex = 1;
+            this.gbTarifa.TabStop = false;
+            this.gbTarifa.Text = "Tarifa";
             // 
-            // label4
+            // lblanametarifa
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(6, 20);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(180, 20);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "NOMBRE DE LA TARIFA:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblanametarifa.AutoSize = true;
+            this.lblanametarifa.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblanametarifa.ForeColor = System.Drawing.Color.Black;
+            this.lblanametarifa.Location = new System.Drawing.Point(6, 20);
+            this.lblanametarifa.Name = "lblanametarifa";
+            this.lblanametarifa.Size = new System.Drawing.Size(180, 20);
+            this.lblanametarifa.TabIndex = 10;
+            this.lblanametarifa.Text = "NOMBRE DE LA TARIFA:";
+            this.lblanametarifa.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtNombreTarifa
             // 
@@ -96,7 +96,7 @@
             this.btnAddEditTarifa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(20)))), ((int)(((byte)(55)))));
             this.btnAddEditTarifa.Font = new System.Drawing.Font("Nirmala UI", 15.75F, System.Drawing.FontStyle.Bold);
             this.btnAddEditTarifa.ForeColor = System.Drawing.Color.White;
-            this.btnAddEditTarifa.Location = new System.Drawing.Point(22, 323);
+            this.btnAddEditTarifa.Location = new System.Drawing.Point(22, 331);
             this.btnAddEditTarifa.Name = "btnAddEditTarifa";
             this.btnAddEditTarifa.Size = new System.Drawing.Size(373, 67);
             this.btnAddEditTarifa.TabIndex = 0;
@@ -107,23 +107,23 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(66)))), ((int)(((byte)(95)))));
-            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.lbltarifas);
             this.panel1.Location = new System.Drawing.Point(424, 48);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(258, 38);
             this.panel1.TabIndex = 8;
             // 
-            // label3
+            // lbltarifas
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(11, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 20);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Tarifas";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbltarifas.AutoSize = true;
+            this.lbltarifas.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltarifas.ForeColor = System.Drawing.Color.White;
+            this.lbltarifas.Location = new System.Drawing.Point(11, 9);
+            this.lbltarifas.Name = "lbltarifas";
+            this.lbltarifas.Size = new System.Drawing.Size(55, 20);
+            this.lbltarifas.TabIndex = 0;
+            this.lbltarifas.Text = "Tarifas";
+            this.lbltarifas.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtMontoTarifa
             // 
@@ -133,44 +133,44 @@
             this.txtMontoTarifa.TabIndex = 9;
             this.txtMontoTarifa.TextChanged += new System.EventHandler(this.txtMontoTarifa_TextChanged_1);
             // 
-            // groupBox2
+            // gbMonto
             // 
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.txtMontoTarifa);
-            this.groupBox2.Location = new System.Drawing.Point(22, 149);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(261, 91);
-            this.groupBox2.TabIndex = 11;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Monto";
+            this.gbMonto.Controls.Add(this.lblmontohora);
+            this.gbMonto.Controls.Add(this.txtMontoTarifa);
+            this.gbMonto.Location = new System.Drawing.Point(22, 149);
+            this.gbMonto.Name = "gbMonto";
+            this.gbMonto.Size = new System.Drawing.Size(261, 91);
+            this.gbMonto.TabIndex = 11;
+            this.gbMonto.TabStop = false;
+            this.gbMonto.Text = "Monto";
             // 
-            // label1
+            // lblmontohora
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(6, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(146, 20);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "MONTO POR HORA";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblmontohora.AutoSize = true;
+            this.lblmontohora.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblmontohora.ForeColor = System.Drawing.Color.Black;
+            this.lblmontohora.Location = new System.Drawing.Point(6, 25);
+            this.lblmontohora.Name = "lblmontohora";
+            this.lblmontohora.Size = new System.Drawing.Size(146, 20);
+            this.lblmontohora.TabIndex = 11;
+            this.lblmontohora.Text = "MONTO POR HORA";
+            this.lblmontohora.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button4
+            // btnClose
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(20)))), ((int)(((byte)(55)))));
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(424, 396);
-            this.button4.Name = "button4";
-            this.button4.Padding = new System.Windows.Forms.Padding(15);
-            this.button4.Size = new System.Drawing.Size(258, 52);
-            this.button4.TabIndex = 16;
-            this.button4.Text = "Cerrar";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(20)))), ((int)(((byte)(55)))));
+            this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClose.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.Color.White;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(424, 396);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Padding = new System.Windows.Forms.Padding(15);
+            this.btnClose.Size = new System.Drawing.Size(258, 52);
+            this.btnClose.TabIndex = 16;
+            this.btnClose.Text = "Cerrar";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.button4_Click);
             // 
             // panel2
             // 
@@ -203,10 +203,10 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(209)))), ((int)(((byte)(195)))));
             this.ClientSize = new System.Drawing.Size(712, 458);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.gbMonto);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbTarifa);
             this.Controls.Add(this.DBTarifasList);
             this.Controls.Add(this.btnAddEditTarifa);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -216,12 +216,12 @@
             this.Load += new System.EventHandler(this.formTarifasMain_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.formTarifasMain_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.DBTarifasList)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbTarifa.ResumeLayout(false);
+            this.gbTarifa.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.gbMonto.ResumeLayout(false);
+            this.gbMonto.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -230,16 +230,16 @@
         #endregion
 
         private System.Windows.Forms.DataGridView DBTarifasList;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbTarifa;
         private System.Windows.Forms.TextBox txtNombreTarifa;
         private System.Windows.Forms.Button btnAddEditTarifa;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbltarifas;
         private System.Windows.Forms.TextBox txtMontoTarifa;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label lblanametarifa;
+        private System.Windows.Forms.GroupBox gbMonto;
+        private System.Windows.Forms.Label lblmontohora;
+        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button6;
     }

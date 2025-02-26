@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SERVICE.DAL.Implementations.Mappers;
+using SERVICE.Domain.ServicesExceptions;
+using SERVICE.Services;
 
 namespace SERVICE.DAL.Implementations
 {
@@ -51,13 +53,7 @@ namespace SERVICE.DAL.Implementations
 
 
 
-                foreach (var item in obj.GetFamilias())
-                {
-                    UsuarioFamiliaRepository.Current.Add(new UsuarioFamilia() { idUsuario = obj.IdUsuario, idFamilia = item.IdFamilia });
-
-                }
-
-
+                
 
                 if (data < 0)
                 {
@@ -69,9 +65,11 @@ namespace SERVICE.DAL.Implementations
                     return false;
                 }
 
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                return false;
+                ExceptionService.Current.HandleException(new DALException(ex));
+                throw;
             }
 
 
@@ -79,40 +77,59 @@ namespace SERVICE.DAL.Implementations
 
         public List<Usuario> GetAll()
         {
-            List<Usuario> usuarios = new List<Usuario>();
-
-            using (var reader = SqlHelper.ExecuteReader("UsuarioSelectAll", CommandType.StoredProcedure))
+            try
             {
-                while (reader.Read())
-                {
-                    object[] data = new object[reader.FieldCount];
-                    reader.GetValues(data);
+                List<Usuario> usuarios = new List<Usuario>();
 
-                    usuarios.Add(UserMapper.Current.Fill(data));
+                using (var reader = SqlHelper.ExecuteReader("UsuarioSelectAll", CommandType.StoredProcedure))
+                {
+                    while (reader.Read())
+                    {
+                        object[] data = new object[reader.FieldCount];
+                        reader.GetValues(data);
+
+                        usuarios.Add(UserMapper.Current.Fill(data));
+                    }
                 }
+                return usuarios;
+            }
+            catch (Exception ex)
+            {
+                ExceptionService.Current.HandleException(new DALException(ex));
+                throw;
             }
 
-            return usuarios;
+            
         }
 
         public Usuario GetById(Guid id)
         {
-            Usuario usuario = default;
+            
+            try {
 
-            using (var reader = SqlHelper.ExecuteReader("UsuarioSelect", CommandType.StoredProcedure,
-                             new SqlParameter[] { new SqlParameter("@IdUsuario", id) }))
-            {
-                //Mientras tenga algo en mi tabla de Customers
-                if (reader.Read())
+                Usuario usuario = default;
+
+                using (var reader = SqlHelper.ExecuteReader("UsuarioSelect", CommandType.StoredProcedure,
+                                 new SqlParameter[] { new SqlParameter("@IdUsuario", id) }))
                 {
-                    object[] data = new object[reader.FieldCount];
-                    reader.GetValues(data);
+                    //Mientras tenga algo en mi tabla de Customers
+                    if (reader.Read())
+                    {
+                        object[] data = new object[reader.FieldCount];
+                        reader.GetValues(data);
 
-                    usuario = UserMapper.Current.Fill(data);
+                        usuario = UserMapper.Current.Fill(data);
+                    }
                 }
-            }
 
-            return usuario;
+                return usuario;
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionService.Current.HandleException(new DALException(ex));
+                throw;
+            }
         }
 
         public bool Remove(Guid id)
@@ -127,6 +144,10 @@ namespace SERVICE.DAL.Implementations
             try
             {
 
+                if(obj.UserName == SessionService.GetUsuario().UserName)
+                {
+                    throw new Exception("No se puede modificar el usuario actual");
+                }
 
                 int data = SqlHelper.ExecuteNonQuery("UsuarioUpdate", CommandType.StoredProcedure,
                 new SqlParameter[] { new SqlParameter("@IdUsuario", obj.IdUsuario),
@@ -142,10 +163,6 @@ namespace SERVICE.DAL.Implementations
 
                 }
 
-
-              
-
-
                 if (data < 0)
                 {
 
@@ -157,9 +174,13 @@ namespace SERVICE.DAL.Implementations
                 }
 
             }
+
             catch (Exception ex)
             {
-                return false;
+
+                throw new Exception("No se puede modificar el usuario actual");
+
+
             }
 
         }

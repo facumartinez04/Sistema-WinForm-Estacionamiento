@@ -12,10 +12,6 @@ namespace Dao.Implementations.SqlServer.UnitOfWork
     public class UnitOfWorkSqlServerRepository : IUnitOfWorkRepository
     {
 
-
-
-        public IClienteDAO ClienteRepository { get; }
-
         public IIngresoDAO IngresoRepository { get; }
 
         public IVehiculoDAO VehiculoRepository { get; }
@@ -26,15 +22,9 @@ namespace Dao.Implementations.SqlServer.UnitOfWork
 
         public IFacturaDAO FacturaRepository { get; }
 
-        public IPagoDAO PagoRepository { get; }
 
         public IEmpleadoDAO EmpleadoRepository { get; }
 
-
-
-
-
-        private string clienteDAO = ConfigurationManager.AppSettings["ClienteConcreteDAO"];
 
         private string ingresoDAO = ConfigurationManager.AppSettings["IngresoConcreteDAO"]; 
         
@@ -46,8 +36,6 @@ namespace Dao.Implementations.SqlServer.UnitOfWork
 
         private string facturaDAO = ConfigurationManager.AppSettings["FacturaConcreteDAO"];
 
-        private string pagoDAO = ConfigurationManager.AppSettings["PagoConcreteDAO"];
-
         private string empleadoDAO = ConfigurationManager.AppSettings["EmpleadoConcreteDAO"];
 
         private string rolDAO = ConfigurationManager.AppSettings["RolConcreteDAO"];
@@ -57,13 +45,7 @@ namespace Dao.Implementations.SqlServer.UnitOfWork
 
         public UnitOfWorkSqlServerRepository(SqlConnection context, SqlTransaction transaction)
         {
-            Type clienteType = Type.GetType(clienteDAO);
-            var customerInstance = Activator.CreateInstance(clienteType, new object[]
-            {
-                context, transaction
-            });
-
-            ClienteRepository = customerInstance as IClienteDAO;
+            
 
 
             Type ingresoType = Type.GetType(ingresoDAO);
@@ -105,16 +87,7 @@ namespace Dao.Implementations.SqlServer.UnitOfWork
                 
             TipoTarifaRepository = tipoTarifaInstance as ITipoTarifaDAO;
 
-            Type empleadoType = Type.GetType(empleadoDAO);
-
-            var empleadoInstance = Activator.CreateInstance(empleadoType, new object[]
-            {
-                context, transaction
-            });
-
-            EmpleadoRepository = empleadoInstance as IEmpleadoDAO;
-
-
+     
 
             Type facturaType = Type.GetType(facturaDAO);
 

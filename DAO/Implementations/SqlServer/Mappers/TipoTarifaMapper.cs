@@ -28,9 +28,13 @@ namespace DAO.Implementations.SqlServer.Mappers
             {
                 //Implent here the initialization of your singleton
             }
-            #endregion
-       
+        #endregion
 
+        /// <summary>
+        /// //Con fill vamos a concretar la adapción de cada backend en un objeto de nuestra app.
+        /// </summary>
+        /// <param name="values"></param>
+        /// <returns></returns>
         public TipoTarifa Fill(object[] values)
         {
             return new TipoTarifa

@@ -1,5 +1,6 @@
 ﻿using BLL.Implementations;
 using DOMAIN;
+using SERVICE.Facade.Extentions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,11 +12,12 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI___Estacionamiento.Domain.Observer;
 using UI___Estacionamiento.PanelsMain.IngresosForms;
 
 namespace UI___Estacionamiento.PanelsMain.FacturacionForms
 {
-    public partial class formFacturacionMain : Form
+    public partial class formFacturacionMain : Form, IFormObserver
     {
 
         [DllImport("user32.dll")]
@@ -30,6 +32,7 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
         {
 
             InitializeComponent();
+            Update(this);
 
         }
         private void button6_Click(object sender, EventArgs e)
@@ -65,11 +68,12 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
 
             dgvFacturas.DataSource = listafacturas;
 
-            dgvFacturas.Columns[0].HeaderText = "Patente";
-            dgvFacturas.Columns[1].HeaderText = "Fecha";
-            dgvFacturas.Columns[2].HeaderText = "Hora";
-            dgvFacturas.Columns[3].HeaderText = "Monto Total";
-            dgvFacturas.Columns[4].HeaderText = "Metodo de Pago";
+
+            dgvFacturas.Columns[0].HeaderText = "patent".Translate();
+            dgvFacturas.Columns[1].HeaderText = "date".Translate();
+            dgvFacturas.Columns[2].HeaderText = "hour".Translate();
+            dgvFacturas.Columns[3].HeaderText = "total-mount".Translate();
+            dgvFacturas.Columns[4].HeaderText = "payment-method".Translate();
 
             dgvFacturas.Columns[5].Visible = false;
 
@@ -153,11 +157,11 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
 
                 dgvFacturas.DataSource = listafacturas;
 
-                dgvFacturas.Columns[0].HeaderText = "Patente";
-                dgvFacturas.Columns[1].HeaderText = "Fecha";
-                dgvFacturas.Columns[2].HeaderText = "Hora";
-                dgvFacturas.Columns[3].HeaderText = "Monto Total";
-                dgvFacturas.Columns[4].HeaderText = "Metodo de Pago";
+                dgvFacturas.Columns[0].HeaderText = "patent".Translate();
+                dgvFacturas.Columns[1].HeaderText = "date".Translate();
+                dgvFacturas.Columns[2].HeaderText = "hour".Translate();
+                dgvFacturas.Columns[3].HeaderText = "total-mount".Translate();
+                dgvFacturas.Columns[4].HeaderText = "payment-method".Translate();
 
                 dgvFacturas.Columns[5].Visible = false;
 
@@ -191,16 +195,32 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
 
             dgvFacturas.DataSource = listafacturas;
 
-            dgvFacturas.Columns[0].HeaderText = "Patente";
-            dgvFacturas.Columns[1].HeaderText = "Fecha";
-            dgvFacturas.Columns[2].HeaderText = "Hora";
-            dgvFacturas.Columns[3].HeaderText = "Monto Total";
-            dgvFacturas.Columns[4].HeaderText = "Metodo de Pago";
+            dgvFacturas.Columns[0].HeaderText = "patent".Translate();
+            dgvFacturas.Columns[1].HeaderText = "date".Translate();
+            dgvFacturas.Columns[2].HeaderText = "hour".Translate();
+            dgvFacturas.Columns[3].HeaderText = "total-mount".Translate();
+            dgvFacturas.Columns[4].HeaderText = "payment-method".Translate();
+
+
 
             dgvFacturas.Columns[5].Visible = false;
 
             ConfigurarDataGridView(dgvFacturas);
 
+        }
+
+        public void Update(Form form)
+        {
+            lbldesde.Text = "from".Translate();
+            lblhasta.Text = "to".Translate();
+            lblIngresarPatente.Text = "entry-the-patent".Translate();
+            btnClose.Text = "close".Translate();
+            btnBuscarPatente.Text = "search".Translate();
+            btnBuscarFecha.Text = "search".Translate();
+            gboxdate.Text = "title-search-date".Translate();
+            gboxpatente.Text = "title-search-patent".Translate();
+            gboxdate.Refresh();
+            gboxpatente.Refresh();
         }
     }
 }

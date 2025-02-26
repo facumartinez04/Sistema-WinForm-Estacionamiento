@@ -4,6 +4,9 @@ using System.Data.SqlClient;
 
 namespace Dao.Implementations.SqlServer.Helpers
 {
+    /// <summary>
+    /// // Base class for all repositories that need to use transactions.
+    /// </summary>
     public abstract class SqlTransactRepository
     {
         protected SqlConnection _context;

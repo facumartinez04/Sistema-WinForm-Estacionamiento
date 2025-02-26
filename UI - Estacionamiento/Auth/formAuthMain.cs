@@ -1,6 +1,7 @@
 ﻿using SERVICE.DAL.Implementations;
 using SERVICE.Domain;
 using SERVICE.Domain.Composite;
+using SERVICE.Facade.Extentions;
 using SERVICE.Services;
 using System;
 using System.Collections.Generic;
@@ -53,9 +54,10 @@ namespace UI___Estacionamiento.Auth
 
                 var data = CryptographyService.HashPassword(Usuario.Password);
 
+                
                 Usuario userCargado = LoginService.Validate(Usuario);
 
-                MessageBox.Show("Usuario logueado con exito");
+                MessageBox.Show("user-login-success".Translate());
 
                 List<Patente> list = new List<Patente>();
                 list = userCargado.GetAllPatentes();
@@ -69,9 +71,6 @@ namespace UI___Estacionamiento.Auth
 
                 txtContra.Text = "";
                 txtUsuario.Text = "";
-
-                BitacoraService.RegistrarEvento(new Bitacora { usuario = SessionService.GetUsuario().UserName, accion = $"El usuario {SessionService.GetUsuario().UserName} inicio session" });
-
                 AddFormularios();
 
             }
@@ -152,5 +151,10 @@ namespace UI___Estacionamiento.Auth
 
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            formAuthRegister form = new formAuthRegister();
+            form.Show();
+        }
     }
 }

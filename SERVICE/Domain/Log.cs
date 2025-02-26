@@ -9,14 +9,13 @@ namespace SERVICE.Domain
 {
     public class Log
     {
-        public Log(DateTime date, string message, TraceLevel level = TraceLevel.Info)
+        public Log(string message, TraceLevel level = TraceLevel.Info)
         {
-            Date = date;
-            Message = message;
+            this.Message = message;
             Level = level;
         }
 
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now;
 
         public string Message { get; set; }
 

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace DAO.Contracts.UnitOfWork
 {
+    /// <summary>
+    /// //Pensamos un CRUD para cualquier entidad
+    /// </summary>
     public interface IVehiculoDAO : IGenericDao<Vehiculo>
     {
     }

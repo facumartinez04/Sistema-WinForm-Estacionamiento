@@ -2,6 +2,8 @@
 using DAO.Contracts;
 using DAO.Implementations.SqlServer.Mappers;
 using DOMAIN;
+using SERVICE.Domain.ServicesExceptions;
+using SERVICE.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,15 +11,13 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/// <summary>
+/// Clase que implementa la interfaz IMetodoPagoDAO para manejar operaciones CRUD sobre la entidad MetodoPago en la base de datos.
+/// </summary>
 namespace DAO.Implementations.SqlServer
 {
     public sealed class MetodoPagoDAO : SqlTransactRepository, IMetodoPagoDAO
     {
-
-
-
-
         #region Statements
         private string InsertStatement
         {
@@ -45,22 +45,21 @@ namespace DAO.Implementations.SqlServer
         }
         #endregion
 
-
         public MetodoPagoDAO(SqlConnection context, SqlTransaction _transaction) : base(context, _transaction)
         {
         }
 
-
-        
-
-
+        /// <summary>
+        /// Agrega un nuevo MetodoPago a la base de datos.
+        /// </summary>
+        /// <param name="obj">Objeto MetodoPago a agregar.</param>
         public void Add(MetodoPago obj)
         {
             try
             {
                 int esCargado = ExecuteNonQuery(InsertStatement, CommandType.Text,
                     new SqlParameter("@descripcion", obj.descripcion)
-                    );
+                );
 
                 if (esCargado == 0)
                 {
@@ -69,56 +68,82 @@ namespace DAO.Implementations.SqlServer
             }
             catch (Exception ex)
             {
-                throw ex;
+                ExceptionService.Current.HandleException(new DALException(ex));
+                throw;
             }
         }
 
+        /// <summary>
+        /// Obtiene todos los métodos de pago registrados en la base de datos.
+        /// </summary>
+        /// <returns>Lista de objetos MetodoPago.</returns>
         public List<MetodoPago> GetAll()
         {
-
-            List<MetodoPago> metodos = new List<MetodoPago>();
-            using (var reader = ExecuteReader(SelectAllStatement, CommandType.Text))
+            try
             {
-                while (reader.Read())
+                List<MetodoPago> metodos = new List<MetodoPago>();
+                using (var reader = ExecuteReader(SelectAllStatement, CommandType.Text))
                 {
-                    object[] data = new object[reader.FieldCount];
-                    reader.GetValues(data);
+                    while (reader.Read())
+                    {
+                        object[] data = new object[reader.FieldCount];
+                        reader.GetValues(data);
 
-                    MetodoPago metodo = MetodoPagoMapper.Current.Fill(data);
-                    metodos.Add(metodo);
+                        MetodoPago metodo = MetodoPagoMapper.Current.Fill(data);
+                        metodos.Add(metodo);
+                    }
                 }
+                return metodos;
             }
-            return metodos;
-
-
+            catch (Exception ex)
+            {
+                ExceptionService.Current.HandleException(new DALException(ex));
+                throw;
+            }
         }
 
+        /// <summary>
+        /// Obtiene un método de pago por su identificador único.
+        /// </summary>
+        /// <param name="id">Identificador único del MetodoPago.</param>
+        /// <returns>Objeto MetodoPago.</returns>
         public MetodoPago GetById(Guid id)
         {
-
-            MetodoPago metodo = null;
-            using (var reader = ExecuteReader(SelectOneStatement, CommandType.Text,
-                new SqlParameter("@idMetodoPago", id)
-                ))
+            try
             {
-                if (reader.Read())
+                MetodoPago metodo = null;
+                using (var reader = ExecuteReader(SelectOneStatement, CommandType.Text,
+                    new SqlParameter("@idMetodoPago", id)
+                ))
                 {
-                    object[] data = new object[reader.FieldCount];
-                    reader.GetValues(data);
+                    if (reader.Read())
+                    {
+                        object[] data = new object[reader.FieldCount];
+                        reader.GetValues(data);
 
-                    metodo = MetodoPagoMapper.Current.Fill(data);
+                        metodo = MetodoPagoMapper.Current.Fill(data);
+                    }
                 }
+                return metodo;
             }
-            return metodo;
+            catch (Exception ex)
+            {
+                ExceptionService.Current.HandleException(new DALException(ex));
+                throw;
+            }
         }
 
+        /// <summary>
+        /// Elimina un método de pago por su identificador único.
+        /// </summary>
+        /// <param name="id">Identificador único del MetodoPago.</param>
         public void Remove(Guid id)
         {
             try
             {
                 int esCargado = ExecuteNonQuery(DeleteStatement, CommandType.Text,
                     new SqlParameter("@idMetodoPago", id)
-                    );
+                );
 
                 if (esCargado == 0)
                 {
@@ -127,10 +152,15 @@ namespace DAO.Implementations.SqlServer
             }
             catch (Exception ex)
             {
-                throw ex;
+                ExceptionService.Current.HandleException(new DALException(ex));
+                throw;
             }
         }
 
+        /// <summary>
+        /// Actualiza los datos de un método de pago existente.
+        /// </summary>
+        /// <param name="obj">Objeto MetodoPago con los datos actualizados.</param>
         public void Update(MetodoPago obj)
         {
             try
@@ -138,7 +168,7 @@ namespace DAO.Implementations.SqlServer
                 int esCargado = ExecuteNonQuery(UpdateStatement, CommandType.Text,
                     new SqlParameter("@idMetodoPago", obj.idMetodoPago),
                     new SqlParameter("@descripcion", obj.descripcion)
-                    );
+                );
 
                 if (esCargado == 0)
                 {
@@ -147,17 +177,22 @@ namespace DAO.Implementations.SqlServer
             }
             catch (Exception ex)
             {
-                throw ex;
+                ExceptionService.Current.HandleException(new DALException(ex));
+                throw;
             }
         }
 
+        /// <summary>
+        /// Elimina un método de pago por su identificador único (versión adicional).
+        /// </summary>
+        /// <param name="id">Identificador único del MetodoPago.</param>
         public void Eliminar(int id)
         {
             try
             {
                 int esCargado = ExecuteNonQuery(DeleteStatement, CommandType.Text,
                     new SqlParameter("@idMetodoPago", id)
-                    );
+                );
 
                 if (esCargado == 0)
                 {
@@ -166,25 +201,40 @@ namespace DAO.Implementations.SqlServer
             }
             catch (Exception ex)
             {
-                throw ex;
+                ExceptionService.Current.HandleException(new DALException(ex));
+                throw;
             }
         }
 
+        /// <summary>
+        /// Obtiene un método de pago por su identificador único (versión adicional).
+        /// </summary>
+        /// <param name="id">Identificador único del MetodoPago.</param>
+        /// <returns>Objeto MetodoPago.</returns>
         public MetodoPago ObtenerPorId(int id)
         {
-            MetodoPago metodo = null;
-            using (var reader = ExecuteReader(SelectOneStatement, CommandType.Text,
-                               new SqlParameter("@idMetodoPago", id)))
+            try
             {
-                if (reader.Read())
+                MetodoPago metodo = null;
+                using (var reader = ExecuteReader(SelectOneStatement, CommandType.Text,
+                    new SqlParameter("@idMetodoPago", id)
+                ))
                 {
-                    object[] data = new object[reader.FieldCount];
-                    reader.GetValues(data);
+                    if (reader.Read())
+                    {
+                        object[] data = new object[reader.FieldCount];
+                        reader.GetValues(data);
 
-                    metodo = MetodoPagoMapper.Current.Fill(data);
+                        metodo = MetodoPagoMapper.Current.Fill(data);
+                    }
                 }
+                return metodo;
             }
-            return metodo;
+            catch (Exception ex)
+            {
+                ExceptionService.Current.HandleException(new DALException(ex));
+                throw;
+            }
         }
     }
 }

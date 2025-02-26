@@ -20,7 +20,6 @@ namespace Dao.Factory
         /// </summary>
         /// 
         private static int backendType;
-        private static string clienteDAO;
         private static string ingresoDAO;
         private static string facturaData;
         private static string metodoPagoData;
@@ -33,7 +32,6 @@ namespace Dao.Factory
         static FactoryDao()
         {
             backendType = int.Parse(ConfigurationManager.AppSettings["BackendType"]);
-            clienteDAO = ConfigurationManager.AppSettings["CustomerConcreteDAO"];
             ingresoDAO = ConfigurationManager.AppSettings["IngresoConcreteDAO"];
             vehiculoData = ConfigurationManager.AppSettings["VehiculoConcreteDAO"];
             facturaData = ConfigurationManager.AppSettings["FacturaConcreteDAO"];
@@ -50,17 +48,7 @@ namespace Dao.Factory
         /// <summary>
         /// Dao sin Tx
         /// </summary>
-        public static IClienteDAO ClienteDAO
-        {
-            get
-            {
-                Type customerType = Type.GetType(clienteDAO);
-
-                return Activator.CreateInstance(customerType) as IClienteDAO;
-
-            }
-        }
-
+    
         public static IIngresoDAO IngresoDAO
         {
             get

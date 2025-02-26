@@ -15,6 +15,8 @@ namespace SERVICE.Domain.Composite
         public string UserName { get; set; }
         public string Password { get; set; }
         public DateTime Timestamp { get; set; }
+        public List<Acceso> Accesos { get; set; } = new List<Acceso>();
+
 
         public string HashDH
         {
@@ -32,7 +34,8 @@ namespace SERVICE.Domain.Composite
             }
         }
 
-        public List<Acceso> Accesos { get; set; } = new List<Acceso>();
+
+
 
         public List<Patente> GetAllPatentes()
         {

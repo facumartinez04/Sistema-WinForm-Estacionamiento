@@ -213,6 +213,16 @@ namespace UI___Estacionamiento.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap coche__1_ {
+            get {
+                object obj = ResourceManager.GetObject("coche (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Estacionamiento_cubierto_Aeropuerto_Ezeiza_7_min_2 {
             get {
                 object obj = ResourceManager.GetObject("Estacionamiento-cubierto-Aeropuerto-Ezeiza-7-min-2", resourceCulture);

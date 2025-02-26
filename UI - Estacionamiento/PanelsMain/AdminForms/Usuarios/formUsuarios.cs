@@ -76,14 +76,16 @@ namespace UI___Estacionamiento.PanelsMain.AdminForms.RolesPermisos
 
             dgvPermisos.Columns["idPatente"].Visible = false;
             dgvPermisos.Columns["NombreAcceso"].HeaderText = "Nombre del Permiso";
+            dgvPermisos.Columns["NombreAcceso"].FillWeight = 200;
             dgvPermisos.Columns["DataKey"].HeaderText = "Referencia de permiso";
+            dgvPermisos.Columns["DataKey"].FillWeight = 100;
 
             if (dgvPermisos.Columns["Seleccionar"] == null) 
             {
                 DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn();
                 checkBoxColumn.HeaderText = "Seleccionar";
                 checkBoxColumn.Name = "Seleccionar";
-                checkBoxColumn.Width = 50;
+                checkBoxColumn.Width = 40;
                 dgvPermisos.Columns.Insert(0, checkBoxColumn); 
             }
 
@@ -160,6 +162,12 @@ namespace UI___Estacionamiento.PanelsMain.AdminForms.RolesPermisos
 
 
                     UsuarioRepository.Current.Update(usuario);
+
+                    UsuarioFamiliaRepository.Current.Remove(usuario.IdUsuario);
+
+                    Familia familia = FamiliaRepository.Current.GetById(Guid.Parse(cmbTipoRol.SelectedValue.ToString()));
+
+                    UsuarioFamiliaRepository.Current.Add(new UsuarioFamilia() { idUsuario = usuario.IdUsuario, idFamilia = familia.IdFamilia });
 
                     foreach (var item in patentes)
                     {

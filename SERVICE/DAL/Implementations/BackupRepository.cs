@@ -1,4 +1,6 @@
 ﻿using SERVICE.DAL.Contracts;
+using SERVICE.Domain.ServicesExceptions;
+using SERVICE.Services;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -70,7 +72,9 @@ namespace SERVICE.DAL.Implementations
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error al realizar el backup: {ex.Message}");
+                ExceptionService.Current.HandleException(new BLLException(ex));
+                throw new Exception($"Ocurrió un error al listar los backups para la base de datos : {ex.Message}");
+
             }
         }
 
@@ -95,14 +99,15 @@ namespace SERVICE.DAL.Implementations
             }
             catch (Exception ex)
             {
+                ExceptionService.Current.HandleException(new BLLException(ex));
                 throw new Exception($"Ocurrió un error al listar los backups para la base de datos '{nombreBaseDeDatos}': {ex.Message}");
+
             }
+
         }
 
 
-
-
-        public void RestaurarBackup(string connectionStringName, string rutaBackup)
+            public void RestaurarBackup(string connectionStringName, string rutaBackup)
         {
             try
             {
@@ -140,7 +145,9 @@ namespace SERVICE.DAL.Implementations
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error al restaurar la base de datos: {ex.Message}");
+                ExceptionService.Current.HandleException(new BLLException(ex));
+                throw new Exception($"Ocurrió un error al listar los backups para la base de datos : {ex.Message}");
+
             }
         }
     }

@@ -10,7 +10,6 @@ namespace DOMAIN
     {
         public int idFactura { get; set; }
         public Ingreso ingreso { get; set; }
-
         public MetodoPago metodoPago { get; set; }
 
         public Decimal monto_total { get; set; }

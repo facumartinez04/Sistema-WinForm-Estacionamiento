@@ -1,5 +1,6 @@
 ﻿using BLL.Implementations;
 using DOMAIN;
+using SERVICE.Facade.Extentions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,12 +12,13 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI___Estacionamiento.Domain.Observer;
 using UI___Estacionamiento.PanelsMain.IngresosForms;
 using UI___Estacionamiento.PanelsMain.SalidaForms;
 
 namespace UI___Estacionamiento.PanelsMain.FacturacionForms
 {
-    public partial class formFacturacionPago : Form
+    public partial class formFacturacionPago : Form, IFormObserver
     {
 
         private Ingreso _ingreso;
@@ -34,6 +36,7 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
 
             _ingreso = ingreso;
             InitializeComponent();
+            Update(this);
         }
         private void formFacturacionPago_Load(object sender, EventArgs e)
         {
@@ -45,6 +48,12 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
             tiempos.Interval = 1000;
             tiempos.Tick += new EventHandler(tiempos_Tick_1);
             tiempos.Start();
+        }
+
+        private void LimpiarTodo()
+        {
+            txtPatente.Text = "";
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -61,7 +70,7 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
             txtPatente.Text = _ingreso.vehiculo.patente;
             txtTarifa.Text = _ingreso.objTipoTarifa.descripcion;
             txtMontoHora.Text = _ingreso.objTipoTarifa.monto_por_hora.ToString("C", new CultureInfo("es-AR"));
-            txtCobro.Text = _ingreso.CalcularImporte(_ingreso.fechaIngreso,DateTime.Now,_ingreso.objTipoTarifa).ToString("C", new CultureInfo("es-AR"));
+            txtCobro.Text = _ingreso.CalcularImporte(_ingreso.fechaIngreso, DateTime.Now, _ingreso.objTipoTarifa).ToString("C", new CultureInfo("es-AR"));
 
 
             if (_ingreso != null)
@@ -88,11 +97,17 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
             }
 
         }
-     
+        private void CargarImporte()
+        {
+            txtCobro.Text = _ingreso.CalcularImporte(_ingreso.fechaIngreso, DateTime.Now, _ingreso.objTipoTarifa).ToString("C", new CultureInfo("es-AR"));  
+
+        }
+
         private void tiempos_Tick_1(object sender, EventArgs e)
         {
                CargarTiempos();
-        
+               CargarImporte();
+
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -131,13 +146,17 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
                 _ingreso.fechaEgreso = DateTime.Now;
                 factura.ingreso = _ingreso;
                 factura.metodoPago = (MetodoPago)cmbmetodoPago.SelectedItem;
-                factura.monto_total = Convert.ToDecimal(_ingreso.CalcularImporte(_ingreso.fechaIngreso, Convert.ToDateTime(_ingreso.fechaEgreso), _ingreso.objTipoTarifa));
+                factura.monto_total = Convert.ToDecimal(Math.Round(_ingreso.CalcularImporte(_ingreso.fechaIngreso, Convert.ToDateTime(_ingreso.fechaEgreso), _ingreso.objTipoTarifa), 2), new CultureInfo("es-AR"));
                 IngresoBusiness.Current.RegistrarSalida(_ingreso);
                 FacturaBusiness.Current.Add(factura);
-                MessageBox.Show("Factura generada con exito");
+
+                MessageBox.Show("vehiculo-exited-success".Translate());
+
                 Hide();
                 Close();
                 formSalidaMain.ListarIngresos();
+                formSalidaMain.LimpiarTodo();
+                
             }
             catch (Exception ex)
             {
@@ -149,10 +168,35 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
         private void ListarMetodosPagos()
         {
             List<MetodoPago> metodos = MetodoPagoBusiness.Current.GetAll();
+            if(metodos.Count == 0)
+            {
+                MessageBox.Show("payment-method-list-empty".Translate(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
             cmbmetodoPago.DataSource = metodos;
             cmbmetodoPago.DisplayMember = "descripcion";
             cmbmetodoPago.ValueMember = "idMetodoPago";
 
+        }
+
+        public void Update(Form form)
+        {
+            lblPatente.Text = "patent".Translate();
+            gbTarifa.Text = "rate".Translate();
+            lblTipoTarifa.Text = "rates-type".Translate();
+            lblMontoHora.Text = "rates-amount-one-hour".Translate();
+            lblTotalaCobrar.Text = "total-charge".Translate();
+            lblfechahoraingreso.Text = "date-and-hour-joined".Translate();
+            lblfechahorasalida.Text = "date-and-hour-exited".Translate();
+            gbtiempotrans.Text = "time-elapsed".Translate();
+            lbldias.Text = "days".Translate();
+            lblhoras.Text = "hours".Translate();
+            lblminutos.Text = "minutes".Translate();
+            lblsegundos.Text = "seconds".Translate();
+            gbmetodopago.Text = "payment-methods".Translate();
+            lblelegirmetodo.Text = "select-payment-method".Translate();
+            btnCobrar.Text = "charge-right-now".Translate();
+            lblrealizarcobro.Text = "make-the-parking-payment".Translate();
         }
     }
 }

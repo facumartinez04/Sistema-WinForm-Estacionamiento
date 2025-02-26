@@ -1,5 +1,6 @@
 ﻿using BLL.Implementations;
 using DOMAIN;
+using SERVICE.Facade.Extentions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,10 +11,11 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI___Estacionamiento.Domain.Observer;
 
 namespace UI___Estacionamiento.PanelsMain.HistorialForms
 {
-    public partial class formHistorialMain : Form
+    public partial class formHistorialMain : Form, IFormObserver
     {
 
         [DllImport("user32.dll")]
@@ -24,6 +26,7 @@ namespace UI___Estacionamiento.PanelsMain.HistorialForms
         public formHistorialMain()
         {
             InitializeComponent();
+            Update(this);
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -85,17 +88,17 @@ namespace UI___Estacionamiento.PanelsMain.HistorialForms
             dataGridView1.DataSource = listaResumen;
 
 
-            dataGridView1.Columns["PatenteVehiculo"].HeaderText = "Patente";
+            dataGridView1.Columns["PatenteVehiculo"].HeaderText = "patent".Translate();
 
-            dataGridView1.Columns["FechaIngreso"].HeaderText = "Fecha de Ingreso";
+            dataGridView1.Columns["FechaIngreso"].HeaderText = "date-joined".Translate();
 
-            dataGridView1.Columns["FechaSalida"].HeaderText = "Fecha de Salida";
+            dataGridView1.Columns["FechaSalida"].HeaderText = "date-exited".Translate();
 
-            dataGridView1.Columns["HorarioIngreso"].HeaderText = "Horario de Ingreso";
+            dataGridView1.Columns["HorarioIngreso"].HeaderText = "hour-joined".Translate();
 
-            dataGridView1.Columns["HorarioEgreso"].HeaderText = "Horario de Salida";
+            dataGridView1.Columns["HorarioEgreso"].HeaderText = "hour-exited".Translate();
 
-            dataGridView1.Columns["TipoDeTarifa"].HeaderText = "Tarifa";
+            dataGridView1.Columns["TipoDeTarifa"].HeaderText = "rate".Translate();
 
 
             ConfigurarDataGridView(dataGridView1);
@@ -125,20 +128,21 @@ namespace UI___Estacionamiento.PanelsMain.HistorialForms
                 dataGridView1.DataSource = resumido;
 
 
-                dataGridView1.Columns["PatenteVehiculo"].HeaderText = "Patente";
 
-                dataGridView1.Columns["FechaIngreso"].HeaderText = "Fecha de Ingreso";
+                dataGridView1.Columns["PatenteVehiculo"].HeaderText = "patent".Translate();
 
-                dataGridView1.Columns["FechaSalida"].HeaderText = "Fecha de Salida";
+                dataGridView1.Columns["FechaIngreso"].HeaderText = "date-joined".Translate();
 
-                dataGridView1.Columns["HorarioIngreso"].HeaderText = "Horario de Ingreso";
+                dataGridView1.Columns["FechaSalida"].HeaderText = "date-exited".Translate();
 
-                dataGridView1.Columns["HorarioEgreso"].HeaderText = "Horario de Salida";
+                dataGridView1.Columns["HorarioIngreso"].HeaderText = "hour-joined".Translate();
 
-                dataGridView1.Columns["TipoDeTarifa"].HeaderText = "Tarifa";
+                dataGridView1.Columns["HorarioEgreso"].HeaderText = "hour-exited".Translate();
+
+                dataGridView1.Columns["TipoDeTarifa"].HeaderText = "rate".Translate();
 
 
-                ConfigurarDataGridView(dataGridView1);
+            ConfigurarDataGridView(dataGridView1);
 
 
             
@@ -192,6 +196,19 @@ namespace UI___Estacionamiento.PanelsMain.HistorialForms
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
 
+        }
+
+        public void Update(Form form)
+        {
+            gbseachpatente.Text = "title-search-patent".Translate();
+            gbsearchfechas.Text = "title-search-date".Translate();
+            lbldesde.Text = "from".Translate();
+            lblhasta.Text = "to".Translate();
+
+            btnBuscarFecha.Text = "search".Translate();
+            btnBuscarPatente.Text = "search".Translate();
+            lblPatente.Text = "patent".Translate();
+            btnClose.Text = "close".Translate();
         }
     }
 }

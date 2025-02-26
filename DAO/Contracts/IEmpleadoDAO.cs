@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 
 namespace DAO.Contracts
 {
-    public interface IEmpleadoDAO : IGenericDao<Empleado>
+    /// <summary>
+    /// //Interfaz de la clase EmpleadoDAO
+    /// </summary>
+    public interface IEmpleadoDAO
     {
     }
 }

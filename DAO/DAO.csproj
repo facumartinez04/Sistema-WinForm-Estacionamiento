@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\DAO.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -42,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IClienteDAO.cs" />
     <Compile Include="Contracts\IEmpleadoDAO.cs" />
     <Compile Include="Contracts\IFacturaDAO.cs" />
     <Compile Include="Contracts\IGenericDao.cs" />
@@ -56,22 +56,16 @@
     <Compile Include="Contracts\UnitOfWork\IUnitOfWorkRepository.cs" />
     <Compile Include="Contracts\IVehiculoDAO.cs" />
     <Compile Include="Factory\FactoryDao.cs" />
-    <Compile Include="Implementations\SqlServer\ClienteDAO.cs" />
-    <Compile Include="Implementations\SqlServer\EmpleadoDAO.cs" />
     <Compile Include="Implementations\SqlServer\FacturaDAO.cs" />
     <Compile Include="Implementations\SqlServer\Helpers\SqlHelper.cs" />
     <Compile Include="Implementations\SqlServer\Helpers\SqlTransactRepository.cs" />
     <Compile Include="Implementations\SqlServer\IngresoDAO.cs" />
-    <Compile Include="Implementations\SqlServer\Mappers\ClienteMapper.cs" />
     <Compile Include="Implementations\SqlServer\Mappers\FacturaMapper.cs" />
     <Compile Include="Implementations\SqlServer\Mappers\IngresoMapper.cs" />
     <Compile Include="Implementations\SqlServer\Mappers\MetodoPagoMapper.cs" />
-    <Compile Include="Implementations\SqlServer\Mappers\PagoMapper.cs" />
-    <Compile Include="Implementations\SqlServer\Mappers\RolMapper.cs" />
     <Compile Include="Implementations\SqlServer\Mappers\TipoTarifaMapper.cs" />
     <Compile Include="Implementations\SqlServer\Mappers\VehiculoMapper.cs" />
     <Compile Include="Implementations\SqlServer\MetodoPagoDAO.cs" />
-    <Compile Include="Implementations\SqlServer\PagoDAO.cs" />
     <Compile Include="Implementations\SqlServer\TipoTarifaDAO.cs" />
     <Compile Include="Implementations\SqlServer\UnitOfWork\UnitOfWorkSqlServer.cs" />
     <Compile Include="Implementations\SqlServer\UnitOfWork\UnitOfWorkSqlServerAdapter.cs" />
@@ -84,6 +78,10 @@
     <ProjectReference Include="..\DOMAIN\DOMAIN.csproj">
       <Project>{2F63F1AF-448A-4DEA-A9D0-B186B5660BA2}</Project>
       <Name>DOMAIN</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SERVICE\SERVICE.csproj">
+      <Project>{963906DB-B9BA-41EB-A09D-C5187E145346}</Project>
+      <Name>SERVICE</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

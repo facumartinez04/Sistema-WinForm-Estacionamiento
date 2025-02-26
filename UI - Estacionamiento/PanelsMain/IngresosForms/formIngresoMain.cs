@@ -36,8 +36,8 @@ namespace UI___Estacionamiento.PanelsMain.IngresosForms
             ListarIngresos();
             ListarComboTarifas();
             CargarHora();
-            lblMes.Text = DateTime.Now.ToString("MMMM", new CultureInfo("es-ES"));
-            lblDia.Text = DateTime.Now.ToString("dd", new CultureInfo("es-ES"));
+            lblMes.Text = DateTime.Now.ToString("MMMM", new CultureInfo("es-AR"));
+            lblDia.Text = DateTime.Now.ToString("dd", new CultureInfo("es-AR"));
             lblAno.Text = DateTime.Now.ToString("yyyy");
             txtPatente.MaxLength = 9;
 
@@ -49,29 +49,36 @@ namespace UI___Estacionamiento.PanelsMain.IngresosForms
 
         public void ListarIngresos()
         {
-            DBIngresosList.DataSource = null;
-
-            List<Ingreso> ingresos = IngresoBusiness.Current.IngresosActuales();
-
-            var listaResumen = ingresos.Select(i => new
+            try
             {
-                idIngreso = i.idIngreso,
-                PatenteVehiculo = i.vehiculo.patente,
-                IngresoFecha = i.fechaIngreso.ToString("dd/MM/yyyy"),
-                Horario = i.fechaIngreso.ToString("HH:mm:ss"),
-                TipoDeTarifa = i.objTipoTarifa.descripcion
-            }).ToList();
+                DBIngresosList.DataSource = null;
 
-            DBIngresosList.DataSource = listaResumen;
+                List<Ingreso> ingresos = IngresoBusiness.Current.IngresosActuales();
 
-            ConfigurarDataGridView(DBIngresosList);
+                var listaResumen = ingresos.Select(i => new
+                {
+                    idIngreso = i.idIngreso,
+                    PatenteVehiculo = i.vehiculo.patente,
+                    IngresoFecha = i.fechaIngreso.ToString("dd/MM/yyyy"),
+                    Horario = i.fechaIngreso.ToString("HH:mm:ss"),
+                    TipoDeTarifa = i.objTipoTarifa.descripcion
+                }).ToList();
 
-            DBIngresosList.Columns["idIngreso"].Visible = false;
+                DBIngresosList.DataSource = listaResumen;
 
-            DBIngresosList.Columns["PatenteVehiculo"].HeaderText = "car-patent".Translate();
-            DBIngresosList.Columns["IngresoFecha"].HeaderText = "date".Translate();
-            DBIngresosList.Columns["Horario"].HeaderText = "time".Translate();
-            DBIngresosList.Columns["TipoDeTarifa"].HeaderText = "rate".Translate();
+                ConfigurarDataGridView(DBIngresosList);
+
+                DBIngresosList.Columns["idIngreso"].Visible = false;
+
+                DBIngresosList.Columns["PatenteVehiculo"].HeaderText = "car-patent".Translate();
+                DBIngresosList.Columns["IngresoFecha"].HeaderText = "date".Translate();
+                DBIngresosList.Columns["Horario"].HeaderText = "time".Translate();
+                DBIngresosList.Columns["TipoDeTarifa"].HeaderText = "rate".Translate();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
 
 
@@ -80,11 +87,24 @@ namespace UI___Estacionamiento.PanelsMain.IngresosForms
 
         private void ListarComboTarifas()
         {
-            cmbTarifas.DataSource = null;
-            cmbTarifas.Items.Clear();
-            cmbTarifas.DataSource = TipoTarifaBusiness.Current.GetAll();
-            cmbTarifas.ValueMember = "idTipoTarifa";
-            cmbTarifas.DisplayMember = "descripcion";
+            try
+            {
+                cmbTarifas.DataSource = null;
+                cmbTarifas.Items.Clear();
+                cmbTarifas.DataSource = TipoTarifaBusiness.Current.GetAll();
+                if (cmbTarifas.Items.Count == 0)
+                {
+                    MessageBox.Show("rate-list-empty".Translate(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+
+                }
+                cmbTarifas.ValueMember = "idTipoTarifa";
+                cmbTarifas.DisplayMember = "descripcion";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -159,17 +179,24 @@ namespace UI___Estacionamiento.PanelsMain.IngresosForms
 
         private void DBIngresosList_DoubleClick(object sender, EventArgs e)
         {
-            if (DBIngresosList.CurrentRow != null)
+            try
             {
-                var selectedRow = DBIngresosList.CurrentRow;
+                if (DBIngresosList.CurrentRow != null)
+                {
+                    var selectedRow = DBIngresosList.CurrentRow;
 
-                Guid patenteVehiculo = (Guid)selectedRow.Cells["idIngreso"].Value;
+                    Guid patenteVehiculo = (Guid)selectedRow.Cells["idIngreso"].Value;
 
-                _ingresoseleccionado = IngresoBusiness.Current.GetById(patenteVehiculo);
+                    _ingresoseleccionado = IngresoBusiness.Current.GetById(patenteVehiculo);
 
-                
 
-                _ingresoseleccionado = null;
+
+                    _ingresoseleccionado = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

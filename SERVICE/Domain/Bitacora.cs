@@ -12,10 +12,18 @@ namespace SERVICE.Domain
 
         public string usuario { get; set; }
 
-        public DateTime fecha { get; set; }
+        public DateTime fecha { get; set; } = DateTime.Now;
         public string accion { get; set; }
         public string detalles { get; set; }
 
+        public Bitacora()
+        { }
+        public Bitacora(string usuario, string accion, string detalles = "")
+        {
+            this.usuario = usuario;
+            this.accion = accion;
+            this.detalles = detalles;
+        }
 
     }
 }

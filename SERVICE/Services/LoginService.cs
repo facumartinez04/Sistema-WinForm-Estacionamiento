@@ -1,5 +1,6 @@
 ﻿using SERVICE.DAL.Implementations;
 using SERVICE.Domain.Composite;
+using SERVICE.Domain.ServicesExceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,24 +16,36 @@ namespace SERVICE.Services
 
         public static void Register(Usuario user)
         {
-
-            if (user.UserName == "" || user.Password == "")
+            try
             {
-                throw new Exception("El usuario o la contraseña no pueden ser nulos");
+
+                if (user.UserName == "" || user.Password == "")
+                {
+                    throw new Exception("El usuario o la contraseña no pueden ser nulos");
+                }
+
+                Usuario userCheck = UsuarioRepository.Current.GetAll().FirstOrDefault(x => x.UserName == user.UserName);
+
+
+                bool checheando = UsuarioRepository.Current.Add(user);
+                var userFamilia = new UsuarioFamilia();
+                userFamilia.idUsuario = user.IdUsuario;
+                userFamilia.idFamilia = new Guid("9A818C81-BA52-490C-A4C3-97F30A5DB69C");
+                UsuarioFamiliaRepository.Current.Add(userFamilia);
+
+                if (checheando == false)
+                {
+                    throw new Exception("El usuario ya existe");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionService.Current.HandleException(new DALException(ex));
+                throw;
             }
 
 
-            bool checheando = UsuarioRepository.Current.Add(user);
-
-
-            if (checheando == false)
-            {
-                throw new Exception("El usuario ya existe");
-            }
-            else
-            {
-                throw new Exception("El usuario fue registrado con exito");
-            }
 
 
 

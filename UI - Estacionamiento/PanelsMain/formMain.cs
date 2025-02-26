@@ -1,4 +1,5 @@
-﻿using SERVICE.Domain.Composite;
+﻿using BLL.Implementations;
+using SERVICE.Domain.Composite;
 using SERVICE.Facade.Extentions;
 using SERVICE.Services;
 using System;
@@ -20,12 +21,14 @@ using UI___Estacionamiento.PanelsMain.IngresosForms;
 using UI___Estacionamiento.PanelsMain.MetodoPagoForms;
 using UI___Estacionamiento.PanelsMain.SalidaForms;
 using UI___Estacionamiento.PanelsMain.TarifaForms;
+using UI___Estacionamiento.PanelsMain.VehiculoForms;
 
 namespace UI___Estacionamiento.PanelsMain
 {
     public partial class formMain : Form, IFormObserver
     {
         private Usuario _user;
+        private int previousFormHeight;
         private formAuthMain _formAuthMain;
         public formMain(formAuthMain formAuthMain)
         {
@@ -33,7 +36,10 @@ namespace UI___Estacionamiento.PanelsMain
             _user = SessionService.GetUsuario();
 
             InitializeComponent();
+
             ListarPorPermisos();
+            previousFormHeight = this.Height;
+
 
 
             this.Shown += formMain_Shown;
@@ -47,9 +53,14 @@ namespace UI___Estacionamiento.PanelsMain
             horarioDia.Interval = 1000;
             horarioDia.Tick += new EventHandler(horarioDia_Tick);
             horarioDia.Start();
+
             lblUser.Text = _user.UserName.ToUpper();
 
         }
+
+
+
+
 
 
 
@@ -214,7 +225,8 @@ namespace UI___Estacionamiento.PanelsMain
         {
             if (SessionService.IsLogged())
             {
-
+                BackupService.RealizarBackup("MainConString", "Estacionamiento");
+                BackupService.RealizarBackup("ServicesPP", "ServicesPP");
                 Application.Exit();
             }
             else
@@ -231,6 +243,10 @@ namespace UI___Estacionamiento.PanelsMain
             button4.Visible = true;
             button4.Enabled = true;
 
+
+
+            lblautosingresados.Text = IngresoBusiness.Current.GetCountIngresosActuales().ToString();
+            lblingresosdia.Text = IngresoBusiness.Current.GetCountIngresoDelDia().ToString();
             button1.Text = "billing".Translate();
             btnTarifa.Text = "rates".Translate();
             btnMetodoPago.Text = "payment-methods".Translate();
@@ -238,8 +254,8 @@ namespace UI___Estacionamiento.PanelsMain
             btnCerrar.Text = "logout".Translate();
             button2.Text = "leaves".Translate();
             button3.Text = "admin".Translate();
-
-
+            lblwelcome.Text = "welcome".Translate();
+            btnVehiculo.Text = "vehicles".Translate();
             lblSelectIdioma.Text = "select-language".Translate();
             form.Invalidate();
             form.Refresh();
@@ -267,6 +283,7 @@ namespace UI___Estacionamiento.PanelsMain
 
         public void ReloadForm()
         {
+
             Form parent = this.Owner;
 
             this.Dispose();
@@ -279,6 +296,68 @@ namespace UI___Estacionamiento.PanelsMain
             }
 
             newForm.Show();
+        }
+        
+        private void formMain_Resize(object sender, EventArgs e)
+        {
+            int panelWidth = panel1.Width;
+            int panelHeight = panel1.Height;
+
+            int maxPanel4Height = 85;
+            int maxPanel2Height = 43;
+            int maxPanel3Height = 100;
+
+            int panel4Height = Math.Min(maxPanel4Height, panelHeight);
+            panelHeight -= panel4Height;
+
+            int panel2Height = Math.Min(maxPanel2Height, panelHeight);
+            panelHeight -= panel2Height;
+
+            int panel3Height = Math.Min(maxPanel3Height, panelHeight);
+            panelHeight -= panel3Height;
+
+            int panelBotonesHeight = Math.Max(panelHeight, 0);
+
+            panel4.Width = panelWidth;
+            panel4.Height = panel4Height;
+            panel4.Location = new Point(0, 0);
+
+            panel3.Width = panelWidth;
+            panel3.Height = panel3Height;
+            panel3.Location = new Point(0, panel4Height + panel2Height);
+
+            panelbotones.Width = panelWidth;
+            panelbotones.Height = panelBotonesHeight;
+            panelbotones.Location = new Point(0, panel4Height + panel2Height + panel3Height);
+
+            AdjustButtonsInPanel(panelbotones);
+        }
+
+        private void AdjustButtonsInPanel(Panel panelBotones)
+        {
+            int buttonCount = panelBotones.Controls.OfType<Button>().Count();
+            if (buttonCount == 0) return;
+
+            int availableHeight = panelBotones.Height;
+            int buttonHeight = Math.Min(78, availableHeight / buttonCount);
+
+            int yOffset = 0;
+            foreach (Control control in panelBotones.Controls)
+            {
+                if (control is Button button)
+                {
+                    button.Width = panelBotones.Width;
+                    button.Height = buttonHeight;
+                    button.Location = new Point(0, yOffset);
+                    yOffset += buttonHeight;
+                }
+            }
+        }
+
+        private void btnVehiculo_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel(new formVehiculoMain());
+
         }
     }
 }
