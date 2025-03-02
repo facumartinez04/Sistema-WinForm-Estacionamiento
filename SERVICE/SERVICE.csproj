@@ -180,5 +180,11 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DOMAIN\DOMAIN.csproj">
+      <Project>{2F63F1AF-448A-4DEA-A9D0-B186B5660BA2}</Project>
+      <Name>DOMAIN</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

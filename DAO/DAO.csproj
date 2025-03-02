@@ -73,7 +73,9 @@
     <Compile Include="Implementations\SqlServer\VehiculoDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DOMAIN\DOMAIN.csproj">
       <Project>{2F63F1AF-448A-4DEA-A9D0-B186B5660BA2}</Project>

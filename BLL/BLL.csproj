@@ -55,7 +55,9 @@
     <Compile Include="Interfaces\ITipoTarifaBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAO\DAO.csproj">
       <Project>{ce4566b5-171e-4b15-a291-ccc8b63241f7}</Project>
