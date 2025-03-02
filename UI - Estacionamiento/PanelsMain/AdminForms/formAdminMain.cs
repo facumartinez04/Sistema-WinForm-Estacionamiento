@@ -50,7 +50,7 @@ namespace UI___Estacionamiento.PanelsMain.AdminForms
 
         private void btnBackups_Click(object sender, EventArgs e)
         {
-            AbrirFormPanel(new formAdminBackups());
+           AbrirFormPanel(new formAdminBackups());
         }
     }
 }

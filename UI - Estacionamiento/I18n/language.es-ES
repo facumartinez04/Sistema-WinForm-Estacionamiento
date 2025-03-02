@@ -39,6 +39,7 @@ vehicle-error-car-already-entered=Error al ingresar vehiculo, el vehiculo ya se 
 vehicle-text-empty=Debe ingresar la patente del vehiculo
 vehicle-not-entered=Vehiculo no ingresado
 vehicle-not-found=Vehiculo no encontrado
+<<<<<<< Updated upstream
 entry-the-patent=Ingrese la patente
 from=Desde
 to=Hasta
@@ -91,3 +92,6 @@ error-vehicle-not-exists=El vehiculo no existe
 error-vehicle-already-has-ingress-or-egress=El vehiculo ya tiene un ingreso o egreso registrado
 number-patent=Numero de Patente
 vehicles=Vehiculos
+=======
+
+>>>>>>> Stashed changes
