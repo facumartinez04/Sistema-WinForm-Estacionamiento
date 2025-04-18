@@ -78,6 +78,7 @@
             this.txtPatente.TabIndex = 1;
             this.txtPatente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPatente.TextChanged += new System.EventHandler(this.txtPatente_TextChanged);
+            this.txtPatente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPatente_KeyPress);
             // 
             // cmbTarifas
             // 

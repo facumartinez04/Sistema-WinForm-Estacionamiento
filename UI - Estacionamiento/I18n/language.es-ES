@@ -39,7 +39,6 @@ vehicle-error-car-already-entered=Error al ingresar vehiculo, el vehiculo ya se 
 vehicle-text-empty=Debe ingresar la patente del vehiculo
 vehicle-not-entered=Vehiculo no ingresado
 vehicle-not-found=Vehiculo no encontrado
-<<<<<<< Updated upstream
 entry-the-patent=Ingrese la patente
 from=Desde
 to=Hasta
@@ -92,6 +91,19 @@ error-vehicle-not-exists=El vehiculo no existe
 error-vehicle-already-has-ingress-or-egress=El vehiculo ya tiene un ingreso o egreso registrado
 number-patent=Numero de Patente
 vehicles=Vehiculos
-=======
-
->>>>>>> Stashed changes
+pay-ticket=Ticket de Pago
+generate-question=¿Desea generar el ticket de la salida?
+generate-now=Generar ahora
+generate-ticket-success=Ticket generado con exito del vehiculo
+invoice-success=Factura generada con exito
+invoice-generated=Factura generada
+thanks-you-for-your-visit=Gracias por su visita
+driving-warning=Conduzca con precaucion
+id-invoice=Id de la Factura
+invoice=Factura
+invoices=Facturas
+parking=ESTACIONAMIENTO
+payment-ticket=TICKET DE PAGO
+pdf-dont-generate-success=No se pudo generar el PDF
+error-to-generate-a-invoice=Error al generar la factura
+error-to-generate-a-file=Error al generar el archivo

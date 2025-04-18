@@ -5,12 +5,24 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SERVICE.Services
 {
     public static class LanguageManager
     {
+
+
+        public static string CurrentLanguage
+        {
+            get
+            {
+                return Thread.CurrentThread.CurrentUICulture.Name;
+            }
+        }
+
+
         public static string Translate(string key)
         {
             try
@@ -19,9 +31,7 @@ namespace SERVICE.Services
             }
             catch (WordNotFoundException ex)
             {
-                //Enviar por ws al grupo...
                 LanguageRepository.WriteKey(key);
-                //Bajar una bitácora contando de este problemita...
             }
             catch (Exception ex)
             {

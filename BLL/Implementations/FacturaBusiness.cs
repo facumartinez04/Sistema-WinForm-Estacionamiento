@@ -169,6 +169,10 @@ namespace BLL.Implementations
                 using (var context = FactoryDao.UnitOfWork.Create())
                 {
                     factura = context.Repositories.FacturaRepository.obtenerPorID(ID);
+
+
+                    factura.ingreso = IngresoBusiness.Current.GetById(factura.ingreso.idIngreso);
+                    factura.metodoPago = MetodoPagoBusiness.Current.ObtenerPorId(factura.metodoPago.idMetodoPago);
                 }
                 return factura;
             }

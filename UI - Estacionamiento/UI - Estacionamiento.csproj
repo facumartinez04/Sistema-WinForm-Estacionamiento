@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -97,6 +100,12 @@
     </Compile>
     <Compile Include="PanelsMain\FacturacionForms\formFacturacionPago.Designer.cs">
       <DependentUpon>formFacturacionPago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PanelsMain\FacturacionForms\formGenerarTicket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelsMain\FacturacionForms\formGenerarTicket.Designer.cs">
+      <DependentUpon>formGenerarTicket.cs</DependentUpon>
     </Compile>
     <Compile Include="PanelsMain\formMain.cs">
       <SubType>Form</SubType>
@@ -171,6 +180,9 @@
     <EmbeddedResource Include="PanelsMain\FacturacionForms\formFacturacionPago.resx">
       <DependentUpon>formFacturacionPago.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PanelsMain\FacturacionForms\formGenerarTicket.resx">
+      <DependentUpon>formGenerarTicket.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PanelsMain\formMain.resx">
       <DependentUpon>formMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -197,12 +209,13 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Content Include="I18n\language.en-US">
+    <AdditionalFiles Include="I18n\language.en-US">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="I18n\language.es-ES">
+    </AdditionalFiles>
+    <AdditionalFiles Include="I18n\language.es-ES">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </AdditionalFiles>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

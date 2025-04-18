@@ -229,13 +229,6 @@ namespace UI___Estacionamiento.PanelsMain.IngresosForms
             txtPatente.Text = "";
         }
 
-        private void txtPatente_TextChanged(object sender, EventArgs e)
-        {
-
-
-
-        }
-
         private void button7_Click(object sender, EventArgs e)
         {
             ListarIngresos();
@@ -261,6 +254,20 @@ namespace UI___Estacionamiento.PanelsMain.IngresosForms
             ListarIngresos();
 
          
+        }
+
+        private void txtPatente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                e.Handled = true;
+            }
+
+        }
+
+        private void txtPatente_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

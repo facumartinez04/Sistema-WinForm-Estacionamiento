@@ -1,6 +1,7 @@
 ﻿using BLL.Implementations;
 using DOMAIN;
 using SERVICE.Facade.Extentions;
+using SERVICE.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -58,12 +59,14 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
 
             var listafacturas = facturas.Select(f => new
             {
+                
                 Patente = f.ingreso.vehiculo.patente,
                 fecha = f.fechaRegistro.ToString("dd/MM/yyyy"),
                 hora = f.fechaRegistro.ToString("HH:mm:ss"),
                 monto_total = f.monto_total.ToString("C", new CultureInfo("es-AR")),
                 metodoPago = f.metodoPago.descripcion,
-                verificador = f.verificador
+                verificador = f.verificador,
+                idFactura = f.idFactura
             }).ToList();
 
             dgvFacturas.DataSource = listafacturas;
@@ -75,7 +78,9 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
             dgvFacturas.Columns[3].HeaderText = "total-mount".Translate();
             dgvFacturas.Columns[4].HeaderText = "payment-method".Translate();
 
+
             dgvFacturas.Columns[5].Visible = false;
+            dgvFacturas.Columns[6].Visible = false;
 
 
 
@@ -152,7 +157,8 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
                     hora = f.fechaRegistro.ToString("HH:mm:ss"),
                     monto_total = f.monto_total.ToString("C", new CultureInfo("es-AR")),
                     metodoPago = f.metodoPago.descripcion,
-                    verificador = f.verificador
+                    verificador = f.verificador,
+                    idFactura = f.idFactura
                 }).ToList();
 
                 dgvFacturas.DataSource = listafacturas;
@@ -164,6 +170,8 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
                 dgvFacturas.Columns[4].HeaderText = "payment-method".Translate();
 
                 dgvFacturas.Columns[5].Visible = false;
+
+                dgvFacturas.Columns[6].Visible = false;
 
                 ConfigurarDataGridView(dgvFacturas);
 
@@ -190,7 +198,8 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
                 hora = f.fechaRegistro.ToString("HH:mm:ss"),
                 monto_total = f.monto_total.ToString("C", new CultureInfo("es-AR")),
                 metodoPago = f.metodoPago.descripcion,
-                verificador = f.verificador
+                verificador = f.verificador,
+                idFactura = f.idFactura
             }).ToList();
 
             dgvFacturas.DataSource = listafacturas;
@@ -204,6 +213,7 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
 
 
             dgvFacturas.Columns[5].Visible = false;
+            dgvFacturas.Columns[6].Visible = false;
 
             ConfigurarDataGridView(dgvFacturas);
 
@@ -221,6 +231,30 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
             gboxpatente.Text = "title-search-patent".Translate();
             gboxdate.Refresh();
             gboxpatente.Refresh();
+        }
+
+        private void dgvFacturas_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+            if (e.RowIndex >= 0)
+            {
+
+                var idFactura = dgvFacturas.Rows[e.RowIndex].Cells[6].Value.ToString();
+                FacturaService.GenerarFactura(FacturaBusiness.Current.obtenerPorID(Convert.ToInt32(idFactura)));
+
+
+            }
+        }
+
+        
+
+        private void txtPatente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+            }
+
         }
     }
 }

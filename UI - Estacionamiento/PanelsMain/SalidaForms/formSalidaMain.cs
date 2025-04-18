@@ -168,6 +168,8 @@ namespace UI___Estacionamiento.PanelsMain.SalidaForms
             {
                 MessageBox.Show(ex.Message);
 
+                LimpiarTodo();
+
 
             }
         }
@@ -227,6 +229,7 @@ namespace UI___Estacionamiento.PanelsMain.SalidaForms
         {
             if (e.KeyChar == (char)13)
             {
+                e.Handled = true;
                 searchPatente_Click(sender, e);
             }
 

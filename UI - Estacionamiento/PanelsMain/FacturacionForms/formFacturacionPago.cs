@@ -24,6 +24,10 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
         private Ingreso _ingreso;
         private formSalidaMain formSalidaMain;
 
+        private Decimal precioSinNingunTipo;
+        private Decimal precioEnEfectivo;
+        private Decimal precioEnTarjetaYOtros;
+
         [DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
         [DllImport("user32.dll")]
@@ -99,7 +103,10 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
         }
         private void CargarImporte()
         {
-            txtCobro.Text = _ingreso.CalcularImporte(_ingreso.fechaIngreso, DateTime.Now, _ingreso.objTipoTarifa).ToString("C", new CultureInfo("es-AR"));  
+
+            var MontoTotalSinTipo = Convert.ToDecimal(Math.Round(_ingreso.CalcularImporte(_ingreso.fechaIngreso, DateTime.Now, _ingreso.objTipoTarifa), 2), new CultureInfo("es-AR"));
+            precioSinNingunTipo = MontoTotalSinTipo;
+            txtCobro.Text = tipoImporte(MontoTotalSinTipo).ToString("C", new CultureInfo("es-AR"));
 
         }
 
@@ -146,17 +153,29 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
                 _ingreso.fechaEgreso = DateTime.Now;
                 factura.ingreso = _ingreso;
                 factura.metodoPago = (MetodoPago)cmbmetodoPago.SelectedItem;
-                factura.monto_total = Convert.ToDecimal(Math.Round(_ingreso.CalcularImporte(_ingreso.fechaIngreso, Convert.ToDateTime(_ingreso.fechaEgreso), _ingreso.objTipoTarifa), 2), new CultureInfo("es-AR"));
+                var MontoTotalSinTipo = Convert.ToDecimal(Math.Round(_ingreso.CalcularImporte(_ingreso.fechaIngreso, Convert.ToDateTime(_ingreso.fechaEgreso), _ingreso.objTipoTarifa), 2), new CultureInfo("es-AR"));
+                factura.monto_total = tipoImporte(MontoTotalSinTipo);
                 IngresoBusiness.Current.RegistrarSalida(_ingreso);
                 FacturaBusiness.Current.Add(factura);
 
+
+
                 MessageBox.Show("vehiculo-exited-success".Translate());
 
+                
                 Hide();
                 Close();
                 formSalidaMain.ListarIngresos();
                 formSalidaMain.LimpiarTodo();
-                
+
+                Factura facturagen = new Factura();
+
+                facturagen = FacturaBusiness.Current.obtenerPorFecha(Convert.ToDateTime(_ingreso.fechaEgreso), DateTime.Now).Where(x => x.ingreso.fechaIngreso == _ingreso.fechaIngreso && x.ingreso.vehiculo.patente == _ingreso.vehiculo.patente).FirstOrDefault();
+
+
+                Form facturaGen = new formGenerarTicket(facturagen.idFactura);
+                facturaGen.ShowDialog();
+
             }
             catch (Exception ex)
             {
@@ -176,8 +195,8 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
             cmbmetodoPago.DataSource = metodos;
             cmbmetodoPago.DisplayMember = "descripcion";
             cmbmetodoPago.ValueMember = "idMetodoPago";
-
         }
+
 
         public void Update(Form form)
         {
@@ -197,6 +216,38 @@ namespace UI___Estacionamiento.PanelsMain.FacturacionForms
             lblelegirmetodo.Text = "select-payment-method".Translate();
             btnCobrar.Text = "charge-right-now".Translate();
             lblrealizarcobro.Text = "make-the-parking-payment".Translate();
+        }
+
+
+        private Decimal tipoImporte(Decimal monto)
+        {
+
+            if (cmbmetodoPago.Text == "Efectivo")
+            {
+
+                precioEnEfectivo = monto;
+
+                var decimales = precioEnEfectivo.ToString().Split(',');
+
+                if (Convert.ToInt32(decimales[1]) > 50)
+                {
+                    precioEnEfectivo = Convert.ToDecimal(decimales[0]) + 1;
+
+                    return Convert.ToDecimal(precioEnEfectivo.ToString("N2", new CultureInfo("es-AR")));
+
+
+                }
+                else
+                {
+                    precioEnEfectivo = Convert.ToDecimal(decimales[0]);
+                    return Convert.ToDecimal(precioEnEfectivo.ToString("N2", new CultureInfo("es-AR")));
+                }
+            }
+            else
+            {
+                return precioSinNingunTipo;
+            }
+
         }
     }
 }

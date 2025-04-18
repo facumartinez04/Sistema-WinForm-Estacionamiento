@@ -82,6 +82,7 @@
             this.dgvFacturas.Name = "dgvFacturas";
             this.dgvFacturas.Size = new System.Drawing.Size(842, 347);
             this.dgvFacturas.TabIndex = 1;
+            this.dgvFacturas.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvFacturas_RowHeaderMouseClick);
             // 
             // gboxdate
             // 
@@ -173,6 +174,7 @@
             this.txtPatente.Name = "txtPatente";
             this.txtPatente.Size = new System.Drawing.Size(177, 29);
             this.txtPatente.TabIndex = 2;
+            this.txtPatente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPatente_KeyPress);
             // 
             // lblIngresarPatente
             // 

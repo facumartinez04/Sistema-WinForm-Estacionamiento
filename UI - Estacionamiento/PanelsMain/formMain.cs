@@ -121,8 +121,11 @@ namespace UI___Estacionamiento.PanelsMain
             btnHistorial.Visible = false;
             button2.Visible = false;
             button3.Visible = false;
+            btnVehiculo.Visible = false;
 
-                
+
+
+
 
 
             foreach (var patente in patentes)
@@ -149,6 +152,9 @@ namespace UI___Estacionamiento.PanelsMain
                         break;
                     case "mnuAdmin":
                         button3.Visible = true;
+                        break;
+                    case "mnuVehiculos":
+                        btnVehiculo.Visible = true;
                         break;
                 }
             }
